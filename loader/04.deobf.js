@@ -1,14 +1,15 @@
 !(function () {
   "use strict";
-  function decodeString(J, F) {
-    var w = getStringTable();
+  // Lookup helper that translates numeric codes into strings.
+  function decodeString(index, unused) {
+    var lookupTable = getStringTable();
     return (
-      (decodeString = function (E, x) {
-        E = E - 0x8b;
-        var s = w[E];
-        return s;
+      (decodeString = function (adjustedIndex, unused) {
+        adjustedIndex = adjustedIndex - 0x8b;
+        var decoded = lookupTable[adjustedIndex];
+        return decoded;
       }),
-      decodeString(J, F)
+      decodeString(index, unused)
     );
   }
   ((function (stringArrayFunction, J) {
@@ -18841,8 +18842,9 @@
           )));
       })({});
     })());
+  // Provides the array of obfuscated strings referenced by decodeString.
   function getStringTable() {
-    var Zt = [
+    var stringTable = [
       "Esi",
       "Zio",
       "nhT",
@@ -22040,7 +22042,7 @@
       "TjS",
     ];
     getStringTable = function () {
-      return Zt;
+      return stringTable;
     };
     return getStringTable();
   }
