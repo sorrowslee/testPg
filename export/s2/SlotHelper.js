@@ -41,6 +41,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
   };
   var N = Q;
   var Y = function () {
+    // 建構函式，初始化轉輪相關元件
     function W() {
       this._numberOfColumn = undefined;
       this._numberOfRow = undefined;
@@ -60,6 +61,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       this._onSlotStopCallback = undefined;
     }
     var q = {
+      // 取得資料處理器
       get: function () {
         return this._slotDataHandler;
       },
@@ -68,6 +70,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
     };
     Object.defineProperty(W.prototype, "slotDataHandler", q);
     Object.defineProperty(W.prototype, "slotItemPool", {
+      // 取得符號物件池
       get: function () {
         return this._slotItemPool;
       },
@@ -75,6 +78,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       configurable: true
     });
     Object.defineProperty(W.prototype, "slotItemHandler", {
+      // 取得符號處理器
       get: function () {
         return this._slotItemHandler;
       },
@@ -82,6 +86,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       configurable: true
     });
     Object.defineProperty(W.prototype, "slotViews", {
+      // 取得轉輪視圖陣列
       get: function () {
         return this._slotViews;
       },
@@ -89,12 +94,14 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       configurable: true
     });
     Object.defineProperty(W.prototype, "isSlotViewBlur", {
+      // 判斷各轉輪是否為模糊狀態
       get: function () {
         return this._isSlotViewBlur;
       },
       enumerable: false,
       configurable: true
     });
+    // 初始化 SlotHelper
     W.prototype.init = function (z) {
       N.getScroller = this.getScroller.bind(this);
       N.willChangeSlotState = this.willChangeSlotState.bind(this);
@@ -178,34 +185,44 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       H.init(F, Z7);
       H.setSlotState(x.IDLE);
     };
+    // 更換指定位置的符號
     W.prototype.changeSymbol = function (S, z) {
       var f = this._slotItemHandler.getSlotItems(S)[0];
       this._slotItemPool.updateSlotItemSymbolIndex(f, z);
     };
+    // 設定轉軸停止的回呼
     W.prototype.setOnReelStopCallback = function (S) {
       this._onReelStopCallback = S;
     };
+    // 設定所有轉軸停止時的回呼
     W.prototype.setOnSlotStopCallback = function (S) {
       this._onSlotStopCallback = S;
     };
+    // 設定旋轉類型
     W.prototype.setSpinType = function (S) {
       this._slotDataHandler.setSpinType(S);
     };
+    // 設定轉輪資料
     W.prototype.setReelData = function (S, z) {
       this._slotDataHandler.setReelData(S, z);
     };
+    // 更新轉輪資料
     W.prototype.updateReelData = function (S, z) {
       this._slotDataHandler.updateReelData(S, z);
     };
+    // 取得指定轉軸停止位置
     W.prototype.getReelStopPosition = function (S) {
       return this._slotDataHandler.getReelDataPosition(S);
     };
+    // 取得格式化後的轉輪資料
     W.prototype.getFormattedData = function (S) {
       return this._slotDataHandler.getFormattedData(S);
     };
+    // 覆寫指定位置的格式化資料
     W.prototype.overwriteFormattedData = function (S, z, f) {
       this._slotDataHandler.overwriteFormattedData(S, z, f);
     };
+    // 重新載入所有轉輪項目
     W.prototype.reloadSlot = function () {
       var S = this._slotDataHandler;
       var z = this._slotViews;
@@ -215,16 +232,19 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       }
       this._setAllSlotItems();
     };
+    // 設定可視的功能行數
     W.prototype.setFunctionalRow = function (S) {
       this._slotViews.forEach(function (z) {
         return z.setFunctionalRow(S);
       });
     };
+    // 設定轉輪錨點位置
     W.prototype.setSlotAnchor = function (S) {
       this._slotViews.forEach(function (z) {
         return z.setSlotAnchor(S);
       });
     };
+    // 設定多個符號的顯示狀態
     W.prototype.setItemsVisible = function (S) {
       var z;
       var f = [];
@@ -235,6 +255,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         return M.visible = S;
       });
     };
+    // 設定某列符號的模糊狀態
     W.prototype.setItemsBlur = function (S, z) {
       var f = this._slotViews[z];
       this._isSlotViewBlur[z] = S;
@@ -243,6 +264,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         A[M].setBlur(S);
       }
     };
+    // 取得多個符號的顯示狀態
     W.prototype.getItemsVisible = function () {
       var S;
       var z = [];
@@ -255,6 +277,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       });
       return A;
     };
+    // 取得多個符號的世界座標
     W.prototype.getItemsWorldPositionAR = function () {
       var S;
       var z = [];
@@ -268,15 +291,19 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       });
       return M;
     };
+    // 取得指定索引的捲動器
     W.prototype.scrollerAtIndex = function (S) {
       return this._scrollerController.scrollerAtIndex(S);
     };
+    // 取得捲動器的索引
     W.prototype.indexOfScroller = function (S) {
       return this._scrollerController.indexOfScroller(S);
     };
+    // 取得目前轉輪狀態
     W.prototype.getSlotState = function () {
       return this._scrollerController.getSlotState();
     };
+    // 開始轉輪捲動
     W.prototype.startScroll = function () {
       var S = this._scrollerController;
       if (S.getSlotState() === x.IDLE) {
@@ -284,12 +311,14 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         S.setSlotState(x.START);
       }
     };
+    // 停止轉輪捲動
     W.prototype.stopScroll = function () {
       var S = this._scrollerController;
       if (S.getSlotState() === x.START) {
         S.setSlotState(x.STOP);
       }
     };
+    // 立即停止轉輪
     W.prototype.instantStopScroll = function () {
       var S = this._scrollerController;
       if (S.getSlotState() !== x.IDLE) {
@@ -297,18 +326,23 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         S.endCurrentState();
       }
     };
+    // 設定指定捲動器的開始參數
     W.prototype.setStartScrollerConfig = function (S, z) {
       this._startScrollers[S].setConfig(z);
     };
+    // 設定指定捲動器的停止參數
     W.prototype.setStopScrollerConfig = function (S, z) {
       this._stopScrollers[S].setConfig(z);
     };
+    // 更新開始捲動器的運行時設定
     W.prototype.updateStartScrollerRunTimeConfig = function (S, z) {
       this._startScrollers[S].updateRunTimeConfig(z);
     };
+    // 更新停止捲動器的運行時設定
     W.prototype.updateStopScrollerRunTimeConfig = function (S, z) {
       this._stopScrollers[S].updateRunTimeConfig(z);
     };
+    // 設定所有轉輪上的符號物件
     W.prototype._setAllSlotItems = function () {
       var S = this._slotItemHandler;
       S.reset();
@@ -320,6 +354,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         });
       });
     };
+    // 由 SlotView 取得符號物件
     W.prototype.slotViewGetItem = function (S, z) {
       var f = this._slotDataHandler.getItemInfo(S, z);
       var A = this._slotViews.indexOf(S);
@@ -329,13 +364,16 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       M.symbolRow = f.symbolRow;
       return M;
     };
+    // 釋放符號物件回物件池
     W.prototype.slotViewReleaseItem = function (S, z) {
       this._slotItemPool.releaseSlotItem(z);
     };
+    // 捲動器滾動時調整對應 SlotView 位置
     W.prototype.scrollerScroll = function (S, z) {
       var f = this._scrollerController.indexOfScroller(S);
       this._slotViews[f].changePositionY(z);
     };
+    // 計算捲動器到停止位置的距離
     W.prototype.scrollerGetStopDistance = function (S) {
       var z;
       var f = this._scrollerController.indexOfScroller(S);
@@ -344,6 +382,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
       this._slotDataHandler.setReelDataPosition(f, z);
       return A.getDistanceToIndex(z);
     };
+    // 捲動器加速時的處理
     W.prototype.onScrollerAccelerate = function (S) {
       var z = S.speedFactor;
       var f = this._isSlotViewBlur;
@@ -352,6 +391,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         this.setItemsBlur(true, A);
       }
     };
+    // 捲動器減速時的處理
     W.prototype.onScrollerDecelerate = function (S) {
       var z = S.speedFactor;
       var f = this._isSlotViewBlur;
@@ -360,6 +400,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         this.setItemsBlur(false, A);
       }
     };
+    // 單一轉軸停止時的處理
     W.prototype.onScrollerStop = function (S) {
       var z = this._scrollerController.indexOfScroller(S.scroller);
       var f = this._slotViews[z];
@@ -375,6 +416,7 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         M(z);
       }
     };
+    // 根據狀態取得對應的捲動器
     W.prototype.getScroller = function (S, z, f) {
       if (f === x.START) {
         return this._startScrollers[S];
@@ -384,11 +426,13 @@ if (!cc._RF.push(module, "f967cJUpgBPeZxa4E081RBj", "SlotHelper")) {
         return undefined;
       }
     };
+    // 轉輪狀態變更前的處理
     W.prototype.willChangeSlotState = function (S, z) {
       if (S === x.IDLE && z === x.STOP) {
         this._scrollerController.endCurrentState();
       }
     };
+    // 捲動器狀態結束時的處理
     W.prototype.onScrollerEnd = function (S) {
       if (S === x.STOP) {
         this._scrollerController.setSlotState(x.IDLE);

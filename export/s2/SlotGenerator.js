@@ -17,6 +17,7 @@ if (!cc._RF.push(module, "213874uZn5HSqZznN5luzQQ", "SlotGenerator")) {
     slotView: L.default,
     slotScrollerController: D.default
   };
+  // 建立轉輪與遮罩節點，並回傳控制器與視圖
   exports.generateSlot = function (j) {
     var G;
     var V = (j = __assign(__assign({}, C), j)).containerNode;

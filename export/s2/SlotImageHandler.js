@@ -5,6 +5,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
   exports.slotImageHandler = exports.SlotImageHandler = undefined;
   var T = require("GameConstant");
   var x = function () {
+    // 建構函式，初始化圖片與骨骼資源容器
     function D() {
       this._symbolImages = Object.create(null);
       this._blurredSymbolImages = Object.create(null);
@@ -21,7 +22,9 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     };
+    // 取得符號對應的圖片資源
     Object.defineProperty(D.prototype, "symbolImages", k);
+    // 取得模糊符號圖片
     Object.defineProperty(D.prototype, "blurredSymbolImages", {
       get: function () {
         return this._blurredSymbolImages;
@@ -29,6 +32,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 取得背景圖片資源
     Object.defineProperty(D.prototype, "backgroundImages", {
       get: function () {
         return this._backgroundImages;
@@ -36,6 +40,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 取得模糊背景圖片
     Object.defineProperty(D.prototype, "blurredBackgroundImages", {
       get: function () {
         return this._blurredBackgroundImages;
@@ -43,6 +48,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 取得框架圖片資源
     Object.defineProperty(D.prototype, "frameImages", {
       get: function () {
         return this._frameImages;
@@ -50,6 +56,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 取得模糊框架圖片
     Object.defineProperty(D.prototype, "blurredFrameImages", {
       get: function () {
         return this._blurredFrameImages;
@@ -57,6 +64,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 取得骨骼動畫資源
     Object.defineProperty(D.prototype, "spines", {
       get: function () {
         return this._spines;
@@ -64,6 +72,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 設定各類圖集與骨骼資料
     D.prototype.setup = function (C) {
       var u = C.symbolAtlas;
       var c = C.featureSymbolAtlas;
@@ -82,6 +91,7 @@ if (!cc._RF.push(module, "2abfb9MRm5DnqFq+neQMuuE", "SlotImageHandler")) {
   exports.slotImageHandler = new x();
   cc._RF.pop();
 }
+// 從圖集中依名稱取得 SpriteFrame
 function L(D, k, C) {
   var u = Object.create(null);
   Object.keys(D).forEach(function (c) {
