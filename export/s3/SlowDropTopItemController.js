@@ -13,14 +13,16 @@ if (!cc._RF.push(module, "c28b1182V1L76OZ4d+S0I1B", "SlowDropTopItemController")
       return u;
     }
     __extends(C, k);
-    C.prototype.show = function () {
+      // 顯示頂部特效並播放動畫
+      C.prototype.show = function () {
       this.animation.node.stopAllActions();
       this.vfxHolder.stopAllActions();
       this.vfxHolder.runAction(cc.fadeIn(0.3));
       this.animation.node.runAction(cc.fadeIn(0.3));
       this.animation.play();
     };
-    C.prototype.hide = function () {
+      // 隱藏特效並淡出
+      C.prototype.hide = function () {
       var u = this;
       this.animation.node.stopAllActions();
       this.animation.node.runAction(cc.sequence(cc.fadeOut(0.3), cc.callFunc(function () {
@@ -30,7 +32,8 @@ if (!cc._RF.push(module, "c28b1182V1L76OZ4d+S0I1B", "SlowDropTopItemController")
       this.vfxHolder.stopAllActions();
       this.vfxHolder.runAction(cc.fadeOut(0.3));
     };
-    C.prototype.reset = function () {
+      // 重置狀態為未顯示
+      C.prototype.reset = function () {
       this.vfxHolder.stopAllActions();
       this.vfxHolder.opacity = 0;
       this.animation.node.stopAllActions();

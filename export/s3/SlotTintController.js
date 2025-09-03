@@ -16,7 +16,8 @@ if (!cc._RF.push(module, "ed845gXmbVDfa98BSsedOoI", "SlotTintController")) {
       return c;
     }
     __extends(u, C);
-    u.prototype.enableDarkReel = function (c = [], p = true) {
+      // 啟用指定滾輪的暗色遮罩
+      u.prototype.enableDarkReel = function (c = [], p = true) {
       this.darkSideNodes.forEach(function (j) {
         j.stopAllActions();
         if (p && j.opacity !== 128) {
@@ -35,10 +36,12 @@ if (!cc._RF.push(module, "ed845gXmbVDfa98BSsedOoI", "SlotTintController")) {
         }
       });
     };
-    u.prototype.enableFullDarkReel = function (c = true) {
+      // 全部滾輪套用暗色遮罩
+      u.prototype.enableFullDarkReel = function (c = true) {
       this.enableDarkReel([], c);
     };
-    u.prototype.disableDarkMode = function (c, p) {
+      // 關閉暗色模式並可選擇淡出
+      u.prototype.disableDarkMode = function (c, p) {
       var j = this;
       if (c === undefined) {
         c = true;
@@ -70,11 +73,13 @@ if (!cc._RF.push(module, "ed845gXmbVDfa98BSsedOoI", "SlotTintController")) {
         l();
       }
     };
-    u.prototype.addOverlaySlotItem = function (c) {
+      // 將符號移至覆蓋層
+      u.prototype.addOverlaySlotItem = function (c) {
       this._overlaySlotItems.push(c);
       T.transferToParent(c.scaleHolder, this.overlayHolder);
     };
-    u.prototype.removeOverlaySlotItem = function () {
+      // 移除覆蓋層中的所有符號
+      u.prototype.removeOverlaySlotItem = function () {
       var c = this._overlaySlotItems;
       if (c.length) {
         this._overlaySlotItems = [];

@@ -26,13 +26,15 @@ if (!cc._RF.push(module, "3b81drg5V9HLJ/5QDZf74Yu", "SlowDropEffectController"))
       return Y;
     }
     __extends(N, Q);
-    N.prototype.init = function (Y, W) {
+      // 初始化慢落特效並註冊物件池
+      N.prototype.init = function (Y, W) {
       T.nodePoolHandler.registerReusableItem(x.NodePoolName.SlowDropEffectItem, this.topVfxItem, D.default, 6);
       this._slowDropEffectHolder = Y;
       this.sdVfxSpriteC.node.parent = this._slowDropEffectHolder;
       this._resetSlowDropItemCallback = W;
     };
-    N.prototype.switchUI = function (Y) {
+      // 根據遊戲狀態切換特效外觀
+      N.prototype.switchUI = function (Y) {
       switch (Y) {
         case x.TransitionState.FREE_SPIN:
         case x.TransitionState.FREE_SPIN_RESPIN:
@@ -48,7 +50,8 @@ if (!cc._RF.push(module, "3b81drg5V9HLJ/5QDZf74Yu", "SlowDropEffectController"))
           this.sdVfxSpriteC.spriteFrame = this.sdVfxSpriteFramesC[0];
       }
     };
-    N.prototype.show = function (Y) {
+      // 顯示慢落特效並播放動畫
+      N.prototype.show = function (Y) {
       this._createSlowDropEfx(Y);
       this.sdVfxNodeB.active = true;
       this.sdVfxNodeB.stopAllActions();
@@ -59,7 +62,8 @@ if (!cc._RF.push(module, "3b81drg5V9HLJ/5QDZf74Yu", "SlowDropEffectController"))
         W.show();
       });
     };
-    N.prototype._createSlowDropEfx = function (Y) {
+      // 建立頂部掉落物件
+      N.prototype._createSlowDropEfx = function (Y) {
       var W = this;
       Y.forEach(function (q) {
         if (!Y.includes("" + q)) {
@@ -72,7 +76,8 @@ if (!cc._RF.push(module, "3b81drg5V9HLJ/5QDZf74Yu", "SlowDropEffectController"))
         }
       });
     };
-    N.prototype.hide = function () {
+      // 隱藏特效並播放收合動畫
+      N.prototype.hide = function () {
       this.sdVfxNodeB.stopAllActions();
       this.sdVfxNodeB.runAction(cc.fadeOut(0.5));
       this.sdVfxCAnimationController.play("anim_slow_drop_vfx_c_hide", this._reset.bind(this));
@@ -80,7 +85,8 @@ if (!cc._RF.push(module, "3b81drg5V9HLJ/5QDZf74Yu", "SlowDropEffectController"))
         Y.hide();
       });
     };
-    N.prototype._reset = function () {
+      // 重置特效狀態並回收物件
+      N.prototype._reset = function () {
       this.sdVfxNodeB.active = false;
       this.sdVfxNodeB.opacity = 0;
       this.sdVfxCAnimationController.node.active = false;

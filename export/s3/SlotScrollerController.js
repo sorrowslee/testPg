@@ -18,7 +18,8 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
       return u;
     }
     __extends(C, k);
-    C.prototype.onEnable = function () {
+      // 元件啟用時處理待切換的狀態
+      C.prototype.onEnable = function () {
       if (this.pendingSlotState !== undefined) {
         var u = this.pendingSlotState;
         this.pendingSlotState = undefined;
@@ -28,7 +29,8 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
         }
       }
     };
-    C.prototype.onDisable = function () {
+      // 元件停用時結束所有滾輪
+      C.prototype.onDisable = function () {
       var u;
       var c;
       try {
@@ -55,7 +57,8 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
         }
       }
     };
-    C.prototype.update = function (j) {
+      // 每幀更新所有滾輪並檢查是否結束
+      C.prototype.update = function (j) {
       var G;
       var V;
       var Q;
@@ -123,21 +126,26 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
         }
       }
     };
-    C.prototype.init = function (u, c) {
+      // 初始化滾輪視圖與回呼
+      C.prototype.init = function (u, c) {
       this.slotViews = u;
       this.callbacks = c;
       this.bindedRunScrollerAtIndex = this.runScrollerAtIndex.bind(this);
     };
-    C.prototype.scrollerAtIndex = function (u) {
+      // 取得指定索引的滾輪
+      C.prototype.scrollerAtIndex = function (u) {
       return this.scrollers[u];
     };
-    C.prototype.indexOfScroller = function (u) {
+      // 查詢滾輪在陣列中的索引
+      C.prototype.indexOfScroller = function (u) {
       return this.scrollers.indexOf(u);
     };
-    C.prototype.getSlotState = function () {
+      // 取得目前的槽狀態
+      C.prototype.getSlotState = function () {
       return this.slotState;
     };
-    C.prototype.setSlotState = function (u) {
+      // 設定新的槽狀態並處理切換
+      C.prototype.setSlotState = function (u) {
       if (this.enabledInHierarchy) {
         this.pendingSlotState = undefined;
         var c = this.slotState;
@@ -148,7 +156,8 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
         this.pendingSlotState = u;
       }
     };
-    C.prototype.endCurrentState = function () {
+      // 強制結束目前狀態的滾輪
+      C.prototype.endCurrentState = function () {
       var u;
       var c;
       var p = this.abortRunScroller;
@@ -180,7 +189,8 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
         }
       }
     };
-    C.prototype.onStateChange = function (u, p) {
+      // 狀態切換時重建滾輪並執行回呼
+      C.prototype.onStateChange = function (u, p) {
       var j = this.slotViews;
       var G = this.scrollers;
       var V = this.callbacks;
@@ -215,7 +225,8 @@ if (!cc._RF.push(module, "3383aiogiFCOKC9u2Q0E3sA", "SlotScrollerController")) {
       }
       this.abortRunScroller = V.runScroller(u, this.bindedRunScrollerAtIndex);
     };
-    C.prototype.runScrollerAtIndex = function (u) {
+      // 執行指定索引的滾輪
+      C.prototype.runScrollerAtIndex = function (u) {
       var c = this.scrollers[u];
       if (c) {
         c.run();

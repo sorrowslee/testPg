@@ -14,7 +14,8 @@ if (!cc._RF.push(module, "95c9eiMihhJPZX0QzA3D4uZ", "SlotSymbol")) {
       return C;
     }
     __extends(k, D);
-    Object.defineProperty(k.prototype, "visible", {
+      // 控制符號是否顯示
+      Object.defineProperty(k.prototype, "visible", {
       get: function () {
         return this.node.active;
       },
@@ -24,30 +25,35 @@ if (!cc._RF.push(module, "95c9eiMihhJPZX0QzA3D4uZ", "SlotSymbol")) {
       enumerable: false,
       configurable: true
     });
-    k.prototype.onLoad = function () {
+      // 元件載入時發送建立事件
+      k.prototype.onLoad = function () {
       if (this._enableEvent) {
         T.getGameContext().emit("Game.SymbolCreated", this);
         this._onLoaded = true;
       }
     };
-    k.prototype.unuse = function () {
+      // 從物件池取出前重置並發送移除事件
+      k.prototype.unuse = function () {
       this.symbolRow = 1;
       this.symbolColumn = 1;
       if (this._enableEvent && this._onLoaded) {
         T.getGameContext().emit("Game.SymbolRemoved", this);
       }
     };
-    k.prototype.reuse = function () {
+      // 回收後再次使用時發送建立事件
+      k.prototype.reuse = function () {
       if (this._enableEvent && this._onLoaded) {
         T.getGameContext().emit("Game.SymbolCreated", this);
       }
     };
-    k.prototype.onDestroy = function () {
+      // 銷毀時發送移除事件
+      k.prototype.onDestroy = function () {
       if (this._enableEvent && this._onLoaded) {
         T.getGameContext().emit("Game.SymbolRemoved", this);
       }
     };
-    k.prototype.enableEvent = function (C) {
+      // 設定是否啟用事件觸發
+      k.prototype.enableEvent = function (C) {
       this._enableEvent = C;
     };
     return __decorate([x], k);
