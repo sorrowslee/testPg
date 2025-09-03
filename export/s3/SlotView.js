@@ -30,7 +30,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       this.viewHeight = k.height;
       k.on(cc.Node.EventType.SIZE_CHANGED, this.onSizeChanged, this);
     }
-    D.prototype.init = function (k) {
+      // 初始化視圖的符號取得與配置
+      D.prototype.init = function (k) {
       this.functionalRow = k.functionalRow;
       this.symbolSize = k.symbolSize;
       this.getItem = k.getItem;
@@ -38,7 +39,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       this.sortBottomItemToFront = k.sortBottomItemToFront;
       this.reloadItemsToIndex(0);
     };
-    D.prototype.getFunctionalItems = function () {
+      // 取得在可操作範圍內的符號項目
+      D.prototype.getFunctionalItems = function () {
       var k;
       var C;
       var u = this.slotItems;
@@ -59,13 +61,16 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       }
       return u.slice(k, C + 1);
     };
-    D.prototype.getVisibleItems = function () {
+      // 取得目前顯示中的所有符號
+      D.prototype.getVisibleItems = function () {
       return this.slotItems;
     };
-    D.prototype.getAccumulatedPositionY = function () {
+      // 取得累積的垂直位移
+      D.prototype.getAccumulatedPositionY = function () {
       return this.accumulatedPositionY;
     };
-    D.prototype.getItemAtIndex = function (k) {
+      // 根據索引取得符號
+      D.prototype.getItemAtIndex = function (k) {
       var C;
       var u;
       if (this.isIndexVisible(k)) {
@@ -94,13 +99,16 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
         }
       }
     };
-    D.prototype.getNextTopIndex = function (k) {
+      // 計算下一個頂端索引
+      D.prototype.getNextTopIndex = function (k) {
       return Math.max(this.topIndex + 1, this.getBottomSlotIndex() + this.functionalRow + k);
     };
-    D.prototype.getNextBottomIndex = function (k) {
+      // 計算下一個底部索引
+      D.prototype.getNextBottomIndex = function (k) {
       return Math.min(this.bottomIndex - 1, this.getBottomSlotIndex() - k - 1);
     };
-    D.prototype.getDistanceToIndex = function (k) {
+      // 計算當前位置到指定索引的距離
+      D.prototype.getDistanceToIndex = function (k) {
       var C = this.symbolSize.height;
       var u = this.getBottomSlotIndex();
       var c = this.getItemAtIndex(u);
@@ -108,23 +116,29 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       var j = c.node.y + p;
       return (u - k) * C + ((1 - this.functionalRow) * 0.5 * C - j);
     };
-    D.prototype.getAccumulatedPositionAtIndex = function (k) {
+      // 取得指定索引應有的累積位移
+      D.prototype.getAccumulatedPositionAtIndex = function (k) {
       return this.symbolSize.height * -k;
     };
-    D.prototype.getOffsetX = function () {
+      // 取得水平方向偏移量
+      D.prototype.getOffsetX = function () {
       return this.offsetX;
     };
-    D.prototype.isIndexVisible = function (k) {
+      // 判斷索引是否在可視範圍內
+      D.prototype.isIndexVisible = function (k) {
       return k >= this.bottomIndex && k <= this.topIndex;
     };
-    D.prototype.setFunctionalRow = function (k) {
+      // 設定可操作的行數並標記需要更新
+      D.prototype.setFunctionalRow = function (k) {
       this.functionalRow = k;
       this.isDirty = true;
     };
-    D.prototype.setSlotAnchor = function (k) {
+      // 設定視圖的錨點位置
+      D.prototype.setSlotAnchor = function (k) {
       this.slotAnchor = k;
     };
-    D.prototype.changePositionY = function (k) {
+      // 改變所有符號的 Y 位置
+      D.prototype.changePositionY = function (k) {
       this.accumulatedPositionY += k;
       var C = this.slotItems;
       for (var u = 0, c = C.length; u < c; u++) {
@@ -132,7 +146,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       }
       this.reviseVisibleItem();
     };
-    D.prototype.resetPositionIndex = function () {
+      // 重置符號索引以避免溢位
+      D.prototype.resetPositionIndex = function () {
       var k = this.slotItems;
       var C = this.getBottomSlotIndex();
       k.forEach(function (u) {
@@ -143,7 +158,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       this.accumulatedPositionY += C * this.symbolSize.height;
       this.isDirty = true;
     };
-    D.prototype.scrollTo = function (k) {
+      // 捲動到指定索引位置
+      D.prototype.scrollTo = function (k) {
       var C = this.getItemAtIndex(k);
       if (C) {
         var u = this.symbolSize.height;
@@ -154,14 +170,16 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
         this.reloadItemsToIndex(k);
       }
     };
-    D.prototype.reloadItems = function (k = true) {
+      // 重新載入符號，預設從索引 0
+      D.prototype.reloadItems = function (k = true) {
       if (k) {
         this.reloadItemsToIndex(0);
       } else {
         this.reloadItemsToIndex(this.getBottomSlotIndex());
       }
     };
-    D.prototype.onSizeChanged = function () {
+      // 當容器尺寸改變時調整內容
+      D.prototype.onSizeChanged = function () {
       var k = this.holder.height;
       if (this.viewHeight !== k) {
         var C = this.viewHeight;
@@ -175,7 +193,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
         }
       }
     };
-    D.prototype.reloadItemsToIndex = function (k) {
+      // 從指定索引重新載入符號
+      D.prototype.reloadItemsToIndex = function (k) {
       var C = this;
       var u = this.slotItems;
       var c = this.symbolSize;
@@ -196,7 +215,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       this.accumulatedPositionY = -k * c.height;
       this.reviseVisibleItem();
     };
-    D.prototype.reviseVisibleItem = function () {
+      // 依視圖範圍增減符號項目
+      D.prototype.reviseVisibleItem = function () {
       var k = this.slotItems;
       var C = this.symbolSize.height / 2;
       var u = this.viewHeight / 2 - 0.000005;
@@ -230,7 +250,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
       }
       this.isDirty = true;
     };
-    D.prototype.addItemAtTop = function () {
+      // 在上方新增符號項目
+      D.prototype.addItemAtTop = function () {
       var k = this.symbolSize;
       var C = this.slotItems;
       var u = C[0];
@@ -247,7 +268,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
         p.setZIndex(this.getBottomSlotIndex() - p.positionIndex);
       }
     };
-    D.prototype.addItemAtBottom = function () {
+      // 在下方新增符號項目
+      D.prototype.addItemAtBottom = function () {
       var k = this.symbolSize;
       var C = this.slotItems;
       var u = C[C.length - 1];
@@ -266,13 +288,15 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
         }
       }
     };
-    D.prototype.removeItemAtTop = function () {
+      // 移除頂端的符號
+      D.prototype.removeItemAtTop = function () {
       var k = this.slotItems.shift();
       k.node.parent = undefined;
       this.topIndex -= k.symbolRow;
       this.releaseItem(this, k);
     };
-    D.prototype.removeItemAtBottom = function () {
+      // 移除底部的符號
+      D.prototype.removeItemAtBottom = function () {
       var k = this.slotItems;
       var C = k.pop();
       C.node.parent = undefined;
@@ -285,7 +309,8 @@ if (!cc._RF.push(module, "dd04eu7yQpIx4UwS/QtQOjh", "SlotView")) {
         }
       }
     };
-    D.prototype.getBottomSlotIndex = function () {
+      // 計算目前最底部的索引
+      D.prototype.getBottomSlotIndex = function () {
       if (!this.isDirty) {
         return this.bottomSlotIndex;
       }

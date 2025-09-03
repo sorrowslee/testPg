@@ -60,7 +60,8 @@ if (!cc._RF.push(module, "d5629sKgMRK16ZrOMxnkzm9", "SlotTransactionModel")) {
       enumerable: false,
       configurable: true
     });
-    C.prototype.updateTransactionInfo = function (p) {
+      // 更新交易資訊並建立贏分、下注資料
+      C.prototype.updateTransactionInfo = function (p) {
       var j = p.wp;
       var G = p.lw;
       var V = p.ml;

@@ -169,3 +169,16 @@
 | export/s2/SlotDataHandler.js | 處理轉輪資料與符號取得邏輯 |
 | export/s2/SlotGameTools.js | 判斷獲獎門檻並發送大獎事件 |
 | export/s2/SlotHelper.js | 管理轉輪視圖、捲動器與符號操作 |
+| export/s3/SlotItem.js | 控制單個符號的顯示、模糊與層級 |
+| export/s3/SlotItemHandler.js | 記錄符號在格子中的位置對應 |
+| export/s3/SlotItemPool.js | 建立並管理符號物件池 |
+| export/s3/SlotSymbol.js | 基礎符號元件，發送建立與移除事件 |
+| export/s3/SlotScrollerController.js | 管理多個滾輪與狀態切換 |
+| export/s3/SlotScrollerController.spec.js | 自動化測試的狀態變更通知 |
+| export/s3/SlotStateMachine.js | 控制旋轉與停止流程的狀態機 |
+| export/s3/SlotTransactionModel.js | 儲存交易資料如贏線、下注與輪帶 |
+| export/s3/SlotView.js | 管理單列符號視圖與捲動邏輯 |
+| export/s3/SlotSystemModel.js | 儲存遊戲設定與投注列表 |
+| export/s3/SlotTintController.js | 控制滾輪暗色遮罩與覆蓋符號 |
+| export/s3/SlowDropEffectController.js | 管理慢落特效與頂部物件 |
+| export/s3/SlowDropTopItemController.js | 控制慢落特效的頂部動畫項目 |

@@ -9,6 +9,7 @@ if (!cc._RF.push(module, "b8e48q3OlREgpqZ/fqigt7Z", "SlotSystemModel")) {
       return D !== null && D.apply(this, arguments) || this;
     }
     __extends(k, D);
+    // 更新遊戲設定與投注資訊
     k.prototype.updateGameInfo = function (C) {
       var u = C.cs;
       var c = C.ml;

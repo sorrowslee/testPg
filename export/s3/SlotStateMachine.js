@@ -24,30 +24,36 @@ if (!cc._RF.push(module, "f1d53JqS5hGVbtNCz0JAnwN", "SlotStateMachine")) {
       this._unscheduleRegularSpinning = undefined;
       this._stopRequestCallback = undefined;
     }
-    k.prototype.getState = function () {
+      // 取得目前的旋轉狀態
+      k.prototype.getState = function () {
       return this._state;
     };
-    k.prototype.getStopStyle = function () {
+      // 取得目前的停止方式
+      k.prototype.getStopStyle = function () {
       return this._stopStyle;
     };
-    k.prototype.spin = function (C, u) {
+      // 開始旋轉並設定最短與一般轉動時間
+      k.prototype.spin = function (C, u) {
       if (this._state === T.STOPPED) {
         this._state = T.SPINNING;
         L.delayCallback(C)(this._minimumSpinTimeOut.bind(this));
         this._unscheduleRegularSpinning = L.delayCallback(u)(this._regularSpinTimeOut.bind(this));
       }
     };
-    k.prototype.markFastStop = function () {
+      // 標記為快速停止
+      k.prototype.markFastStop = function () {
       if (this._state === T.SPINNING) {
         this._stopStyle = x.FAST;
       }
     };
-    k.prototype.unmarkFastStop = function () {
+      // 取消快速停止標記
+      k.prototype.unmarkFastStop = function () {
       if (this._stopStyle === x.FAST && this._state === T.SPINNING) {
         this._stopStyle = x.NORMAL;
       }
     };
-    k.prototype.fastStop = function (C) {
+      // 請求立即以快速方式停止
+      k.prototype.fastStop = function (C) {
       if (this._state === T.SPINNING || this._state === T.STOPPING) {
         this._stopStyle = x.FAST;
         this._state = T.STOPPING;
@@ -57,7 +63,8 @@ if (!cc._RF.push(module, "f1d53JqS5hGVbtNCz0JAnwN", "SlotStateMachine")) {
         }
       }
     };
-    k.prototype.stop = function (C) {
+      // 請求以一般方式停止
+      k.prototype.stop = function (C) {
       if (this._state === T.SPINNING) {
         if (this._stopStyle === x.FAST) {
           return;
@@ -69,23 +76,27 @@ if (!cc._RF.push(module, "f1d53JqS5hGVbtNCz0JAnwN", "SlotStateMachine")) {
         }
       }
     };
-    k.prototype.stopped = function () {
+      // 完成停止後重置狀態
+      k.prototype.stopped = function () {
       this._state = T.STOPPED;
       this._reset();
     };
-    k.prototype._minimumSpinTimeOut = function () {
+      // 最短轉動時間到期的處理
+      k.prototype._minimumSpinTimeOut = function () {
       this._minimumSpinningTimeReached = true;
       if (this._state === T.STOPPING && this._stopStyle === x.FAST) {
         this._fastStop();
       }
     };
-    k.prototype._regularSpinTimeOut = function () {
+      // 一般轉動時間到期的處理
+      k.prototype._regularSpinTimeOut = function () {
       this._regularSpinningTimeReached = true;
       if (this._state === T.STOPPING && this._stopStyle === x.NORMAL) {
         this._stop();
       }
     };
-    k.prototype._fastStop = function () {
+      // 觸發快速停止流程
+      k.prototype._fastStop = function () {
       var C = this._unscheduleRegularSpinning;
       this._unscheduleRegularSpinning = undefined;
       if (C) {
@@ -93,14 +104,16 @@ if (!cc._RF.push(module, "f1d53JqS5hGVbtNCz0JAnwN", "SlotStateMachine")) {
       }
       this._stop();
     };
-    k.prototype._stop = function () {
+      // 執行停止回呼
+      k.prototype._stop = function () {
       var C = this._stopRequestCallback;
       this._stopRequestCallback = undefined;
       if (C) {
         C();
       }
     };
-    k.prototype._reset = function () {
+      // 重置所有暫存狀態
+      k.prototype._reset = function () {
       this._stopStyle = x.NORMAL;
       this._minimumSpinningTimeReached = false;
       this._regularSpinningTimeReached = false;

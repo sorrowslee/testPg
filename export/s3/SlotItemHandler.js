@@ -7,14 +7,17 @@ if (!cc._RF.push(module, "cbfb0c2igtO8oHCc6bYN0xe", "SlotItemHandler")) {
       this.numberOfRow = undefined;
       this.functionalSlotItems = undefined;
     }
-    x.prototype.init = function (L) {
+      // 初始化行數並建立符號對應表
+      x.prototype.init = function (L) {
       this.numberOfRow = L;
       this.functionalSlotItems = [];
     };
-    x.prototype.reset = function () {
+      // 清除目前紀錄的符號
+      x.prototype.reset = function () {
       this.functionalSlotItems.length = 0;
     };
-    x.prototype.setSlotItem = function (L, D, k = 0) {
+      // 將符號依照位置記錄到功能性陣列
+      x.prototype.setSlotItem = function (L, D, k = 0) {
       var C = this.numberOfRow;
       var u = C - 1 - (D.positionIndex - k);
       if (D.symbolRow === 1 && D.symbolColumn === 1) {
@@ -29,7 +32,8 @@ if (!cc._RF.push(module, "cbfb0c2igtO8oHCc6bYN0xe", "SlotItemHandler")) {
         }
       }
     };
-    x.prototype.getSlotItems = function () {
+      // 取得指定索引的符號，未指定則回傳全部
+      x.prototype.getSlotItems = function () {
       var L = [];
       for (var D = 0; D < arguments.length; D++) {
         L[D] = arguments[D];
