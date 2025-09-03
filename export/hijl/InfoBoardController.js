@@ -61,6 +61,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
       return z;
     }
     __extends(S, q);
+    // 初始化訊息板內容與提示資料
     S.prototype.init = function (z) {
       this._spinTipsObj[T.NORMAL_TIPS] = z.normalSpinTips;
       this._spinTipsObj[T.FREE_SPIN_TIPS] = z.freeSpinTips;
@@ -73,6 +74,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         this.winTextNode.getComponent(cc.Layout).horizontalDirection = cc.Layout.HorizontalDirection.RIGHT_TO_LEFT;
       }
     };
+    // 顯示一般提示訊息
     S.prototype.showTips = function (z, A) {
       var M = this;
       if (A === undefined) {
@@ -105,6 +107,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         }
       }
     };
+    // 顯示 Scatter 請求提示
     S.prototype.showScatterRequestTip = function () {
       if (this._infoUIState !== T.SCATTER_REQUEST_TIP) {
         this.infobarMaskNode.active = true;
@@ -120,6 +123,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         this.infoBoardMessageController.spriteMessageNode.runAction(cc.sequence(cc.scaleTo(0.3, 1.1).easing(cc.easeIn(0.2)), cc.scaleTo(0.3, 1).easing(cc.easeIn(0.2)), cc.delayTime(0.24)).repeatForever());
       }
     };
+    // 顯示免費遊戲獲得提示
     S.prototype.showFreeSpinWonTip = function () {
       if (this._infoUIState !== T.FREE_SPIN_WON_TIPS) {
         this.infobarMaskNode.active = true;
@@ -135,6 +139,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         this.infoBoardMessageController.spriteMessageNode.runAction(cc.sequence(cc.scaleTo(0.3, 1.1).easing(cc.easeIn(0.2)), cc.scaleTo(0.3, 1).easing(cc.easeIn(0.2)), cc.delayTime(0.24)).repeatForever());
       }
     };
+    // 播放不同類型的獲獎或提示效果
     S.prototype.play = function (z, A) {
       var M = this;
       this.infobarMaskNode.active = false;
@@ -206,6 +211,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
           this.playBigWinEffect();
       }
     };
+    // 播放小獎特效
     S.prototype.playSmallWinEffect = function (z) {
       this.infobar[0].active = true;
       this.infobarMask[0].active = true;
@@ -227,6 +233,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         z();
       }
     };
+    // 播放中獎升級特效
     S.prototype.playMediumWinEffect = function (z) {
       if (this._isUpgrade === false) {
         j.playAudio(C.GENERAL_AUDIO.prizeInfobarUpgrade.key);
@@ -260,6 +267,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         z();
       }
     };
+    // 播放大獎特效
     S.prototype.playBigWinEffect = function (z) {
       this.infobar[0].active = false;
       this.infobar[1].active = false;
@@ -273,6 +281,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         z();
       }
     };
+    // 重置勝利特效狀態
     S.prototype.resetWinEffect = function (z) {
       this.infobar[0].active = true;
       this.infobar[1].active = false;
@@ -289,20 +298,24 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         z();
       }
     };
+    // 停止並重置訊息板
     S.prototype.stop = function () {
       this._resetUI();
     };
+    // 播放指定動畫
     S.prototype._playAnim = function (z) {
       z.stop();
       z.setCurrentTime(0);
       z.play();
     };
+    // 對節點播放淡出效果
     S.prototype._playFadeOutAction = function (z) {
       z.stopAllActions();
       if (z.opacity !== 0) {
         z.runAction(cc.fadeOut(0.2));
       }
     };
+    // 顯示最終支付前的勝利數值
     S.prototype._showBeforeFinalPayoutWin = function (z, A) {
       if (this._infoUIState !== T.BEFORE_FINAL_WIN) {
         this._resetUI();
@@ -316,6 +329,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         A();
       }
     };
+    // 顯示小獎或總小獎數值
     S.prototype._showLowPayoutWin = function (z, A, M) {
       if (this._infoUIState !== T.SMALL_WIN) {
         this._resetUI();
@@ -329,6 +343,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         M();
       }
     };
+    // 顯示中獎或大獎數值並可播放跳表
     S.prototype._showHighPayoutWin = function (z, A, M, E) {
       var F = this;
       if (this._infoUIState !== T.MEDIUM_WIN) {
@@ -356,15 +371,19 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
       j.playAudio(C.GENERAL_AUDIO.prizeInfobarTotalwinMedMain.key);
       this._enableSkipButton();
     };
+    // 播放共通勝利效果
     S.prototype._playCommonWinEffect = function () {};
+    // 啟用跳過按鈕
     S.prototype._enableSkipButton = function () {
       this.skipButtonNode.active = true;
       k.spaceBarInterrupter.subscribeEventInterrupter("highPayoutTotalWin", this.node, this.skipButtonClick.bind(this));
     };
+    // 停用跳過按鈕
     S.prototype._disableSkipButton = function () {
       this.skipButtonNode.active = false;
       k.spaceBarInterrupter.unsubscribeEventInterrupter("highPayoutTotalWin");
     };
+    // 跳過數字滾動顯示
     S.prototype.skipButtonClick = function () {
       this._disableSkipButton();
       if (this._playState === x.HIGH_PAY_TOTAL_WIN) {
@@ -372,6 +391,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
       }
       this.infoBoardMessageController.skipNumberRoll();
     };
+    // 重置訊息板 UI 狀態
     S.prototype._resetUI = function () {
       this.infoBoardMessageController.maskNode.stopAllActions();
       this.infoBoardMessageController.maskNode.setScale(1);
@@ -385,6 +405,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
       }
       this._infoUIState = undefined;
     };
+    // 英國監管條件不符時的處理
     S.prototype._handleUKGCFailCondition = function () {
       this._disableSkipButton();
       if (this._isNormalTips) {
@@ -393,6 +414,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         this.showTips(T.FREE_SPIN_TIPS, true);
       }
     };
+    // 顯示數字或處理未通過條件的情況
     S.prototype._showDisplayNumber = function (z) {
       if (G.isPassUKGC(z)) {
         this.infoBoardMessageController.showDisplayNumber(z);
@@ -400,6 +422,7 @@ if (!cc._RF.push(module, "11be0T+CdBGtrhmlBETkYkM", "InfoBoardController")) {
         this._handleUKGCFailCondition();
       }
     };
+    // 依倍數播放群眾音效
     S.prototype._playMultiplierCrowdAudio = function () {
       switch (this._multipliedCrowdValue) {
         case 0:

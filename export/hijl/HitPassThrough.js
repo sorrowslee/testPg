@@ -10,6 +10,7 @@ if (!cc._RF.push(module, "c55eeQvpvBJQ70BFU5konXG", "HitPassThrough")) {
     C._hitTest = "_hitTest";
   })(T ||= {});
   var k = function (C) {
+    // 初始化穿透點與範圍
     function u() {
       var c = C !== null && C.apply(this, arguments) || this;
       c.passPoint = cc.v2(0, 0);
@@ -17,6 +18,7 @@ if (!cc._RF.push(module, "c55eeQvpvBJQ70BFU5konXG", "HitPassThrough")) {
       return c;
     }
     __extends(u, C);
+    // 啟用時覆寫原本的碰撞測試，使指定區域可穿透
     u.prototype.onEnable = function () {
       var c = this;
       this._superHitTest = this.node[T._hitTest];
@@ -39,6 +41,7 @@ if (!cc._RF.push(module, "c55eeQvpvBJQ70BFU5konXG", "HitPassThrough")) {
         return !(q >= 0) || !(S >= 0) || !(z >= 0) || !(f >= 0);
       };
     };
+    // 停用時恢復原本的碰撞測試
     u.prototype.onDisable = function () {
       this.node[T._hitTest] = this._superHitTest;
       this._superHitTest = undefined;

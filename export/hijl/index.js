@@ -3,6 +3,7 @@ if (!cc._RF.push(module, "607a1pUyWBLsphZz1avN+BH", "AutomationDecorator")) {
     value: true
   });
   exports.automationDec = undefined;
+  // 裝飾器：在自動化系統存在時執行額外函式
   exports.automationDec = function (T) {
     return function (x, L, D) {
       if (!D) {

@@ -19,6 +19,7 @@ if (!cc._RF.push(module, "0a93fcJrXdI5b2EdfUH4UAj", "LandscapeSettingMenuControl
       return G;
     }
     __extends(j, p);
+    // 載入時初始化選單與事件
     j.prototype.onLoad = function () {
       this._onMoreSettingLayerSizeChanged();
       this.moreMenuLayoutNode.on("size-changed", this._onMoreSettingLayerSizeChanged.bind(this));
@@ -35,6 +36,7 @@ if (!cc._RF.push(module, "0a93fcJrXdI5b2EdfUH4UAj", "LandscapeSettingMenuControl
       this.subControllerHolder.height = this._currentUsingHeight = cc.view.getVisibleSize().height;
       this._unsubscribeBroadcaster = x.default.subscribe(this._onSizeChanged.bind(this));
     };
+    // 顯示更多設定選單層
     j.prototype.showMoreMenuLayer = function () {
       var G = this;
       if (!this._isSwitchingLayer) {
@@ -55,6 +57,7 @@ if (!cc._RF.push(module, "0a93fcJrXdI5b2EdfUH4UAj", "LandscapeSettingMenuControl
         }
       }
     };
+    // 隱藏更多設定選單層
     j.prototype.hideMoreMenuLayer = function () {
       var G = this;
       if (!this._isSwitchingLayer) {
@@ -78,6 +81,7 @@ if (!cc._RF.push(module, "0a93fcJrXdI5b2EdfUH4UAj", "LandscapeSettingMenuControl
         }
       }
     };
+    // 當更多設定層大小改變時同步背景尺寸
     j.prototype._onMoreSettingLayerSizeChanged = function () {
       this.moreMenuBGNode.width = this.moreMenuLayoutNode.width;
       this.moreMenuBGNode.height = this.moreMenuLayoutNode.height;

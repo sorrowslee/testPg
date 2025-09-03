@@ -17,6 +17,7 @@ if (!cc._RF.push(module, "e550bCO+rxMtaTFsIcS7wfm", "LandscapeSettingInfoFooterC
       return G;
     }
     __extends(j, p);
+    // 啟動控制器並套用主題顏色
     j.prototype.boot = function () {
       p.prototype.boot.call(this);
       var G = x.uiAppearanceHelper.v("setting.secondary_theme_color");
@@ -40,6 +41,7 @@ if (!cc._RF.push(module, "e550bCO+rxMtaTFsIcS7wfm", "LandscapeSettingInfoFooterC
       this.winButton.hoverColor = x.uiAppearanceHelper.v("setting.tertiary_theme_color");
       this.winButton.disabledColor = x.uiAppearanceHelper.v("setting.tertiary_theme_color");
     };
+    // 根據錢包類型切換圖示與文字
     j.prototype.setWalletNavigateIcon = function (G) {
       this._setDescription();
       switch (G) {
@@ -60,6 +62,7 @@ if (!cc._RF.push(module, "e550bCO+rxMtaTFsIcS7wfm", "LandscapeSettingInfoFooterC
           this.walletNavigateIcon.getComponent(cc.Sprite).spriteFrame = undefined;
       }
     };
+    // 設定各欄位的說明文字
     j.prototype._setDescription = function () {
       this.descriptionLabel[0].string = shell.I18n.t("WalletHelper.Balance");
       this.descriptionLabel[1].string = shell.I18n.t("SettingMenu.WinPrizeWord");

@@ -49,13 +49,16 @@ if (!cc._RF.push(module, "3d710qNmRNP1LLRNNBcLNnF", "ListView")) {
     Object.defineProperty(j.prototype, "nodePools", G);
     Object.defineProperty(j.prototype, "templates", V);
     Object.defineProperty(j.prototype, "visibleCells", Q);
+    // 載入時紀錄內容初始位置
     j.prototype.onLoad = function () {
       this.content.originY = this.content.y;
     };
+    // 元件開始時註冊一次性事件
     j.prototype.start = function () {
       p.prototype.start.call(this);
       cc.director.once(cc.Director.EVENT_AFTER_DRAW, this._disableTopWidget, this);
     };
+    // 禁用時移除所有事件監聽
     j.prototype.onDisable = function () {
       p.prototype.onDisable.call(this);
       this.content.off("position-changed", this._onContentMoved, this);
@@ -65,6 +68,7 @@ if (!cc._RF.push(module, "3d710qNmRNP1LLRNNBcLNnF", "ListView")) {
       this.node.off("scrolling", this._whenScrolling, this);
       this.node.off("size-changed", this._onSizeChanged, this);
     };
+    // 啟用時重新註冊事件並視需要重載資料
     j.prototype.onEnable = function () {
       p.prototype.onEnable.call(this);
       this.content.on("position-changed", this._onContentMoved, this);
@@ -79,6 +83,7 @@ if (!cc._RF.push(module, "3d710qNmRNP1LLRNNBcLNnF", "ListView")) {
       }
     };
     j.prototype.viewWillLayoutSubviews = function () {};
+    // 佈局完成後調整內容並檢查項目
     j.prototype.viewDidLayoutSubviews = function () {
       var N = this.node.width;
       var Y = this.node.height;
@@ -97,9 +102,11 @@ if (!cc._RF.push(module, "3d710qNmRNP1LLRNNBcLNnF", "ListView")) {
         this._popFromBottom();
       }
     };
+    // 設定列表資料來源
     j.prototype.setDataSource = function (N) {
       this._dataSource = N;
     };
+    // 註冊可重複使用的項目模板
     j.prototype.register = function (N, Y, W) {
       if (this.nodePools[N]) ;else if (Y) {
         var q;
@@ -108,6 +115,7 @@ if (!cc._RF.push(module, "3d710qNmRNP1LLRNNBcLNnF", "ListView")) {
         this.nodePools[N] = q;
       }
     };
+    // 取出可重用的項目節點
     j.prototype.dequeueReusableItem = function (N) {
       var Y;
       var W = this.nodePools[N];
@@ -120,6 +128,7 @@ if (!cc._RF.push(module, "3d710qNmRNP1LLRNNBcLNnF", "ListView")) {
       }
       return Y;
     };
+    // 重載列表資料並重新佈置可見項目
     j.prototype.reloadData = function () {
       var N = this;
       if (this._dataSource) {

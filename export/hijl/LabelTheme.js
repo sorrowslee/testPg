@@ -61,6 +61,7 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
       colorKey: {
         tooltip: false,
         default: "",
+        // 顏色鍵變更時更新顏色
         notify: function () {
           this._updateColor();
         }
@@ -82,12 +83,14 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
         default: ""
       }
     },
+    // 載入時設定標籤並套用主題
     onLoad: function () {
       this._label = this.node.getComponent(cc.Label);
       this._label ||= this.node.getComponent(cc.RichText);
       this._updateColor();
       this._updateFont();
     },
+    // 依主題設定文字顏色
     _updateColor: function () {
       if (this.followThemeColor) {
         var E = this.node;
@@ -100,6 +103,7 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
         }
       }
     },
+    // 依主題設定字型資訊
     _updateFont: function () {
       var E = this;
       if (this.followFont) {
@@ -139,6 +143,7 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
         }
       }
     },
+    // 套用指定的字型資源
     _updateLabelFont: function (E) {
       var F = this._label;
       if (cc.isValid(this.node)) {
@@ -150,6 +155,7 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
         }
       }
     },
+    // 套用字體家族名稱
     _updateLabelFontFamily: function (E) {
       var F = this._label;
       if (cc.isValid(this.node)) {
@@ -161,6 +167,7 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
         }
       }
     },
+    // 更新字體粗細
     _updateLabelWeight: function (E) {
       var F = this._label;
       if (cc.isValid(this.node)) {
@@ -172,6 +179,7 @@ if (!cc._RF.push(module, "05b6c8yPn1LZIH3AnSTBq8U", "LabelTheme")) {
         }
       }
     },
+    // 更新字體斜體狀態
     _updateLabelStyle: function (E) {
       var F = this._label;
       if (cc.isValid(this.node)) {
