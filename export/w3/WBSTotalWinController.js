@@ -32,6 +32,7 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
       return S;
     }
     __extends(q, W);
+    // 初始化總贏畫面並設定文字與按鈕
     q.prototype.onInit = function (S) {
       this._initTotalWinNodes({
         collectButtonNode: this.collectButton.node,
@@ -42,6 +43,7 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
       this.freeSpinTextSprite.spriteFrame = S.freeSpinSF;
       this._resetUI();
     };
+    // 開始播放總贏動畫與特效
     q.prototype.onPlay = function (S) {
       var z = S.freeSpinCount;
       this.freeSpinNumberDisplayController.clear();
@@ -56,11 +58,13 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
       this._playWinTextEffect();
       this._playWinAmountEffect();
     };
+    // 開始數字滾動時播放背景音樂
     q.prototype.onWinRollStart = function () {
       if (C.GeneralAudioPool.bgm_totalwin_main) {
         C.GeneralAudioPool.bgm_totalwin_main.play();
       }
     };
+    // 數字滾動完成後顯示收集按鈕
     q.prototype.onWinRollComplete = function (S) {
       this.collectButton.node.active = true;
       this._enableMouseHover();
@@ -76,6 +80,7 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
       }
       S();
     };
+    // 玩家點擊收集後關閉並播放音效
     q.prototype.onCollect = function (S) {
       this._disableMouseHover();
       this._hideMouseOverEffect();
@@ -89,41 +94,51 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
       C.playAudio(k.GENERAL_AUDIO.uiCollect.key);
       S();
     };
+    // 預留關閉總贏畫面的邏輯
     q.prototype.onDismiss = function () {};
+    // 重置總贏畫面與相關特效
     q.prototype.onReset = function () {
       this.collectButton.node.stopAllActions();
       this.collectButton.node.active = false;
       this.freeSpinNumberDisplayController.clear();
       this._resetUI();
     };
+    // 啟用滑鼠移入移出事件
     q.prototype._enableMouseHover = function () {
       this.collectButton.node.on("mouseenter", this._playMouseOverEffect, this);
       this.collectButton.node.on("mouseleave", this._hideMouseOverEffect, this);
     };
+    // 停用滑鼠移入移出事件
     q.prototype._disableMouseHover = function () {
       this.collectButton.node.off("mouseenter", this._playMouseOverEffect, this);
       this.collectButton.node.off("mouseleave", this._hideMouseOverEffect, this);
     };
+    // 播放滑鼠懸停的動畫
     q.prototype._playMouseOverEffect = function () {
       this.hoverAnim.node.active = true;
       this.hoverAnim.setCurrentTime(0);
       this.hoverAnim.play();
     };
+    // 隱藏滑鼠懸停時的效果
     q.prototype._hideMouseOverEffect = function () {
       this.hoverAnim.stop();
       this.hoverAnim.node.active = false;
     };
+    // 淡入主容器顯示總贏畫面
     q.prototype._showHolder = function () {
       this.holder.runAction(cc.fadeIn(0.2));
     };
+    // 顯示背景並放大動畫
     q.prototype._showBackground = function () {
       this.twBgA.runAction(cc.spawn(cc.fadeIn(0.2), cc.sequence(cc.scaleTo(0.2, 1), cc.scaleTo(24, 1.2))));
     };
+    // 重置背景動畫與透明度
     q.prototype._resetBackground = function () {
       this.twBgA.stopAllActions();
       this.twBgA.opacity = 0;
       this.twBgA.setScale(0.8);
     };
+    // 播放 WIN 文字的縮放效果
     q.prototype._playWinTextEffect = function (S = false) {
       if (S) {
         this.winTextSprite.node.setScale(0.715);
@@ -133,6 +148,7 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
         this.winTextSprite.node.runAction(cc.scaleTo(0.5, 1.43).easing(cc.easeBackInOut()));
       }
     };
+    // 播放得獎金額的彈出效果
     q.prototype._playWinAmountEffect = function (S = false) {
       if (S) {
         this.winAmountNode.parent.setScale(0.5);
@@ -142,6 +158,7 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
         this.winAmountNode.parent.runAction(cc.scaleTo(0.5, 1).easing(cc.easeBackInOut()));
       }
     };
+    // 循環播放光束特效
     q.prototype._playBulletEffect = function () {
       var S = this;
       var z = [];
@@ -165,6 +182,7 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
         }
       });
     };
+    // 重置光束特效狀態
     q.prototype._resetBulletEffect = function () {
       var S = this._disposeBulletEffect;
       this._disposeBulletEffect = undefined;
@@ -178,15 +196,18 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
         z.opacity = 0;
       });
     };
+    // 播放閃光效果
     q.prototype._playShine = function () {
       this._resetShine();
       this.shineNode.runAction(cc.spawn(cc.fadeOut(0.7), cc.scaleTo(0.3, 6)));
     };
+    // 重置閃光效果狀態
     q.prototype._resetShine = function () {
       this.shineNode.stopAllActions();
       this.shineNode.setScale(0);
       this.shineNode.opacity = 255;
     };
+    // 延遲播放光點粒子特效
     q.prototype._playLightParticle = function () {
       var S = this;
       T.delayCallback(0.3)(function () {
@@ -194,18 +215,22 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
         S.blVfxVAddParticle.resetSystem();
       });
     };
+    // 停止光點粒子並隱藏
     q.prototype._resetLightPartile = function () {
       this.blVfxVAddParticle.stopSystem();
       this.blVfxVAddParticle.node.active = false;
     };
+    // 播放金幣粒子特效
     q.prototype._playCoinParticle = function () {
       this.coinParticle.active = true;
       this.coinParticle.getComponent("AnimParticleSystem").resetSystem();
     };
+    // 停止金幣粒子並隱藏
     q.prototype._resetCoinParticle = function () {
       this.coinParticle.getComponent("AnimParticleSystem").stopSystem();
       this.coinParticle.active = false;
     };
+    // 重置所有 UI 元件與特效狀態
     q.prototype._resetUI = function () {
       this.holder.stopAllActions();
       this.holder.opacity = 0;
@@ -219,7 +244,9 @@ if (!cc._RF.push(module, "bc046jX3T9LMaj5wK6TjB7G", "WBSTotalWinController")) {
       this.hoverAnim.stop();
       this.hoverAnim.node.active = false;
     };
+    // 由自動化測試掛入初始化節點
     q.prototype._initTotalWinNodes = function () {};
+    // 自動化測試用：收集按鈕已顯示
     q.prototype._collectButtonShown = function () {};
     __decorate([N({
       tooltip: false,

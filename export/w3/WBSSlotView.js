@@ -11,6 +11,7 @@ if (!cc._RF.push(module, "f475ch2f0lJopnD47jNyBtL", "WBSSlotView")) {
       return C;
     }
     __extends(k, D);
+    // 初始化轉輪視圖的節點與基本參數
     k.prototype.init = function (C) {
       var u = new cc.Node("slot_view");
       var c = x.SLOT_WIDTH;
@@ -34,6 +35,7 @@ if (!cc._RF.push(module, "f475ch2f0lJopnD47jNyBtL", "WBSSlotView")) {
       enumerable: false,
       configurable: true
     });
+    // 重新載入符號項目至指定索引
     k.prototype.reloadItemsToIndex = function (C) {
       var u = this;
       var c = this.slotItems;
@@ -54,6 +56,7 @@ if (!cc._RF.push(module, "f475ch2f0lJopnD47jNyBtL", "WBSSlotView")) {
       this.accumulatedPositionY = -C * p.height;
       this.reviseVisibleItem();
     };
+    // 在頂部新增一個符號項目
     k.prototype.addItemAtTop = function () {
       var C = this.symbolSize;
       var u = this.slotItems;
@@ -70,6 +73,7 @@ if (!cc._RF.push(module, "f475ch2f0lJopnD47jNyBtL", "WBSSlotView")) {
         j.setZIndex(this.getBottomSlotIndex() - j.positionIndex);
       }
     };
+    // 在底部新增一個符號項目
     k.prototype.addItemAtBottom = function () {
       var C = this.symbolSize;
       var u = this.slotItems;

@@ -32,15 +32,18 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
       return G;
     }
     __extends(_j, p);
+    // 設定目標數值回呼清單
     _j.prototype.setNumbersCallback = function (G) {
       this._numberCallbackList = G;
     };
+    // 設定大獎等級的門檻值
     _j.prototype.setWinThresholds = function (G, V, Q) {
       this._bigWinThreshold = G;
       this._megaWinThreshold = V;
       this._superMegaWinThreshold = Q;
       this._hasSetThreshold = true;
     };
+    // 預設計算速度的函式
     _j.prototype._defaultGetVelocity = function (G, V, Q) {
       if (Q < this.defaultVelocityStallDuration) {
         return V;
@@ -48,14 +51,17 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
         return G + Math.pow(2, Q - this.defaultVelocityStallDuration);
       }
     };
+    // 設定大獎與超級大獎的顯示時間
     _j.prototype.setWinDurations = function (G, V) {
       this._bigWinDuration = G;
       this._megaWinDuration = V;
       this._hasSetDuration = true;
     };
+    // 自訂計算滾動速度的函式
     _j.prototype.setVelocityCalculation = function (G) {
       this._getVelocity = G;
     };
+    // 開始播放數字滾動至最大值
     _j.prototype.play = function (G, V) {
       if (this._parametersSanityCheck()) {
         this._currentState = D.playing;
@@ -69,6 +75,7 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
         this._initialStageSpeed = this._speed = Q / this._bigWinDuration;
       }
     };
+    // 立即跳到最終數值並停止
     _j.prototype.skip = function () {
       var G = this;
       if (this._currentState === D.playing) {
@@ -79,6 +86,7 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
         });
       }
     };
+    // 檢查必要參數是否已設定
     _j.prototype._parametersSanityCheck = function () {
       this._hasSetDuration;
       if (this._numberCallbackList) {
@@ -87,6 +95,7 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
       this._getVelocity ||= this._defaultGetVelocity;
       return !!this._hasSetThreshold;
     };
+    // 停止數字滾動並視需要清除顯示
     _j.prototype.stop = function (G = true) {
       if (G) {
         this.displayController.clear();
@@ -95,6 +104,7 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
       this._accumulatedDt = 0;
       this._currentState = D.stop;
     };
+    // 每幀更新當前數值並處理速度
     _j.prototype.update = function (G) {
       if (this._currentState === D.playing) {
         if (this._currentCount >= this._superMegaWinThreshold) {
@@ -107,6 +117,7 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
         this._updateNumber();
       }
     };
+    // 數值達到門檻時調整速度並呼叫回呼
     _j.prototype._onNumberReachedAtPoint = function (G) {
       var V = this._megaWinDuration;
       var Q = this._superMegaWinThreshold;
@@ -122,6 +133,7 @@ if (!cc._RF.push(module, "adab7txcZBOsJ6NClaGwrmO", "WinRollBaseController")) {
         this._onNumReachedCallback(G);
       }
     };
+    // 將目前數值顯示在控制器上
     _j.prototype._updateNumber = function () {
       var G = this;
       var V = this._currentCount;

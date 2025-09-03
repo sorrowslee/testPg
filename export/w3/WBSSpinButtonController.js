@@ -45,6 +45,7 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
       enumerable: false,
       configurable: true
     });
+    // 判斷點擊位置是否在旋轉按鈕範圍內
     W.prototype._isTouchArea = function (q) {
       if (this.mode === L.SpinButtonMode.AUTOSPIN) {
         return true;
@@ -54,11 +55,13 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
       var f = this.node.width / 2;
       return Math.sqrt(Math.pow(z.x, 2) + Math.pow(z.y, 2)) <= f;
     };
+    // 處理旋轉按鈕的點擊事件
     W.prototype._clickSpinButton = function (q) {
       if (this._isTouchArea(q) && this._isInteractable) {
         this.clickSpinButton();
       }
     };
+    // 監聽滑鼠移動以觸發懸停效果
     W.prototype._mouseMove = function (q) {
       if (this._isInteractable) {
         if (this._isTouchArea(q)) {
@@ -70,13 +73,16 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         }
       }
     };
+    // 訂閱旋轉按鈕的事件監聽
     W.prototype._subscribeSpinButtonEvent = function () {
       this.node.on(cc.Node.EventType.TOUCH_END, this._clickSpinButton, this);
       this.node.on(cc.Node.EventType.MOUSE_MOVE, this._mouseMove, this);
     };
+    // 回傳按鈕目前是否為隱藏狀態
     W.prototype.isHidden = function () {
       return !this.node.active;
     };
+    // 觸發滑鼠移入時的顯示效果
     W.prototype.mouseHovered = function (q) {
       if (this._isInteractable && this.mode !== L.SpinButtonMode.DISABLED) {
         if (!this.isHovered) {
@@ -84,15 +90,18 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         }
       }
     };
+    // 處理滑鼠離開按鈕的狀態
     W.prototype.mouseLeave = function (q) {
       if (this.isHovered) {
         Y.prototype.mouseLeave.call(this, q);
       }
     };
+    // 停止按鈕相關的所有動畫
     W.prototype.onStopAllAnimations = function () {
       this.arrowHolder.stopAllActions();
       this.arrowSprite.spriteFrame = this.arrowSpriteFrameList[T.GREY];
     };
+    // 初始設定旋轉按鈕與事件
     W.prototype.onInit = function () {
       this.onDisableButton();
       this._subscribeSpinButtonEvent();
@@ -100,10 +109,12 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         spinButton: this.node
       });
     };
+    // 顯示待機旋轉箭頭動畫
     W.prototype.onShowIdleAnimation = function () {
       this.arrowHolder.stopAllActions();
       this.arrowHolder.runAction(cc.repeatForever(cc.rotateBy(4, 360)));
     };
+    // 播放旋轉時的箭頭動畫與音效
     W.prototype.onShowSpinAnimation = function (q = true) {
       if (q) {
         this._playSpinButtonFx();
@@ -114,6 +125,7 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
       var S = cc.rotateBy(0.25, 360).repeatForever();
       this.arrowHolder.runAction(S);
     };
+    // 切換為正常狀態的箭頭圖示
     W.prototype.onReplaceSpinClearSpriteFrame = function () {
       if (this.mode === L.SpinButtonMode.ENABLED) {
         this.arrowSprite.spriteFrame = this.arrowSpriteFrameList[T.NORMAL];
@@ -121,6 +133,7 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         this.arrowSprite.spriteFrame = this.arrowSpriteFrameList[T.GREY];
       }
     };
+    // 切換為模糊狀態的箭頭圖示
     W.prototype.onReplaceSpinBlurredSpriteFrame = function () {
       if (this.mode === L.SpinButtonMode.ENABLED) {
         this.arrowSprite.spriteFrame = this.arrowSpriteFrameList[T.BLUR];
@@ -128,9 +141,11 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         this.arrowSprite.spriteFrame = this.arrowSpriteFrameList[T.GREY_BLUR];
       }
     };
+    // 停止旋轉動畫
     W.prototype.onShowStopSpinningAnimation = function () {
       this.arrowHolder.stopAllActions();
     };
+    // 啟用按鈕並更新圖示狀態
     W.prototype.onEnableButton = function () {
       this._setSpinButtonInteractive(true);
       if (this.animationState === L.SpinButtonAnimationState.SPINNING) {
@@ -140,6 +155,7 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
       }
       this.onShowIdleAnimation();
     };
+    // 停用按鈕並切換圖示
     W.prototype.onDisableButton = function () {
       this._setSpinButtonInteractive(false);
       if (this.animationState === L.SpinButtonAnimationState.SPINNING) {
@@ -149,6 +165,7 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         this.onReplaceSpinClearSpriteFrame();
       }
     };
+    // 顯示自動旋轉模式的介面
     W.prototype.showAutoSpinLook = function (q) {
       var S = this;
       this.spinButtonHolder.active = false;
@@ -163,12 +180,14 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
       })));
       this.onUpdateAutoSpinCount(q);
     };
+    // 更新自動旋轉剩餘次數顯示
     W.prototype.onUpdateAutoSpinCount = function (q) {
       if (this.mode === L.SpinButtonMode.AUTOSPIN) {
         this.numberDisplayController.clear();
         this.numberDisplayController.displayNumber(q, true);
       }
     };
+    // 離開自動旋轉模式時重置介面
     W.prototype.onExitAutoSpinMode = function () {
       this.arrowHolder.active = true;
       this.spinButtonHolder.active = true;
@@ -178,18 +197,22 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         D.settingMenuHelper.stopSpinOptionButtonAnim();
       }
     };
+    // 重新進入待機動畫狀態
     W.prototype.onResumeIdle = function () {
       this.onReplaceSpinClearSpriteFrame();
       this.arrowHolder.runAction(cc.repeatForever(cc.rotateBy(4, 360)));
     };
+    // 恢復旋轉動畫與圖示
     W.prototype.onResumeSpin = function () {
       this.onShowSpinAnimation(false);
       this.onReplaceSpinBlurredSpriteFrame();
     };
+    // 恢復停止時的靜止狀態
     W.prototype.onResumeStop = function () {
       this.onShowStopSpinningAnimation();
       this.onReplaceSpinClearSpriteFrame();
     };
+    // 播放滑鼠移入的特效動畫
     W.prototype.onPlayMouseOverEffect = function () {
       this.hoverSprite.spriteFrame = undefined;
       this.hoverAnimation.stop();
@@ -205,12 +228,14 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         }
       }
     };
+    // 隱藏滑鼠移入的特效動畫
     W.prototype.onHideMouseOverEffect = function () {
       this.hoverAnimation.stop();
       this.hoverAnimation.setCurrentTime(0);
       this.hoverAnimation.node.active = false;
       this.hoverSprite.spriteFrame = undefined;
     };
+    // 淡出自動旋轉顯示區塊
     W.prototype._inactiveAutoSpinHolder = function () {
       var q = this;
       this.autoSpinHolder.stopAllActions();
@@ -218,10 +243,13 @@ if (!cc._RF.push(module, "ee8e805Cu5Pw6OR5FkTB7EG", "WBSSpinButtonController")) 
         q.autoSpinHolder.active = false;
       })));
     };
+    // 播放旋轉按鈕的點擊特效
     W.prototype._playSpinButtonFx = function () {
       this.spinAnim.play();
     };
+    // 初始化按鈕相關節點
     W.prototype._initSpinButtonNodes = function () {};
+    // 設定按鈕是否可互動
     W.prototype._setSpinButtonInteractive = function (q) {
       this._isInteractable = q;
     };
