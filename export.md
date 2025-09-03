@@ -56,3 +56,21 @@
 | export/cdef/FeatureBuyHelper.js | 提供 Feature Buy 功能檢查與事件處理 |
 | export/cdef/ForegroundController.js | 切換前景 UI 與發光效果 |
 | export/cdef/FreeSpinWonController.js | 顯示免費遊戲獲得提示動畫 |
+| export/g/GameAudioAdapter.js | 音效載入與註冊到遊戲音效管理 | 
+| export/g/GameConstant.js | 定義遊戲常數與符號映射 | 
+| export/g/GameEventHandler.js | 重新命名並導出遊戲事件處理器 | 
+| export/g/GameHeaderHelper.js | 重新導出 GameHeaderHelper | 
+| export/g/GameInitializationHandler.js | 重新導出 GameInitializationHandler | 
+| export/g/GameLayout.js | 定義遊戲 UI 佈局位置 | 
+| export/g/GameMaintenanceHandler.js | 重新導出 GameMaintenanceHandler | 
+| export/g/GameMaintenanceModel.js | 重新導出 GameMaintenanceModel | 
+| export/g/GamePluginModel.js | 重新導出 GamePluginModel | 
+| export/g/GamePreference.js | 提供遊戲與全域偏好設定存取 | 
+| export/g/GameTitle.js | 重新導出 GameTitle | 
+| export/g/GameUtils.js | 重新導出 GameUtils | 
+| export/g/GeneralAssetConfig.js | 一般資源載入設定 | 
+| export/g/GeneralSlotController.js | 通用轉輪控制器，負責轉輪運行與互動 | 
+| export/g/GeneralSlotTemplate.js | 設定通用老虎機模板參數 | 
+| export/g/GenericLoadingScreenController.js | 控制載入頁顯示與關閉 | 
+| export/g/GenericSettingButton.js | 通用設定按鈕，處理觸控與顏色狀態 | 
+| export/g/GridView.js | 可捲動的格狀列表元件 | 

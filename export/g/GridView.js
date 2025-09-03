@@ -37,6 +37,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
     __extends(j, u);
     Object.defineProperty(j.prototype, "nodePools", c);
     Object.defineProperty(j.prototype, "templates", p);
+    // 設定估算的項目大小
     j.prototype.setEstimatedSize = function (G) {
       if (this.vertical) {
         this.estimatedHeight = G.y;
@@ -44,6 +45,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         this.estimatedWidth = G.x;
       }
     };
+    // 指定每個項目的固定尺寸
     j.prototype.setConstantCellSize = function (G, V) {
       var Q = {
         width: G,
@@ -51,15 +53,19 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       };
       this.constCellSize = Q;
     };
+    // 重置完成後的回呼
     j.prototype.setResetFinish = function (G) {
       this.resetFinish = G;
     };
+    // 設定生成新項目的行為
     j.prototype.setSpawnCell = function (G) {
       this._spawnCellAction = G;
     };
+    // 設定移除項目的行為
     j.prototype.setRemoveCell = function (G) {
       this._removeCellAction = G;
     };
+    // 以下為下拉/拉動相關的回呼設定
     j.prototype.setPullingLeft = function (G) {
       this._pullingLeftAction = G;
     };
@@ -84,6 +90,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
     j.prototype.setPullUpEnd = function (G) {
       this._pullUpEndAction = G;
     };
+    // 設定對焦點位置，用於捲動後對齊
     j.prototype.setFocusPoint = function (G) {
       switch (G) {
         case 1:
@@ -105,6 +112,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
           this.focusPoint.height = 0;
       }
     };
+    // 取得目前的對焦點設定
     j.prototype.getFocusPoint = function () {
       if (!this.focusPoint) {
         this.focusPoint = {};
@@ -114,6 +122,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       }
       return this.focusPoint;
     };
+    // 設定內容節點的排版間距
     j.prototype.setLayoutSetting = function (G) {
       this.contentLayout = this.content.getComponent(cc.Layout);
       this.layoutSetting = this.getLayoutSetting();
@@ -156,6 +165,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         };
       }
     };
+    // 取得目前畫面上可見的項目
     j.prototype.getVisibleItems = function () {
       var G = [];
       var V = this.content.children;
@@ -166,6 +176,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       }
       return G;
     };
+    // 指定資料來源並更新視窗尺寸
     j.prototype.setDataSource = function (G) {
       var V = this.node;
       var Q = V.width;
@@ -178,6 +189,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
     j.prototype._getDataSource = function () {
       return this._dataSource;
     };
+    // 設定或取得資料筆數
     j.prototype._setDataCount = function (G) {
       this._dataCount = G;
     };
@@ -185,6 +197,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       this._dataCount ||= 0;
       return this._dataCount;
     };
+    // 當節點尺寸改變時重新計算
     j.prototype._onSizeChanged = function () {
       var G = this.node;
       var V = G.width;
@@ -192,6 +205,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       this._setViewSize(V, Q);
       this._respawn(this._sectionIndex, this.currentIndex);
     };
+    // 內部設定視窗尺寸
     j.prototype._setViewSize = function (G, V) {
       var Q = {
         width: G,
@@ -200,9 +214,11 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       this.viewSize = Q;
       this.content.parent.setContentSize(G, V);
     };
+    // 取得目前視窗尺寸
     j.prototype._getViewSize = function () {
       return this.viewSize;
     };
+    // 註冊可重複使用的節點模板
     j.prototype.register = function (G, V, Q) {
       if (this.nodePools[G]) ;else if (V) {
         var N = new cc.NodePool(Q);
@@ -210,6 +226,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         this.nodePools[G] = N;
       }
     };
+    // 重新載入資料並更新顯示
     j.prototype.reloadData = function () {
       this.setSnapDone(true);
       var G = this._dataSource;
@@ -231,8 +248,10 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         G.didReloadData();
       }
     };
+    // 佔位：插入與移除項目
     j.prototype.insertItem = function () {};
     j.prototype.removeItem = function () {};
+    // 重新生成列表並回到初始狀態
     j.prototype._respawn = function (G = this._sectionIndex, V, Q) {
       this._unbindListener();
       this._resetScrollView();
@@ -252,9 +271,11 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       }
       this.init(G, V, false, Q);
     };
+    // 重置並可選擇指定索引
     j.prototype.reset = function (G = this._sectionIndex, V) {
       this._respawn(G, V, this.resetFinish);
     };
+    // 初始化 GridView
     j.prototype.init = function (G, V, Q, N) {
       if (V === undefined) {
         V = 0;
@@ -304,6 +325,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         this._spawnHorizontalInit(0, V, this.viewSize.width, Q, N);
       }
     };
+    // 捲動到指定索引
     j.prototype.scrollTo = function (G, V) {
       var Q = this;
       if (V === undefined) {
@@ -363,9 +385,11 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         }
       }
     };
+    // 停止更新
     j.prototype.stopUpdate = function () {
       this.setMasterControl(true);
     };
+    // 恢復更新
     j.prototype.resumeUpdate = function () {
       if (this.pauseUpdate) {
         this.setMasterControl(false);
@@ -373,9 +397,11 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         this.pauseUpdate = false;
       }
     };
+    // 設定是否由外部控制捲動
     j.prototype.setMasterControl = function (G) {
       this._masterControl = G;
     };
+    // 回收離開視窗的項目
     j.prototype._recycle = function () {
       if (!this.pauseUpdate && !this._masterControl) {
         if (this.content.children.length) {
@@ -389,6 +415,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         }
       }
     };
+    // 計算指定列的累積高度
     j.prototype._getRowTotalHeight = function (G) {
       if (this.outerCellsMatrix[G] && this.outerCellsMatrix[G].totalHeight) {
         return this.outerCellsMatrix[G].totalHeight;
@@ -403,6 +430,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         V += this.layoutSetting.spacingY;
       }
     };
+    // 計算指定行的累積寬度
     j.prototype._getColTotalWidth = function (G) {
       if (this.outerCellsMatrix[G] && this.outerCellsMatrix[G].totalWidth) {
         return this.outerCellsMatrix[G].totalWidth;
@@ -417,6 +445,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
         V += this.layoutSetting.spacingX;
       }
     };
+    // 取得最靠近焦點的項目索引
     j.prototype._getNearestItem = function () {
       if (this.vertical) {
         if (this._getContentTopBoundary() < this._topBoundary) {
@@ -467,6 +496,7 @@ if (!cc._RF.push(module, "2a349Sf9h1Dw6gCmtoNZ3ZP", "GridView")) {
       }
       return S;
     };
+    // 對齊至最近的項目
     j.prototype._autoSnapTo = function () {
       this.elastic = this.originalElastic;
       if (!this._masterControl && this.requestSnap && this.content.children.length) {

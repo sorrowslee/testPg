@@ -26,6 +26,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
       return G;
     }
     __extends(j, p);
+    // 初始化按鈕外觀與互動
     j.prototype.onLoad = function () {
       var G;
       var V;
@@ -45,14 +46,18 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
       }
       this._iconSpriteFrame = this.iconSprite.getComponent(cc.Sprite).spriteFrame;
     };
+    // 設定按鈕圖示
     j.prototype.setIconSprite = function (G) {
       this.iconSprite.getComponent(cc.Sprite).spriteFrame = G;
     };
+    // 銷毀前先關閉觸控互動
     j.prototype.destroy = function () {
       this.disableTouchInteraction();
       return p.prototype.destroy.call(this);
     };
+    // 按鈕點擊時的回呼，可由外部覆寫
     j.prototype.onClick = function () {};
+    // 啟用或停用按鈕
     j.prototype.buttonActivate = function (G) {
       if (G) {
         this.node.active = true;
@@ -63,6 +68,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
       }
     };
     Object.defineProperty(j.prototype, "isInteractable", {
+      // 按鈕是否可互動
       get: function () {
         return this._isInteractable;
       },
@@ -79,6 +85,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
       enumerable: false,
       configurable: true
     });
+    // 處理觸控開始事件
     j.prototype._touchStart = function (G) {
       if (this._isInteractable) {
         this._touchInvalid = true;
@@ -90,6 +97,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         G.stopPropagation();
       }
     };
+    // 處理觸控移動事件
     j.prototype._touchMoved = function (G) {
       var V;
       var Q;
@@ -113,6 +121,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         }
       }
     };
+    // 處理觸控結束事件
     j.prototype._touchEnded = function (G) {
       if (this._touchInvalid) {
         if (this._isInteractable) {
@@ -129,6 +138,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         }
       }
     };
+    // 處理觸控取消事件
     j.prototype._touchCancel = function (G) {
       if (this._touchInvalid) {
         if (this._isInteractable) {
@@ -141,14 +151,17 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         }
       }
     };
+    // 將按鈕顏色切換為指定狀態
     j.prototype.changeButtonColor = function (G) {
       this.changeButtonPressedColor(G);
     };
+    // 變更按下時的顏色
     j.prototype._changeButtonPressedColor = function (G) {
       if (!this._isOutOfBound) {
         this.changeButtonPressedColor(G);
       }
     };
+    // 依按下與否更新按鈕顏色
     j.prototype.changeButtonPressedColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -156,6 +169,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         L.setNodeColorWithOpacity(this.iconSprite, G ? Q : V);
       }
     };
+    // 依是否可互動更新按鈕顏色
     j.prototype.interactableButtonColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -163,6 +177,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         L.setNodeColorWithOpacity(this.iconSprite, G ? V : Q);
       }
     };
+    // 判斷觸控點是否在圓形碰撞器內
     j.prototype._checkWithinCircleCollider = function (G) {
       var V = this.circleCollider;
       if (!V) {
@@ -173,6 +188,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
       var Y = V.width / 2;
       return N.x * N.x + N.y * N.y <= Y * Y;
     };
+    // 滑鼠或觸控進入圓形碰撞器時顯示範圍
     j.prototype._touchCircleCollider = function (G) {
       if (this._iconSpriteFrame && this.circleCollider) {
         if (this._checkWithinCircleCollider(G)) {
@@ -182,6 +198,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         }
       }
     };
+    // 滑鼠離開碰撞器時重置狀態
     j.prototype._mouseLeaveCircleCollider = function () {
       var G;
       if (this._iconSpriteFrame && this.circleCollider) {
@@ -191,6 +208,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         }
       }
     };
+    // 啟用觸控與滑鼠互動
     j.prototype.enableTouchInteraction = function () {
       if (!this._touchInteraction) {
         this._touchInteraction = true;
@@ -206,6 +224,7 @@ if (!cc._RF.push(module, "aeaa7CV0CtEMo2Sab7CGMw1", "GenericSettingButton")) {
         }
       }
     };
+    // 關閉觸控與滑鼠互動
     j.prototype.disableTouchInteraction = function () {
       if (this._touchInteraction) {
         this._touchInteraction = false;
