@@ -25,6 +25,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
     }
     __extends(Y, N);
     Y.prototype.renderPrize = function () {
+      // 依據倍數與交易狀態播放獎勵流程
       var W = this.dataSource.transactionModel;
       var q = W.isTransactionEnd;
       var S = W.gameMultiplier;
@@ -35,9 +36,11 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype.renderLines = function (W) {
+      // 顯示得獎線
       N.prototype.renderLines.call(this, W);
     };
     Y.prototype.playAllLines = function (W) {
+      // 播放所有得獎線或高亮效果
       if (this.dataSource.transactionModel.isMaximumWin) {
         W();
       } else {
@@ -45,6 +48,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype.playPrize = function (W) {
+      // 根據獲勝金額判斷獎勵類型
       var q = this.dataSource.transactionModel;
       var S = q.singleSpinAccumulatedWin;
       var z = q.totalWinAmount;
@@ -75,6 +79,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype.runBigPrizeState = function (W, q) {
+      // 播放大獎流程
       var S = this.dataSource.transactionModel;
       var z = S.isTransactionEnd;
       var f = S.gameMultiplier;
@@ -82,6 +87,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       T.sequenceCallback(k.emitSocialBigWinStart, T.delayCallback(1), this._playBigWin(W), this._showInfoboardWin(A, W, f), T.delayCallback(0.5), k.emitSocialBigWinEnd, this._updatePrizes.bind(this))(q);
     };
     Y.prototype.runMediumPrizeState = function (W, q) {
+      // 播放中獎流程
       var S = this.dataSource.transactionModel;
       var z = S.isTransactionEnd;
       var f = S.gameMultiplier;
@@ -93,6 +99,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       });
     };
     Y.prototype.runSmallPrizeState = function (W, q) {
+      // 播放小獎流程
       var S = this.dataSource.transactionModel;
       var z = S.isTransactionEnd;
       var f = S.gameMultiplier;
@@ -104,12 +111,14 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       });
     };
     Y.prototype.runBeforeMultiplierPrizeState = function (W, q, S) {
+      // 倍數計算前顯示預覽獎金
       this._showInfoboardWin(j.InfoBoardShowState.BEFORE_FINAL_PAY_WIN, W, q)();
       if (S) {
         S();
       }
     };
     Y.prototype._showFreeSpinWon = function (W) {
+      // 顯示額外免費旋轉的提示
       var q = this.dataSource.transactionModel;
       var S = q.freeSpin;
       if (q.stateTransitionTo === C.TransitionState.FREE_SPIN && S && S.additionalStep) {
@@ -125,6 +134,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype._checkBonusStep = function (W) {
+      // 更新剩餘免費旋轉次數
       var q = this.dataSource.transactionModel;
       var S = q.freeSpin;
       if (q.stateTransitionTo === C.TransitionState.FREE_SPIN && S && S.additionalStep) {
@@ -137,6 +147,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype._updateTransitionState = function (W) {
+      // 更新狀態機轉換
       var q = this.dataSource.transactionModel;
       var S = q.isTransactionEnd;
       var z = q.stateTransitionTo;
@@ -148,6 +159,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype._updatePrizes = function (W) {
+      // 更新設定選單中的餘額與贏分
       var q = this.dataSource.playerModel.balance;
       var S = this.dataSource.transactionModel.accumulatedWinAmount;
       D.settingMenuHelper.setWinAmount(S);
@@ -157,12 +169,14 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype._playBigWin = function (W) {
+      // 播放 Big Win 動畫
       var q = this;
       return function (S) {
         q.controllerPool.generalControllers.bigWinController.play(W, 0, S);
       };
     };
     Y.prototype._showInfoboardWin = function (W, q, S) {
+      // 顯示訊息板獲獎資訊
       var z = this;
       return function (f) {
         var A = z.controllerPool.generalControllers.infoboardController;
@@ -176,6 +190,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       };
     };
     Y.prototype._playHighLightEffect = function (W) {
+      // 高亮顯示中獎符號
       var q = D.settingMenuHelper.turboSpinOn;
       var S = this.controllerPool.generalControllers;
       var z = S.slotTintController;
@@ -218,6 +233,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       T.spawnCallback(M)(W);
     };
     Y.prototype._preSymbolBreakEffect = function (W) {
+      // 播放符號破裂前的預備動畫
       var q = this.dataSource.transactionModel;
       var S = q.isMaximumWin;
       var z = q.winLines;
@@ -238,6 +254,7 @@ if (!cc._RF.push(module, "3abd4EpJjRPAJTm/EYgPzXu", "WBSPrizeState")) {
       }
     };
     Y.prototype._playMultiplier = function (W) {
+      // 播放倍數動畫後進入獎勵
       var q = this.dataSource.transactionModel;
       var S = q.gameMultiplier;
       var z = q.totalWinBeforeMultiplier;

@@ -13,9 +13,11 @@ if (!cc._RF.push(module, "e01efU7BqFHHoZdNAD0tc2j", "WaysController")) {
     }
     __extends(C, k);
     C.prototype.setWaysText = function (u) {
+      // 設定顯示的 Ways 文字圖像
       this.waysTextSprite.spriteFrame = u;
     };
     C.prototype.destroy = function () {
+      // 釋放圖片資源並銷毀節點
       this.waysTextSprite.spriteFrame = undefined;
       this.node.destroy();
       return k.prototype.destroy.call(this);

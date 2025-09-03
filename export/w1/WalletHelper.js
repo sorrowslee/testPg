@@ -27,6 +27,7 @@ if (!cc._RF.push(module, "1ca2eEH71NDaahNBchOvZgw", "WalletHelper")) {
     }
     __extends(c, u);
     c.prototype.init = function (p) {
+      // 初始化事件監聽與遊戲資訊取得
       var j = this;
       this._getGameInfo = p.getGameInfo;
       var G = D.getGameContext();
@@ -47,6 +48,7 @@ if (!cc._RF.push(module, "1ca2eEH71NDaahNBchOvZgw", "WalletHelper")) {
       });
     };
     c.prototype.processInitGameInfo = function (p, j) {
+      // 根據初始遊戲資料設定錢包狀態
       var G = this;
       var V = p.dt.ls.si;
       this._hasNewWallet = p.dt.inwe;
@@ -85,11 +87,13 @@ if (!cc._RF.push(module, "1ca2eEH71NDaahNBchOvZgw", "WalletHelper")) {
       }
     };
     c.prototype.setup = function (p) {
+      // 設定與錢包相關的 UI 控制器
       this._settingMenuSetFreeGameModeFunc = p.setFreeGameModeFunc;
       this._settingMenuFooter = p.footerController;
       this._settingMenuFooter.activateWalletNotify(this._hasNewWallet);
     };
     c.prototype.setupWallet = function (p) {
+      // 根據伺服器資料設定錢包顯示模式
       var j = this._settingMenuFooter;
       var G = this._settingMenuSetFreeGameModeFunc;
       var V = p.wfg;
@@ -120,9 +124,11 @@ if (!cc._RF.push(module, "1ca2eEH71NDaahNBchOvZgw", "WalletHelper")) {
       this._lastSpinInfo = p;
     };
     c.prototype.hasFreeGame = function () {
+      // 是否仍有免費遊戲次數
       return this.isFreeGameMode() && this._lastSpinInfo.wfg.gc > 0;
     };
     c.prototype.spin = function (p) {
+      // 旋轉後更新免費次數或餘額
       if (this.isFreeGameMode()) {
         var j = this._lastSpinInfo.wfg.gc;
         this._setFreeGameCounter(j - 1);
@@ -135,12 +141,15 @@ if (!cc._RF.push(module, "1ca2eEH71NDaahNBchOvZgw", "WalletHelper")) {
       }
     };
     c.prototype.isFreeGameMode = function () {
+      // 是否為免費遊戲模式
       return this._lastSpinInfo && this._lastSpinInfo.wfg;
     };
     c.prototype.isBonusGameMode = function () {
+      // 是否為紅利遊戲模式
       return this._lastSpinInfo && this._lastSpinInfo.wbn;
     };
     c.prototype.isWalletCompleted = function () {
+      // 判斷錢包是否已完成或轉換
       var p = this._lastSpinInfo;
       var j = p.wfg;
       var G = p.wbn;
@@ -154,12 +163,15 @@ if (!cc._RF.push(module, "1ca2eEH71NDaahNBchOvZgw", "WalletHelper")) {
       return false;
     };
     c.prototype.cleanUp = function () {
+      // 清除暫存的 UI 控制器
       this._settingMenuFooter = undefined;
     };
     c.prototype._setFreeGameCounter = function (p, j = true) {
+      // 更新免費遊戲顯示計數
       this._settingMenuFooter.setCustomMiddleInfoFooter(p, j);
     };
     c.prototype._setRollOverBalance = function (p, j = true) {
+      // 更新 rollover 餘額顯示
       this._settingMenuFooter.setCustomMiddleInfoFooter(L.formatCurrency(p), j);
     };
     return __decorate([k("WalletHelper")], c);

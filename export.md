@@ -219,3 +219,18 @@
 | export/uv/Utils.js | 導出共用的工具函式 |
 | export/uv/ViewController.js | 基礎視圖控制器，處理安全區域與生命週期 |
 | export/uv/ViewControllerTransition.js | 視圖控制器轉場動畫基底 |
+| export/w1/WBSApiClient.js | 發送旋轉請求並處理回傳資料的 API 客戶端 |
+| export/w1/WBSApiClient.spec.js | 自動化測試用的 APIClient 事件轉發 |
+| export/w1/WBSBigWinController.js | 控制 Big Win 動畫與特效 |
+| export/w1/WBSDataSource.js | 提供玩家、系統與交易資料來源 |
+| export/w1/WBSFreeSpinGameState.js | 免費旋轉遊戲狀態流程控制 |
+| export/w1/WBSFreeSpinModel.js | 儲存免費旋轉相關數據 |
+| export/w1/WBSGameUtils.js | 遊戲工具函式集合 |
+| export/w1/WBSIdleState.js | 遊戲待機狀態處理與自動旋轉 |
+| export/w1/WBSNormalGameState.js | 一般遊戲狀態流程管理 |
+| export/w1/WBSPopOutItem.js | 顯示派彩資訊的彈出項目 |
+| export/w1/WBSPrizeState.js | 處理得獎顯示與獎勵流程 |
+| export/w1/WBSRefreshWorldHandler.js | 處理重整世界與回放切換 |
+| export/w1/WalletHandlers.js | 初始化錢包控制與回呼 |
+| export/w1/WalletHelper.js | 管理錢包與免費/紅利資訊 |
+| export/w1/WaysController.js | 顯示 Ways 文字的控制器 |

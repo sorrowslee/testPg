@@ -23,6 +23,7 @@ if (!cc._RF.push(module, "482e7ITATFKo7j4cEkygqNc", "WBSApiClient")) {
     };
     __extends(j, p);
     j.prototype.spin = function (Q) {
+      // 發送旋轉請求並在回呼中處理結果
       var N = this;
       var Y = this.dataSource;
       var W = Y.isFeatureBuy;
@@ -45,6 +46,7 @@ if (!cc._RF.push(module, "482e7ITATFKo7j4cEkygqNc", "WBSApiClient")) {
       });
     };
     j.prototype.updateTransactionInfo = function () {
+      // 將伺服器回傳的交易資訊更新至資料來源
       var Q = this._spinInfo;
       if (Q) {
         this.dataSource.isFeatureBuy = false;
@@ -52,9 +54,11 @@ if (!cc._RF.push(module, "482e7ITATFKo7j4cEkygqNc", "WBSApiClient")) {
       }
     };
     j.prototype._onRequestSent = function (Q, N, Y) {
+      // 對指定路徑發送請求
       this.requestEngine(Q, N, Y);
     };
     j.prototype._onRequestReceived = function (Q, N) {
+      // 接收伺服器回應並記錄最新旋轉資訊
       if (N && N.dt) {
         var Y = N.dt.si;
         this.print(Y.sid);

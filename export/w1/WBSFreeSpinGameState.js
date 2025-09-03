@@ -30,15 +30,18 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
     }
     __extends(U, w);
     U.prototype.onReady = function () {
+      // 初始化 UI 狀態機
       this._setupUIStateMachine();
     };
     U.prototype.onRun = function () {
+      // 執行進入流程並啟動狀態機
       var B = this;
       this._setup(function () {
         B.uiStateMachine.run();
       });
     };
     U.prototype.onExit = function (B) {
+      // 狀態退出時決定是否轉往下一狀態
       if (this._isForceExit) {
         B();
       } else {
@@ -46,16 +49,19 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype.onForceExit = function (B) {
+      // 強制離開此狀態
       this._isForceExit = true;
       this.uiStateMachine.exit();
       B();
     };
     U.prototype.onDestroy = function (B) {
+      // 銷毀狀態並清理資源
       this._destroyPreloadState();
       this.uiStateMachine = undefined;
       B();
     };
     U.prototype._setup = function (B) {
+      // 根據來源狀態初始化 UI 與背景
       var P = this.dataSource.transactionModel.stateTransitionFrom;
       var X = this.dataSource.isRefreshWorld;
       D.emitGameFlowStateChangedEvent({
@@ -91,12 +97,14 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._playScatterWinEffect = function (B) {
+      // 播放散佈符號的獲獎特效
       this.controllerPool.generalControllers.slotController.playScatterWinEffect();
       if (B) {
         B();
       }
     };
     U.prototype._preSetupUI = function (B) {
+      // 預先調整 UI 元件如倍數與提示
       var P = this.controllerPool.generalControllers;
       var X = P.multiplierController;
       var J = P.infoboardController;
@@ -107,6 +115,7 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._setupUI = function (B) {
+      // 設定免費遊戲所需的 UI 控制器
       var P = this.controllerPool.generalControllers;
       var X = P.spinButtonController;
       var J = P.symbolPayoutController;
@@ -131,12 +140,14 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._setupUIStateMachine = function () {
+      // 建立 UI 狀態機以驅動後續狀態流程
       this.uiStateMachine = new G.default({
         getNextUIState: this._evaluateUIState.bind(this),
         exitUIStateMachineCallback: this.exit.bind(this)
       });
     };
     U.prototype._transitionToNextState = function (B) {
+      // 根據結果轉換到下一個遊戲狀態
       var P = this.dataSource.transactionModel;
       if (P.stateTransitionTo === Q.TransitionState.NORMAL) {
         var X = P.freeSpin;
@@ -150,6 +161,7 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._evaluateUIState = function () {
+      // 判斷下一個 UI 狀態
       var B = this;
       var P = this.uiStateMachine.currentUIState;
       var X = this.dataSource.transactionModel.stateTransitionTo === Q.TransitionState.FREE_SPIN_RESPIN;
@@ -185,26 +197,32 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       return J;
     };
     U.prototype._runRequestApiState = function () {
+      // 建立請求 API 的狀態
       var B = this.dataSource;
       return new N.default(B, this.controllerPool, undefined);
     };
     U.prototype._runResultState = function () {
+      // 建立結果處理狀態
       var B = this.dataSource;
       return new W.default(B, this.controllerPool, undefined);
     };
     U.prototype._runPrizeState = function () {
+      // 建立獎金顯示狀態
       var B = this.dataSource;
       return new Y.default(B, this.controllerPool, undefined);
     };
     U.prototype._runRespinState = function () {
+      // 建立即時重轉狀態
       var B = this.dataSource;
       return new z.default(B, this.controllerPool, undefined);
     };
     U.prototype._runUIState = function () {
+      // 建立即時 UI 狀態
       var B = this.dataSource;
       return new q.default(B, this.controllerPool, undefined);
     };
     U.prototype._showBonusLoading = function (B) {
+      // 顯示免費遊戲載入畫面並播放轉場音效
       var P = this.controllerPool.generalControllers;
       var X = P.bonusLoadingController;
       var J = P.settingMenuFooterController;
@@ -216,16 +234,20 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       M.bgmHandler.playBgm(Q.TransitionState.FREE_SPIN);
     };
     U.prototype._loadBonusAssets = function (B) {
+      // 載入免費遊戲相關資源
       this.controllerPool.loadingController.loadBonusBundle(B);
     };
     U.prototype._loadComplete = function (B) {
+      // 免費遊戲資源載入完成後的處理
       var P = this.dataSource.isGameReplaying;
       this.controllerPool.generalControllers.bonusLoadingController.onLoadComplete(P, B);
     };
     U.prototype._releaseBonusAssets = function (B) {
+      // 釋放免費遊戲資源
       this.controllerPool.loadingController.releaseBonusBundle(B);
     };
     U.prototype._setupBackground = function (B) {
+      // 切換背景與控制器到免費遊戲狀態
       var P = this.controllerPool.generalControllers;
       var X = P.slotController;
       var J = P.slotTintController;
@@ -249,6 +271,7 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._resetUI = function (B) {
+      // 結束免費遊戲後恢復正常界面
       var P = this;
       x.delayCallback(0.5)(function () {
         var X = P.dataSource.transactionModel.gameMultiplier;
@@ -285,6 +308,7 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       });
     };
     U.prototype._playTotalWin = function (B) {
+      // 播放免費遊戲結束的總贏畫面
       var P = this.controllerPool.generalControllers.totalWinController;
       var X = this.dataSource.transactionModel.freeSpin;
       var J = X ? X.accumulatedWin : 0;
@@ -308,10 +332,12 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._playNormalBgm = function (B) {
+      // 切換回一般背景音樂
       M.bgmHandler.playBgm(Q.TransitionState.NORMAL);
       B();
     };
     U.prototype._showInfoboardTotalWin = function (B) {
+      // 顯示訊息板上的總贏資訊
       var P = this.dataSource.transactionModel;
       var X = P.accumulatedWinAmount;
       var J = P.gameMultiplier;
@@ -345,13 +371,16 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       }
     };
     U.prototype._switchMultiplier = function (B) {
+      // 播放倍數切換至免費遊戲的動畫
       this.controllerPool.generalControllers.multiplierController.playTransformToFreeSpinMutliplier(B);
     };
     U.prototype._switchMultiplierSkipAnim = function (B) {
+      // 直接切換倍數，不播放動畫
       this.controllerPool.generalControllers.multiplierController.reloadMultiplier(8, true);
       B();
     };
     U.prototype._getWinThresholds = function () {
+      // 取得不同贏分門檻
       var B = this.dataSource.systemModel;
       var P = B.maxLineNumber;
       var X = B.winThresholds;
@@ -361,6 +390,7 @@ if (!cc._RF.push(module, "542e1UUE4JBmp28UPjLy4JX", "WBSFreeSpinGameState")) {
       return X.getAllThresholds(Z0, Z1, P);
     };
     U.prototype._destroyPreloadState = function () {
+      // 銷毀預先建立的狀態
       var B = this._preloadState;
       if (B) {
         B.destroy();
