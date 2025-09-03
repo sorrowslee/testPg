@@ -9,9 +9,11 @@ if (!cc._RF.push(module, "4a843d9tZpBC5Aag4RGjJxr", "AdapterEventEmitter")) {
       this._eventPool = Object.create(null);
       this._deferCallback = T.deferCallback(this);
     }
+    // 設定一次性事件監聽器
     D.prototype.once = function (k, C, u) {
       this.on(k, C, u, true);
     };
+    // 觸發指定事件並呼叫所有監聽函式
     D.prototype.emit = function (k, C, j, G = false) {
       var V = this._eventPool;
       var Q = V[k];
@@ -40,6 +42,7 @@ if (!cc._RF.push(module, "4a843d9tZpBC5Aag4RGjJxr", "AdapterEventEmitter")) {
         Y(q);
       }
     };
+    // 監聽指定事件
     D.prototype.on = function (k, C, u, c) {
       var p = this._eventPool;
       var j = p[k];
@@ -62,6 +65,7 @@ if (!cc._RF.push(module, "4a843d9tZpBC5Aag4RGjJxr", "AdapterEventEmitter")) {
       };
       j.push(N);
     };
+    // 取消事件監聽，可依事件或函式移除
     D.prototype.off = function (k, C, u) {
       if (k !== undefined) {
         switch (typeof k) {
@@ -82,6 +86,7 @@ if (!cc._RF.push(module, "4a843d9tZpBC5Aag4RGjJxr", "AdapterEventEmitter")) {
         }
       }
     };
+    // 依事件名稱移除監聽器
     D.prototype._offByEvent = function (k, C, u) {
       var c = this._eventPool[k];
       if (c) {
@@ -94,6 +99,7 @@ if (!cc._RF.push(module, "4a843d9tZpBC5Aag4RGjJxr", "AdapterEventEmitter")) {
         }
       }
     };
+    // 依函式內容移除監聽器
     D.prototype._offByFunction = function (k, C) {
       for (var u in this._eventPool) {
         this._eventPool[u] = this._eventPool[u].filter(function (c) {
@@ -106,6 +112,7 @@ if (!cc._RF.push(module, "4a843d9tZpBC5Aag4RGjJxr", "AdapterEventEmitter")) {
   exports.default = x;
   cc._RF.pop();
 }
+// 依條件判斷是否移除指定監聽器
 function L(D, k, C) {
   return !!C && C !== D.id || !!k && k !== D.fn || (D.fn = T.emptyFunc, false);
 }

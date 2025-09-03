@@ -421,6 +421,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
       },
       _liveParticles: []
     },
+    // 重新啟動粒子系統，必要時清除現有粒子
     resetSystem: function (p = true) {
       if (p) {
         this.stopSystem(true);
@@ -436,6 +437,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         }
       }
     },
+    // 停止粒子系統，可選擇是否立即清除粒子
     stopSystem: function (p) {
       var j = this;
       if (p === undefined) {
@@ -451,6 +453,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         this._liveParticles = [];
       }
     },
+    // 產生新的粒子實體
     _spawnParticle: function () {
       if (!(this._liveParticles.length >= this.particleCount)) {
         var p = this.nodePool.get();
@@ -459,24 +462,31 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         p.getComponent(cc.Animation).play();
       }
     },
+    // 取得粒子的壽命時間
     getLife: function (p, j) {
       return (0, L.getRandomFromRange)(p, j);
     },
+    // 取得粒子的移動速度
     getSpeed: function (p, j) {
       return (0, L.getRandomFromRange)(p, j);
     },
+    // 取得粒子發射角度
     getEmissionAngle: function (p, j) {
       return (0, L.getRandomFromRange)(p, j);
     },
+    // 取得起始縮放值
     getSourceStartScale: function (p, j) {
       return (0, L.getRandomFromRange)(p, j);
     },
+    // 取得起始旋轉角度
     getSourceStartSpinAngle: function (p, j) {
       return (0, L.getRandomFromRange)(p, j);
     },
+    // 取得起始透明度
     getSourceStartAlpha: function (p, j) {
       return (0, L.getRandomFromRange)(p, j);
     },
+    // 取得起始顏色
     getSourceStartColor: function (p, j) {
       if (j.equals(cc.Color.BLACK)) {
         return p;
@@ -484,12 +494,15 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return new cc.Color((0, L.getRandomFromRange)(p.getR(), j.getR()), (0, L.getRandomFromRange)(p.getG(), j.getG()), (0, L.getRandomFromRange)(p.getB(), j.getB()));
       }
     },
+    // 取得起始位置
     getSourceStartPosition: function (p, j) {
       return cc.v2((0, L.getRandomFromRange)(p.x, j.x), (0, L.getRandomFromRange)(p.y, j.y));
     },
+    // 取得結束縮放值
     getSourceEndScale: function (p, j, G, V) {
       return (V ? p : 1) * (0, L.getRandomFromRange)(j, G);
     },
+    // 取得結束旋轉角度
     getSourceEndSpinAngle: function (p, j, G, V) {
       if (V) {
         return p;
@@ -497,9 +510,11 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return (0, L.getRandomFromRange)(j, G);
       }
     },
+    // 取得結束透明度
     getSourceEndAlpha: function (p, j, G) {
       return (0, L.getRandomFromRange)(j, G);
     },
+    // 取得結束顏色
     getSourceEndColor: function (p, j, G) {
       if (G.equals(cc.Color.BLACK)) {
         return j;
@@ -507,11 +522,13 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return new cc.Color((0, L.getRandomFromRange)(j.getR(), G.getR()), (0, L.getRandomFromRange)(j.getG(), G.getG()), (0, L.getRandomFromRange)(j.getB(), G.getB()));
       }
     },
+    // 計算線性移動的終點位置
     getSourceEndPositionLinear: function (p, j, G, V) {
       var Q = Math.cos(G / 180 * Math.PI) * j * V;
       var N = Math.sin(G / 180 * Math.PI) * j * V;
       return cc.v2(p.x + Q, p.y + N);
     },
+    // 計算受重力影響的移動軌跡
     getSourceEndPositionGravity: function (j, G, V, Q, N, Y) {
       var W = Math.cos(V / 180 * Math.PI) * G * Q;
       var q = Math.sin(V / 180 * Math.PI) * G * Q;
@@ -535,6 +552,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
       var Z7 = U > 0 ? 1 : -1;
       return [cc.v2(E - J * Z7, F - Z0), cc.v2(H - Z2 * Z7, w - Z3), cc.v2(U - Z5 * Z7, P - Z6)];
     },
+    // 建立移動動作
     getMoveAction: function (p, j, G, V, Q) {
       var N = cc.moveTo(G, j);
       if (V) {
@@ -543,6 +561,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return N;
       }
     },
+    // 建立貝茲曲線移動動作
     getBezierAction: function (p, j, G, V, Q) {
       var N = cc.bezierTo(G, j);
       if (V) {
@@ -551,6 +570,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return N;
       }
     },
+    // 建立縮放動作
     getScaleAction: function (p, j, G, V, Q, N) {
       if (!Q) {
         if (V === 0) {
@@ -566,6 +586,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return cc.sequence(cc.delayTime(V * G), cc.scaleTo(G - V * G, j).easing(Y));
       }
     },
+    // 建立旋轉動作
     getRotateAction: function (p, j, G, V, Q, N) {
       if (!Q) {
         if (V === 0) {
@@ -581,6 +602,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return cc.sequence(cc.delayTime(V * G), cc.rotateTo(G - V * G, -j).easing(Y));
       }
     },
+    // 建立漸隱動作
     getFadeAction: function (p, j, G, V, Q, N) {
       if (!Q) {
         if (V === 0) {
@@ -596,6 +618,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return cc.sequence(cc.delayTime(V * G), cc.fadeTo(G - V * G, j).easing(Y));
       }
     },
+    // 建立顏色變化動作
     getTintAction: function (p, j, G, V, Q, N) {
       if (!Q) {
         if (V === 0) {
@@ -611,6 +634,7 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
         return cc.sequence(cc.delayTime(V * G), cc.tintTo(G - V * G, j).easing(Y));
       }
     },
+    // 設定並播放粒子的所有動作
     _playParticleAction: function (j) {
       var G = this;
       var V = this.getLife(this.life, this.lifeVar);
@@ -669,10 +693,12 @@ if (!cc._RF.push(module, "3142aQR/shASo2uVaU35yUL", "AnimParticleSystem")) {
       this.node.addChild(j);
       j.runAction(Z5);
     },
+    // 內部加速度位移計算
     _accelerationDistance: function (p, j) {
       u ||= true;
       return p * 0.5 * j * j;
     },
+    // 粒子動作結束後自我銷毀
     _particleSelfDestruct: function (p) {
       var j = this._liveParticles;
       var G = j.indexOf(p);
