@@ -15,9 +15,11 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
       return G;
     }
     __extends(j, p);
+    // 設定顯示提示文字的回呼函式
     j.prototype.setShowSettingToastCallback = function (G) {
       this._showSettingToast = G;
     };
+    // 取得顯示提示文字的函式
     Object.defineProperty(j.prototype, "showSettingToast", {
       get: function () {
         if (!this._showSettingToast) {
@@ -28,9 +30,11 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
       enumerable: false,
       configurable: true
     });
+    // 設定隱藏提示文字的回呼函式
     j.prototype.setHideSettingToastCallback = function (G) {
       this._hideSettingToast = G;
     };
+    // 取得隱藏提示文字的函式
     Object.defineProperty(j.prototype, "hideSettingToast", {
       get: function () {
         if (!this._hideSettingToast) {
@@ -41,6 +45,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
       enumerable: false,
       configurable: true
     });
+    // 增加下注等級
     j.prototype.increaseBet = function (G, V, Q) {
       var N = G;
       if (V === undefined) {
@@ -72,6 +77,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
         selectedBetAmount: Q
       };
     };
+    // 減少下注等級
     j.prototype.decreaseBet = function (G, V, Q) {
       if (V === undefined) {
         for (var N = G.length - 1; N >= 0; N--) {
@@ -102,6 +108,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
         selectedBetAmount: Q
       };
     };
+    // 更新按鈕顏色並判斷是否達到限制
     j.prototype.updateBetModifierColor = function (G, V) {
       if (this.isIncreaseBet) {
         this.isReachLimit = !!V && !!(G >= V);
@@ -110,6 +117,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
       }
       this.interactableButtonColor(this.isInteractable);
     };
+    // 根據按下狀態切換圖示顏色
     j.prototype.changeButtonPressedColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -122,6 +130,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
         }
       }
     };
+    // 根據可互動狀態變換按鈕顏色
     j.prototype.interactableButtonColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -133,6 +142,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
         }
       }
     };
+    // 快速設為最大下注
     j.prototype.maxBet = function (G) {
       var V = G.length - 1;
       var Q = G[V];
@@ -143,6 +153,7 @@ if (!cc._RF.push(module, "076aehdcx9HQI7+9hg7FlGu", "BetModifierButton")) {
       this.showSettingToast(shell.I18n.t("SettingMenu.BiggestBet"), 2);
       return N;
     };
+    // 啟用或停用按鈕及其父物件
     j.prototype.buttonActivate = function (G) {
       if (G) {
         this.node.active = true;

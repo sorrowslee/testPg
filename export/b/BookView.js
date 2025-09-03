@@ -39,6 +39,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
     __extends(V, p);
     Object.defineProperty(V.prototype, "nodePools", j);
     Object.defineProperty(V.prototype, "templates", G);
+    // 註冊可重複使用的節點模板
     V.prototype.register = function (Q, N, Y) {
       if (this._nodePools[Q]) ;else if (N) {
         var W;
@@ -47,15 +48,18 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this._nodePools[Q] = W;
       }
     };
+    // 設定資料來源
     V.prototype.setDataSource = function (Q) {
       if (Q !== this._dataSource) {
         this._dataSource = Q;
       }
     };
+    // 重新載入資料並重建列表
     V.prototype.reloadData = function () {
       this._unbindListener();
       this.init(this._sectionIndex);
     };
+    // 建立外層容器節點
     V.prototype._createContentOuterCell = function () {
       for (this.contentChildsLayout = []; this.content.children.length < 3;) {
         var Q = this.node.width;
@@ -68,6 +72,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.contentChildsLayout.push(W);
       }
     };
+    // 尺寸變更時重新計算配置
     V.prototype._onSizeChanged = function () {
       var Q = this.node.width;
       var N = this.node.height;
@@ -82,12 +87,15 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
       this.distance += q;
       this._changeTo(this.currIndex);
     };
+    // 綁定尺寸變更監聽
     V.prototype._bindListener = function () {
       this.node.on("size-changed", this._onSizeChanged, this);
     };
+    // 解除尺寸變更監聽
     V.prototype._unbindListener = function () {
       this.node.off("size-changed", this._onSizeChanged, this);
     };
+    // 初始化列表狀態與內容
     V.prototype.init = function (Q) {
       this._bindListener();
       this._createContentOuterCell();
@@ -146,6 +154,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
       this.distance += q;
       this._changeTo(this.currIndex);
     };
+    // 捲動至左側項目
     V.prototype.toLeftItem = function () {
       var Q = this.content.children[0].children[0].cellIndex - 1;
       if (this.currIndex === 2) {
@@ -200,6 +209,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.currIndex = this.middleIndex;
       }
     };
+    // 捲動至右側項目
     V.prototype.toRightItem = function () {
       var Q = this.content.children[this.totalItems].children[0].cellIndex + 1;
       if (this.currIndex === 0 && this.currIndex < this.totalItems) {
@@ -254,30 +264,39 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.currIndex = this.middleIndex;
       }
     };
+    // 設定左邊界彈性距離
     V.prototype.setElasticLeft = function (Q) {
       this.elasticLeft = Q;
     };
+    // 設定右邊界彈性距離
     V.prototype.setElasticRight = function (Q) {
       this.elasticRight = Q;
     };
+    // 設定從左側關閉時的回呼
     V.prototype.setClosingFromLeft = function (Q) {
       this.closingFromLeft = Q;
     };
+    // 設定左側關閉的回呼
     V.prototype.setCloseFromLeft = function (Q) {
       this.closeFromLeft = Q;
     };
+    // 設定從右側關閉時的回呼
     V.prototype.setClosingFromRight = function (Q) {
       this.closingFromRight = Q;
     };
+    // 設定右側關閉的回呼
     V.prototype.setCloseFromRight = function (Q) {
       this.closeFromRight = Q;
     };
+    // 設定取消關閉書本的回呼
     V.prototype.setCancelCloseBook = function (Q) {
       this.cancelCloseBook = Q;
     };
+    // 設定開始滾動時的回呼
     V.prototype.setStartScrolling = function (Q) {
       this.startScrolling = Q;
     };
+    // 取得目前顯示的所有項目
     V.prototype.getAllItems = function () {
       var Q = [];
       this.content.children.forEach(function (N) {
@@ -287,6 +306,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
       });
       return Q;
     };
+    // 捲動到指定索引的項目
     V.prototype.scrollTo = function (Q) {
       if (this.snapDone && !this.snapPause) {
         var N = this.content.children[this.currIndex].children[0].cellIndex;
@@ -370,6 +390,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         }
       }
     };
+    // 取出可重用的節點
     V.prototype.dequeueReusableItem = function (Q) {
       var N;
       var Y = this._nodePools[Q];
@@ -382,6 +403,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
       }
       return N;
     };
+    // 回收節點放回池中
     V.prototype._enqueueReusableItem = function (Q) {
       var N;
       var Y = Q.lv_type;
@@ -392,6 +414,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         N.put(Q);
       }
     };
+    // 根據目前索引重新載入顯示的項目
     V.prototype._reloadCellsData = function () {
       var Q = this.content.children[this.currIndex].children[0].cellIndex;
       if (Q === this._totalLength - 1) {
@@ -480,6 +503,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.resetContentPos = true;
       }
     };
+    // 切換至指定索引位置
     V.prototype._changeTo = function (Q) {
       if (!(Q > this.totalItems) && !(Q < 0)) {
         this.currIndex = Q;
@@ -487,6 +511,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.snapDone = false;
       }
     };
+    // 回收超出範圍的項目
     V.prototype._recycleItem = function () {
       if (this.dir === D.LEFT && this.content.x > this.maxScrollArea.y) {
         this.toLeftItem();
@@ -495,6 +520,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
       }
       this.dir = D.NULL;
     };
+    // 每幀更新位置與狀態
     V.prototype.update = function (Q) {
       var N = this;
       if (this.snapDone || this.snapPause) {
@@ -525,6 +551,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.content.sortAllChildren();
       }
     };
+    // 觸控開始時記錄位置
     V.prototype._onTouchBegan = function (Q, N) {
       if (!this.reloadCells && this.content.children.length) {
         this.snapPause = true;
@@ -536,6 +563,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.startPos = null;
       }
     };
+    // 觸控移動時處理左右彈性與滾動
     V.prototype._onTouchMoved = function (Q, N) {
       var Y = Q.touch;
       var W = cc.v2(Y.getLocation().x, Y.getLocation().y);
@@ -576,6 +604,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         }
       }
     };
+    // 觸控結束時決定是否翻頁
     V.prototype._onTouchEnded = function (Q, N) {
       if (!this.reloadCells && this.content.children.length) {
         this.dragElastic = false;
@@ -612,6 +641,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         }
       }
     };
+    // 觸控被取消時的處理
     V.prototype._onTouchCancelled = function (Q, N) {
       if (!this.reloadCells && this.content.children.length) {
         this.dragElastic = false;
@@ -659,6 +689,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this._stopPropagationIfTargetIsMe(Q);
       }
     };
+    // 內部處理滑動事件
     V.prototype._onMove = function (Q) {
       if (this.clickBegan) {
         this.clickBegan = false;
@@ -688,6 +719,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         }
       }
     };
+    // 觸控結束後的基本處理
     V.prototype._onEnded = function (Q) {
       this.clickBegan = false;
       if (this.enabledInHierarchy) {
@@ -703,6 +735,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         }
       }
     };
+    // 觸控取消後的基本處理
     V.prototype._onCancelled = function (Q) {
       this.clickBegan = false;
       if (this.enabledInHierarchy) {
@@ -715,6 +748,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this._stopPropagationIfTargetIsMe(Q);
       }
     };
+    // 依滑鼠滾輪方向設定捲動方向
     V.prototype._mouseWheelHorizontal = function () {
       if (this._mouseWheelEvent && this._mouseWheelEvent.getScrollY() > 0) {
         this.dir = D.RIGHT;
@@ -722,16 +756,19 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this.dir = D.LEFT;
       }
     };
+    // 滾輪開始時暫停自動對齊
     V.prototype._onMouseWheelStart = function () {
       this.snapPause = true;
       this.snapDone = true;
     };
+    // 滾輪結束後恢復狀態
     V.prototype._onMouseWheelEnd = function () {
       this.itemOffSet = this.cellSize;
       this._recycleItem();
       this.snapPause = false;
       this._mouseWheelEvent = undefined;
     };
+    // 處理滑鼠滾輪捲動
     V.prototype._onMouseWheel = function (Q) {
       if (this.content.children.length && this.enabledInHierarchy) {
         this._mouseWheelEvent = Q;
@@ -753,6 +790,7 @@ if (!cc._RF.push(module, "46ec0uZUDVPMZDgV9Idp1EN", "BookView")) {
         this._stopPropagationIfTargetIsMe(Q);
       }
     };
+    // 檢查滾輪是否停止
     V.prototype._checkMouseWheel = function (Q) {
       var N;
       var Y;

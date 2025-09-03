@@ -27,16 +27,19 @@ if (!cc._RF.push(module, "8cf0eKqDPpJIqyTM7FI7ivt", "BaseLoadingController")) {
       return A;
     }
     __extends(z, S);
+    // 建立初始資料並設定控制器
     z.prototype.setup = function (A) {
       this.generalControllers = A.generalControllers;
       this.bonusControllers = A.bonusControllers;
       this.generalControllers.settingMenuFooterHolder = this.settingMenuFooterHolder;
       this._initSettingMenuAudioTasks();
     };
+    // 初始化設定選單使用的音效系統
     z.prototype._initSettingMenuAudioTasks = function () {
       var A = j.cs_Launch.noAudio === "1" ? D.default : G.default;
       C.settingMenuHelper.initAudio(A);
     };
+    // 載入設定選單與傳入資源的 bundle
     z.prototype.loadBundle = function (A, M) {
       var E = this;
       var F = A;
@@ -59,6 +62,7 @@ if (!cc._RF.push(module, "8cf0eKqDPpJIqyTM7FI7ivt", "BaseLoadingController")) {
         M(w);
       });
     };
+    // 遇到載入失敗時的重試處理
     z.prototype._retryHandling = function (A, M, E, F) {
       var b = shell.Error;
       var H = shell.ClientError;
@@ -78,13 +82,16 @@ if (!cc._RF.push(module, "8cf0eKqDPpJIqyTM7FI7ivt", "BaseLoadingController")) {
         }
       });
     };
+    // 回報載入錯誤資訊
     z.prototype._sendErrorReport = function (A) {
       var M = A > 0 ? A : undefined;
       T.sendLoadFailReport(M);
     };
+    // 更新載入進度顯示
     z.prototype.progressCallback = function (A, M) {
       shell.setProgress(A, M);
     };
+    // 設定選單資源載入完成後的初始化
     z.prototype._settingMenuTaskComplete = function (A) {
       var M = A.setting_menu;
       var E = A.setting_menu_wallet_panel;
@@ -125,6 +132,7 @@ if (!cc._RF.push(module, "8cf0eKqDPpJIqyTM7FI7ivt", "BaseLoadingController")) {
   cc._RF.pop();
 }
 function q(S, z, A) {
+  // 生成指定 prefab 並回傳其上的控制器元件
   var M = cc.instantiate(S);
   if (A) {
     A.addChild(M);

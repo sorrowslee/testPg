@@ -15,6 +15,7 @@ if (!cc._RF.push(module, "f63afB6nfJFAY4uwEg0e8G6", "BackgroundController")) {
       return c;
     }
     __extends(u, C);
+    // 根據遊戲狀態切換背景顯示
     u.prototype.switchUI = function (c) {
       switch (c) {
         case T.TransitionState.FREE_SPIN:
@@ -31,9 +32,11 @@ if (!cc._RF.push(module, "f63afB6nfJFAY4uwEg0e8G6", "BackgroundController")) {
           this.slowDropEfxHolder.setPosition(0, 0);
       }
     };
+    // 取得慢速掉落效果的容器節點
     u.prototype.getSlowDropEfxHolder = function () {
       return this.slowDropEfxHolder;
     };
+    // 清除慢速掉落效果容器中的所有子節點
     u.prototype.resetSlowDropEfxHolder = function () {
       this.slowDropEfxHolder.removeAllChildren();
     };

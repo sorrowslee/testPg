@@ -27,22 +27,37 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
       return Q;
     }
     __extends(V, G);
+    // 物件銷毀時的自訂行為
     V.prototype.onDestroyed = function () {};
+    // 初始化前可覆寫的行為
     V.prototype.onInit = function () {};
+    // 設定資料時可覆寫的行為
     V.prototype.onSetup = function () {};
+    // 開始播放前可覆寫的行為
     V.prototype.onPlay = function () {};
+    // 播放 Big Win 特效前的自訂流程
     V.prototype.onPlayBigWinEffect = function (Q) {
       Q();
     };
+    // 進入 Mega Win 前的預備特效
     V.prototype.onPlayPreMegaWinEffect = function () {};
+    // Mega Win 特效
     V.prototype.onPlayMegaWinEffect = function () {};
+    // 進入 Super Mega Win 前的預備特效
     V.prototype.onPlayPreSuperMegaWinEffect = function () {};
+    // Super Mega Win 特效
     V.prototype.onPlaySuperMegaWinEffect = function () {};
+    // 數字滾動完成時回呼
     V.prototype.onWinRollComplete = function () {};
+    // 跳過播放時的回呼
     V.prototype.onSkip = function () {};
+    // 結束播放時的回呼
     V.prototype.onStop = function () {};
+    // 動畫消失時的回呼
     V.prototype.onDismiss = function () {};
+    // 重置狀態時的回呼
     V.prototype.onReset = function () {};
+    // 銷毀物件並清除相關資源
     V.prototype.destroy = function () {
       this.onDestroyed();
       this._winRollController.stop(true);
@@ -53,6 +68,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
       this.node.destroy();
       return G.prototype.destroy.call(this);
     };
+    // 監聽按鈕點擊進行跳過或結束
     V.prototype.onButtonClick = function () {
       if (this.bigWinState === D.WinState.PLAYING) {
         this._skip();
@@ -60,17 +76,20 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         this._stop();
       }
     };
+    // 初始化控制器與子元件
     V.prototype.init = function (Q) {
       this.onInit(Q);
       this._tintOpacity = this.tintNode.opacity;
       this._winRollController = this.numberRollNode.getComponent("TimedWinRollController");
     };
+    // 設定回呼與參數
     V.prototype.setup = function (Q) {
       this.node.active = false;
       this.getWinThresholdCallback = Q.getWinThreshold;
       this.winDuration = Q.winDuration;
       this.onSetup(Q);
     };
+    // 開始播放 Big Win 流程
     V.prototype.play = function (Q, N, Y, W, q) {
       if (this.bigWinState === D.WinState.INITIAL) {
         this.onPlay(q);
@@ -90,6 +109,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         }
       }
     };
+    // 啟動數字滾動並設定門檻與時間
     V.prototype._startWinRoll = function () {
       var Q = this._winRollController;
       var N = this.winThreshold;
@@ -106,6 +126,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
       });
       Q.play(this._onValueReached.bind(this));
     };
+    // 數值達到特定門檻時觸發對應特效
     V.prototype._onValueReached = function (Q) {
       var N = this.winThreshold;
       if (Q >= N.megaWinThreshold * 0.95 && Q < N.megaWinThreshold && this.winRollState !== D.BigWinRollState.MEGA_WIN) {
@@ -123,6 +144,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         this._winRollComplete();
       }
     };
+    // 數字滾動結束後進入等待狀態
     V.prototype._winRollComplete = function () {
       if (this.bigWinState === D.WinState.PLAYING) {
         this.bigWinState = D.WinState.WAITING;
@@ -137,6 +159,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         });
       }
     };
+    // 開始顯示 Big Win 動畫
     V.prototype._startPlayEffect = function () {
       var Q = this.node;
       Q.active = true;
@@ -145,6 +168,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
       Q.runAction(cc.fadeIn(0.1));
       this._playBigWinEffect();
     };
+    // 執行 Big Win 特效後啟動數字滾動
     V.prototype._playBigWinEffect = function () {
       var Q = this;
       this.onPlayBigWinEffect(function () {
@@ -152,6 +176,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         x.delayCallback(Q.delayActiveSkipButton)(Q._activeStopButton.bind(Q));
       });
     };
+    // 跳過所有動畫
     V.prototype._skip = function () {
       this._inactiveStopButton();
       this.isSkip = true;
@@ -159,6 +184,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
       this.unscheduleAllCallbacks();
       this._winRollController.skip();
     };
+    // 結束並淡出效果
     V.prototype._stop = function () {
       if (this.bigWinState === D.WinState.WAITING) {
         this._inactiveStopButton();
@@ -171,6 +197,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         x.delayCallback(0.5)(this._dismiss.bind(this));
       }
     };
+    // 進行淡出動畫並在結束後處理完成
     V.prototype._dismiss = function () {
       if (this.bigWinState === D.WinState.DISMISING) {
         this.onDismiss();
@@ -179,18 +206,21 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         Q.runAction(cc.sequence(cc.fadeOut(0.5), cc.callFunc(this._completeShowBigWin, this)));
       }
     };
+    // 啟用停止按鈕並註冊鍵盤事件
     V.prototype._activeStopButton = function () {
       if (!this.buttonNode.active) {
         T.spaceBarInterrupter.subscribeEventInterrupter("bigwin", this.node, this.onButtonClick.bind(this));
         this.buttonNode.active = true;
       }
     };
+    // 停用停止按鈕並解除事件
     V.prototype._inactiveStopButton = function () {
       if (this.buttonNode.active) {
         T.spaceBarInterrupter.unsubscribeEventInterrupter("bigwin");
         this.buttonNode.active = false;
       }
     };
+    // 動畫播放完成後執行收尾回呼
     V.prototype._completeShowBigWin = function () {
       var Q = this._onCompleteCallback;
       this._reset();
@@ -198,6 +228,7 @@ if (!cc._RF.push(module, "68d31au7EhCrrUj7l+wvSHd", "BigWinController")) {
         Q();
       }
     };
+    // 重置所有狀態以供下次使用
     V.prototype._reset = function () {
       this.onReset();
       this.bigWinState = D.WinState.INITIAL;

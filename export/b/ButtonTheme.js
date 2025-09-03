@@ -34,17 +34,20 @@ if (!cc._RF.push(module, "2a5d1nUeQZE9KCVbljwPCZP", "ButtonTheme")) {
         }
       }
     },
+    // 載入時取得按鈕並套用外觀設定
     onLoad: function () {
       this._button = this.node.getComponent(cc.Button);
       this._updateButtonTransitionSelection();
       this._updateButtonColorTransition();
     },
+    // 更新按鈕過場效果類型
     _updateButtonTransitionSelection: function () {
       var C = this._button;
       if (C) {
         C.transition = this.transition;
       }
     },
+    // 根據外觀設定更新按鈕顏色
     _updateButtonColorTransition: function () {
       var C = this._button;
       if (C && this.transition == D.COLOR) {

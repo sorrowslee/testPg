@@ -10,6 +10,7 @@ if (!cc._RF.push(module, "14dfa+lfKlIS5vAzSig9n4q", "BetRepository")) {
       this._selectedBetLevelValue = L;
       this._selectedBetSizeValue = D;
     }
+    // 目前選擇的下注等級值
     Object.defineProperty(x.prototype, "selectedBetLevelValue", {
       get: function () {
         return this._selectedBetLevelValue;
@@ -20,6 +21,7 @@ if (!cc._RF.push(module, "14dfa+lfKlIS5vAzSig9n4q", "BetRepository")) {
       enumerable: false,
       configurable: true
     });
+    // 目前選擇的下注大小值
     Object.defineProperty(x.prototype, "selectedBetSizeValue", {
       get: function () {
         return this._selectedBetSizeValue;
@@ -30,6 +32,7 @@ if (!cc._RF.push(module, "14dfa+lfKlIS5vAzSig9n4q", "BetRepository")) {
       enumerable: false,
       configurable: true
     });
+    // 伺服器回傳的下注等級值
     Object.defineProperty(x.prototype, "betLevelValue", {
       get: function () {
         return this._betLevelValue;
@@ -37,6 +40,7 @@ if (!cc._RF.push(module, "14dfa+lfKlIS5vAzSig9n4q", "BetRepository")) {
       enumerable: false,
       configurable: true
     });
+    // 伺服器回傳的下注大小值
     Object.defineProperty(x.prototype, "betSizeValue", {
       get: function () {
         return this._betSizeValue;
@@ -44,6 +48,7 @@ if (!cc._RF.push(module, "14dfa+lfKlIS5vAzSig9n4q", "BetRepository")) {
       enumerable: false,
       configurable: true
     });
+    // 更新伺服器同步的下注資料
     x.prototype.updateRemoteBets = function (L, D) {
       this._betLevelValue = this._selectedBetLevelValue = L;
       this._betSizeValue = this._selectedBetSizeValue = D;

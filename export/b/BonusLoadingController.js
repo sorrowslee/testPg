@@ -37,12 +37,14 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
       return W;
     }
     __extends(Y, N);
+    // 初始化顯示文字與重置狀態
     Y.prototype.init = function (W) {
       this.freeSpinTextSprite.spriteFrame = W.freeSpinTextSF;
       this.startTextSprite.spriteFrame = W.startTextSF;
       this.descTextSprite.spriteFrame = W.descTextSF;
       this._reset();
     };
+    // 顯示介面並開始播放入場動畫
     Y.prototype.show = function (W, q) {
       if (this._displayState === C.DisplayState.HIDE) {
         this._displayState = C.DisplayState.ANIMATING;
@@ -56,11 +58,13 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
         this.node.runAction(cc.sequence(cc.fadeIn(0.3), cc.callFunc(this._onShowComplete, this)));
       }
     };
+    // 更新讀取進度數字
     Y.prototype.updateProgress = function (W, q) {
       var S = W / q * 100;
       this.loadingNumberDisplayController.clear();
       this.loadingNumberDisplayController.displayNumber(S, false);
     };
+    // 資源載入完成後顯示開始按鈕
     Y.prototype.onLoadComplete = function (W, q) {
       this._onCompleteCallback = q;
       var S = W ? C.REPLAY_HOLD_DURATION : C.NORMAL_HOLD_DURATION;
@@ -68,6 +72,7 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
       this.unschedule(this.onStartButtonClick);
       this.scheduleOnce(this.onStartButtonClick, S);
     };
+    // 點擊開始按鈕後進入下一步
     Y.prototype.onStartButtonClick = function () {
       this._disableMouseHover();
       this._hideMouseOverEffect();
@@ -81,6 +86,7 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
       k.playAudio(D.GENERAL_AUDIO.uiStart.key);
       this._hide();
     };
+    // 隱藏載入畫面
     Y.prototype._hide = function () {
       if (this._displayState === C.DisplayState.SHOWED) {
         this._displayState = C.DisplayState.ANIMATING;
@@ -89,6 +95,7 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
         this.blVfxCParticleSystem.node.runAction(cc.fadeOut(0.3));
       }
     };
+    // 隱藏動畫結束後的處理
     Y.prototype._onHideCompleteFunc = function () {
       this._reset();
       var W = this._onCompleteCallback;
@@ -97,6 +104,7 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
         W();
       }
     };
+    // 顯示動畫完成後的視覺效果與回呼
     Y.prototype._onShowComplete = function () {
       var W = this;
       this._displayState = C.DisplayState.SHOWED;
@@ -147,6 +155,7 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
         w();
       }
     };
+    // 播放數字周圍的特效
     Y.prototype._playNumberEffect = function () {
       var W = this.vfxNodeD;
       var q = cc.Color.WHITE;
@@ -156,6 +165,7 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
       W.color = cc.Color.BLACK;
       W.runAction(cc.spawn(cc.sequence(cc.scaleTo(0.5, 8), cc.scaleTo(1, 13)), cc.sequence(cc.tintTo(0.5, q), cc.delayTime(0.1), cc.tintTo(1, S))));
     };
+    // 顯示開始按鈕並啟用鍵盤事件
     Y.prototype._onStartButtonShowed = function () {
       var W = this;
       var q = this.loadingNode;
@@ -171,22 +181,27 @@ if (!cc._RF.push(module, "7eb81xH1fpGGZL0MI1pXgD6", "BonusLoadingController")) {
         L.spaceBarInterrupter.subscribeEventInterrupter("bonus", W.node, W.onStartButtonClick.bind(W));
       })));
     };
+    // 啟用滑鼠移入事件
     Y.prototype._enableMouseHover = function () {
       this.startButton.node.on("mouseenter", this._playMouseOverEffect, this);
       this.startButton.node.on("mouseleave", this._hideMouseOverEffect, this);
     };
+    // 停用滑鼠移入事件
     Y.prototype._disableMouseHover = function () {
       this.startButton.node.off("mouseenter", this._playMouseOverEffect, this);
       this.startButton.node.off("mouseleave", this._hideMouseOverEffect, this);
     };
+    // 滑鼠移入時播放閃光效果
     Y.prototype._playMouseOverEffect = function () {
       this.hoverShine.node.active = true;
       this.hoverShine.play();
     };
+    // 滑鼠移出時隱藏閃光效果
     Y.prototype._hideMouseOverEffect = function () {
       this.hoverShine.stop();
       this.hoverShine.node.active = false;
     };
+    // 重置所有節點與狀態
     Y.prototype._reset = function () {
       this._displayState = C.DisplayState.HIDE;
       this.unschedule(this._hide);

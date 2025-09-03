@@ -1,5 +1,6 @@
 if (!cc._RF.push(module, "95aac3PHb1J8pXlbPzijfq9", "ButtonHitTest")) {
   exports.__esModule = true;
+  // 檢測按鈕是否正確被點擊
   exports.buttonHitTest = function (x) {
     var L = cc.EventListener.ListenerID.TOUCH_ONE_BY_ONE;
     cc.internal.eventManager[T._sortListenersOfSceneGraphPriority](L, cc.director.getScene());
