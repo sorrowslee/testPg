@@ -209,3 +209,13 @@
 | export/t/TurboButtonEffect.js | 渦輪按鈕圖示切換效果 |
 | export/t/TweaksConfig.js | 不確定用途 |
 | export/t/TweaksData.js | 不確定用途 |
+| export/uv/UIAppearanceHelper.js | 管理 UI 外觀解析與各平台偏移量 |
+| export/uv/UIKit.js | 定義導航列與頁籤列的尺寸及安全區域 |
+| export/uv/UIKitUtils.js | 提供裝置與瀏覽環境判斷工具 |
+| export/uv/UISetupHandler.js | 依遊戲狀態初始化並切換 UI |
+| export/uv/UIState.js | 定義 UI 狀態的生命週期管理 |
+| export/uv/UIStateMachine.js | 控制 UIState 切換的狀態機 |
+| export/uv/Untitled-1.js | 不確定用途 |
+| export/uv/Utils.js | 導出共用的工具函式 |
+| export/uv/ViewController.js | 基礎視圖控制器，處理安全區域與生命週期 |
+| export/uv/ViewControllerTransition.js | 視圖控制器轉場動畫基底 |

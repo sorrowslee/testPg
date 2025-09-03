@@ -14,6 +14,7 @@ if (!cc._RF.push(module, "4267crib8ZEZLPPtFcOTt7i", "UIState")) {
   })(T = exports.UIStateStatus ||= {});
   var D = function () {
     function k(j, l, G) {
+      // 建立 UI 狀態並設定資料來源與控制器
       this.name = "UI State";
       this.uiStateStatus = T.Ready;
       this.setDataSource(j);
@@ -49,25 +50,32 @@ if (!cc._RF.push(module, "4267crib8ZEZLPPtFcOTt7i", "UIState")) {
       enumerable: false,
       configurable: true
     };
-    k.prototype.eventListener = function () {};
+    k.prototype.eventListener = function () {
+      // 子類可覆寫以處理事件
+    };
     Object.defineProperty(k.prototype, "isStateReady", C);
     Object.defineProperty(k.prototype, "isStateRunning", u);
     Object.defineProperty(k.prototype, "isStateExiting", c);
     Object.defineProperty(k.prototype, "isStateEnd", p);
     k.prototype.setDataSource = function (j) {
+      // 設定資料來源
       this.dataSource = j;
     };
     k.prototype.setControllerPool = function (j) {
+      // 設定控制器池
       this.controllerPool = j;
     };
     k.prototype.setExitCallback = function (j) {
+      // 設定結束時的回呼
       this.finalCallback = j;
     };
     k.prototype.run = function () {
+      // 啟動狀態流程
       this.uiStateStatus = T.Running;
       this.onRun();
     };
     k.prototype.exit = function (j) {
+      // 進入離開流程並在完成後呼叫回呼
       var l = this;
       if (!this.isStateExiting && !this.isStateEnd) {
         this.uiStateStatus = T.Exiting;
@@ -103,6 +111,7 @@ if (!cc._RF.push(module, "4267crib8ZEZLPPtFcOTt7i", "UIState")) {
       }
     };
     k.prototype.forceExit = function (j) {
+      // 強制離開目前狀態
       var l = this;
       this.uiStateStatus = T.Exiting;
       this.onForceExit(function () {
@@ -136,6 +145,7 @@ if (!cc._RF.push(module, "4267crib8ZEZLPPtFcOTt7i", "UIState")) {
       });
     };
     k.prototype.destroy = function () {
+      // 清理狀態並釋放資源
       var j = this;
       this.onDestroy(function () {
         j.dataSource = undefined;
@@ -144,6 +154,7 @@ if (!cc._RF.push(module, "4267crib8ZEZLPPtFcOTt7i", "UIState")) {
       });
     };
     k.prototype.dispatchEvent = function (j, l) {
+      // 將事件傳遞給監聽函式
       this.eventListener(j, l);
     };
     return k;
