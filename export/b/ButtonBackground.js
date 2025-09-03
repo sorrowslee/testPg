@@ -14,6 +14,7 @@ if (!cc._RF.push(module, "96252/qWvdGA7VOxWpX5d7v", "ButtonBackground")) {
       return c;
     }
     __extends(u, C);
+    // 根據設定的顏色鍵套用背景色
     u.prototype.onLoad = function () {
       this.background.color = T.uiAppearanceHelper.v("" + this.backgroundColorKey) ? T.uiAppearanceHelper.v("" + this.backgroundColorKey) : T.uiAppearanceHelper.v("setting.theme_color");
     };

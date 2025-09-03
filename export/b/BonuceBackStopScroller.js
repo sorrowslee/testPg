@@ -11,6 +11,7 @@ if (!cc._RF.push(module, "d340fnEDFhAdrZNTN9LCKpM", "BonuceBackStopScroller")) {
       return C;
     }
     __extends(k, D);
+    // 開始運行捲動並計算減速與彈跳參數
     k.prototype.onRun = function () {
       this.emitEvent(x.SCROLLER_EVENT.RUN);
       var C = this.runtimeConfig;
@@ -24,6 +25,7 @@ if (!cc._RF.push(module, "d340fnEDFhAdrZNTN9LCKpM", "BonuceBackStopScroller")) {
       this.accumulatedTime = 0;
       this.update = this.bindedRunUpdate;
     };
+    // 執行每幀更新，處理減速與彈跳效果
     k.prototype.runUpdate = function (C) {
       var u = this.runtimeConfig;
       C = this.accumulatedTime += C;

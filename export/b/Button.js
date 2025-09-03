@@ -21,6 +21,7 @@ if (!cc._RF.push(module, "0a573tIV9xKS4qfPLe+tVuo", "Button")) {
       return j;
     }
     __extends(p, c);
+    // 處理顏色或縮放的過渡動畫
     p.prototype.update = function (j) {
       var l = this.target;
       if (!this[L._transitionFinished] && (this.transition === cc.Button.Transition.COLOR || this.transition === cc.Button.Transition.SCALE)) {
@@ -50,10 +51,12 @@ if (!cc._RF.push(module, "0a573tIV9xKS4qfPLe+tVuo", "Button")) {
         }
       }
     };
+    // 記錄觸控開始位置
     p.prototype._onTouchBegan = function (j) {
       this._touchBeganPosition = this.node.parent.convertToWorldSpaceAR(j.touch.getLocation());
       c.prototype._onTouchBegan.call(this, j);
     };
+    // 觸控移動過遠時取消按下狀態
     p.prototype._onTouchMove = function (j) {
       var l;
       if (this[L._pressed]) {
