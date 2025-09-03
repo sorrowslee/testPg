@@ -60,6 +60,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
       return Y;
     }
     __extends(N, Q);
+    // 初始設定與註冊事件
     N.prototype.onLoad = function () {
       this.settingTurboSprite.node.color = D.uiAppearanceHelper.v("setting.theme_color");
       this.defaultMenuLayerNode.y = 0;
@@ -78,6 +79,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
       this._unsubscribeBroadcaster = typeof Y == "function" ? Y : undefined;
       this._gameContext = k.getGameContext();
     };
+    // 螢幕尺寸改變時更新布局
     N.prototype._onSizeChanged = function () {
       var Y = this;
       var W = this._sizeChangeAbort;
@@ -110,6 +112,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         }
       });
     };
+    // 解除尺寸監聽
     N.prototype.onDestroy = function () {
       var Y = this._unsubscribeBroadcaster;
       this._unsubscribeBroadcaster = undefined;
@@ -117,9 +120,11 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         Y();
       }
     };
+    // 設定改變下注時的提示文字
     N.prototype.setBetChangeReminderLabel = function (Y) {
       this.reminderBoardLabel.string = Y;
     };
+    // 顯示變更下注提醒面板
     N.prototype.showBetReminderBoard = function (Y) {
       if (!this._reminderBoardShowed) {
         this._reminderBoardShowed = true;
@@ -129,6 +134,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         this.originalBetAmountLabel.string = Y;
       }
     };
+    // 隱藏變更下注提醒面板
     N.prototype.hideBetReminderBoard = function () {
       var Y = this;
       if (this._reminderBoardShowed) {
@@ -139,23 +145,28 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         })));
       }
     };
+    // 判斷提醒面板是否顯示中
     N.prototype.isSettingBetReminderBoardShowed = function () {
       return this._reminderBoardShowed;
     };
+    // 取消變更下注
     N.prototype.cancelToChangeBetAmount = function () {
       if (this._cancelToChangeBetAmountCB) {
         this._cancelToChangeBetAmountCB();
       }
     };
+    // 確認變更下注
     N.prototype.confirmToChangeBetAmount = function () {
       if (this._confirmToChangeBetAmountCB) {
         this._confirmToChangeBetAmountCB();
       }
     };
+    // 設定提醒面板的取消與確認回呼
     N.prototype.setBetReminderCancelAndConfirmCallback = function (Y, W) {
       this._cancelToChangeBetAmountCB = Y;
       this._confirmToChangeBetAmountCB = W;
     };
+    // 顯示帶有渦輪圖示的提示訊息
     N.prototype.showSettingTurboToast = function (Y, W, q) {
       var S = this;
       if (q === undefined) {
@@ -186,6 +197,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         })));
       });
     };
+    // 顯示一般提示訊息
     N.prototype.showSettingToast = function (Y, W) {
       var q = this;
       if (W === undefined) {
@@ -213,6 +225,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         })));
       });
     };
+    // 隱藏一般提示訊息
     N.prototype.hideSettingToast = function () {
       var Y = this;
       var W = this._abortUpdateSettingToastBgSize;
@@ -225,6 +238,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         Y._abortUpdateSettingToastBgSize = undefined;
       })));
     };
+    // 顯示購買功能提示
     N.prototype.showFeatureBuyToast = function (Y, W) {
       var q = this;
       if (W === undefined) {
@@ -253,6 +267,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         })));
       });
     };
+    // 隱藏購買功能提示
     N.prototype.hideFeatureBuyToast = function () {
       var Y = this;
       var W = this._abortUpdateFeatureBuyToastBgSize;
@@ -265,23 +280,28 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         Y._abortUpdateFeatureBuyToastBgSize = undefined;
       })));
     };
+    // 設定購買提示位置
     N.prototype.setFeatureBuyToastNodePosition = function (Y, W, q) {
       this.featureBuyToast.setPosition(Y, W, q);
     };
+    // 取得按鈕容器列表
     N.prototype.buttonsHolder = function () {
       return this.holders;
     };
+    // 新增一個選單項目
     N.prototype.addMenuItem = function (Y) {
       this.holders[this._itemList.length].addChild(Y);
       this._itemList.push(Y);
       this._reloadMenuItems();
       return this.holders[this._itemList.length - 1];
     };
+    // 插入空的選單位置
     N.prototype.addEmptyItem = function () {
       this._itemList.push(null);
       this._reloadMenuItems();
       return this.holders[this._itemList.length - 1];
     };
+    // 以新陣列取代目前選單項目
     N.prototype.replaceMenuItems = function (Y) {
       this._itemList.length = 0;
       for (var W = 0, q = Y.length; W < q; W++) {
@@ -289,6 +309,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
       }
       this._reloadMenuItems();
     };
+    // 重新計算可見的選單項目
     N.prototype._reloadMenuItems = function () {
       this._visibleItems.length = 0;
       for (var Y = 0, W = this._itemList.length; Y < W; Y++) {
@@ -302,45 +323,58 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         }
       }
     };
+    // 檢查項目是否可見
     N.prototype.isItemVisible = function (Y) {
       return this._visibleItems.indexOf(Y) !== -1;
     };
+    // 取得目前可見項目列表
     N.prototype.visibleItems = function () {
       return this._visibleItems.slice();
     };
+    // 取得所有項目的複本
     N.prototype.getTotalItems = function () {
       return this._itemList.slice();
     };
+    // 判斷控制器是否處於閒置狀態
     N.prototype.isIdle = function () {
       return !this._isControllerPresent && this._showingDefaultMenu;
     };
+    // 是否正在顯示預設選單
     N.prototype.isShowingDefaultMenu = function () {
       return this._showingDefaultMenu;
     };
+    // 設定可穿透點擊的區域
     N.prototype.setHitPassThroughPosAndSize = function (Y, W, q, S) {
       var z = this.walletButtonSensor.convertToNodeSpaceAR(cc.v2(Y, W));
       this.hitPassThroughComponent.passPoint = cc.v2(z.x, z.y);
       this.hitPassThroughComponent.passSize = cc.size(q, S);
     };
+    // 顯示或隱藏整個控制器
     N.prototype.setHidden = function (Y) {
       this.node.active = !Y;
     };
+    // 取得前景資訊板的節點
     N.prototype.getSettingInfoFooterFrontHolder = function () {
       return this.settingInfoFooterFrontHolder;
     };
+    // 取得底部資訊板的節點
     N.prototype.getSettingInfoFooterBottomHolder = function () {
       return this.settingInfoFooterBottomHolder;
     };
+    // 取得中下資訊板的節點
     N.prototype.getSettingInfoFooterMiddleBottomHolder = function () {
       return this.settingInfoFooterMiddleBottomHolder;
     };
+    // 調整選單層的偏移位置
     N.prototype.setMenusLayerHolderOffsetPosition = function (Y, W) {
       var q = this.menusLayerHolder;
       q.setPosition(q.x + Y, q.y + W);
     };
+    // 判斷是否正在切換選單層
     N.prototype.isSwitchingMenuLayer = function () {
       return this._isSwitchingLayer;
     };
+    // 顯示更多選單
     N.prototype.showMoreMenuLayer = function (Y) {
       var W = this;
       if (Y === undefined) {
@@ -369,6 +403,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         }
       }
     };
+    // 隱藏更多選單
     N.prototype.hideMoreMenuLayer = function () {
       var Y = this;
       if (!this._isSwitchingLayer) {
@@ -396,27 +431,35 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         }
       }
     };
+    // 是否正在顯示控制器
     N.prototype.isControllerPresenting = function () {
       return this._isControllerPresent;
     };
+    // 設定控制器顯示狀態
     N.prototype.setIsControllerPresenting = function (Y) {
       this._isControllerPresent = Y;
     };
+    // 設定子控制器移動時間
     N.prototype.setSubControllerHolderMoveDuration = function (Y) {
       this._subControllerHolderMoveDuration = Y;
     };
+    // 計算節點底部距離螢幕底的距離
     N.prototype._getGapBetweenBottomScreenValue = function () {
       return this.node.parent.convertToWorldSpaceAR(cc.v2(this.node.x, this.node.y)).y;
     };
+    // 對外取得底部間距
     N.prototype.getGapBetweenBottomScreenValue = function () {
       return this._getGapBetweenBottomScreenValue();
     };
+    // 更新子控制器容器高度
     N.prototype.updateSubControllerHolderHeight = function (Y) {
       this.subControllerHolder.height = this._currentUsingHeight = Y;
     };
+    // 是否正在拖曳面板
     N.prototype.isPanelTouchMoving = function () {
       return this._isPanelTouchMoved;
     };
+    // 開始拖曳面板
     N.prototype.startMovePanel = function (Y, W) {
       if (!this._isControllerPresent) {
         this._isPanelTouchMoved = false;
@@ -427,6 +470,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         this.subControllerBG.height = this._getGapBetweenBottomScreenValue() + W;
       }
     };
+    // 拖曳過程調整面板位置
     N.prototype.movePanel = function (Y) {
       if (!this._isControllerPresent) {
         this._isPanelTouchMoved = true;
@@ -452,6 +496,7 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         }
       }
     };
+    // 關閉面板動畫
     N.prototype.closePanel = function () {
       var Y = this;
       if (!this._isControllerPresent) {
@@ -464,21 +509,26 @@ if (!cc._RF.push(module, "fba916JMWpJiL2n5fnfp4nN", "SettingMenuController")) {
         })));
       }
     };
+    // 取得面板頂部的 Y 位置
     N.prototype.getCurrentPanelTopPositionY = function () {
       var Y = this.subControllerHolder;
       return Y.y + Y.height;
     };
+    // 鎖定或解鎖錢包按鈕
     N.prototype.setWalletButtonLock = function (Y = false) {
       this._lockWalletButton = Y;
     };
+    // 錢包按鈕互動時關閉面板
     N.prototype.interactableWalletButton = function (Y, W) {
       if (this._lockWalletButton === false && !Y && W) {
         this.closePanel();
       }
     };
+    // 控制選單遮罩顯示
     N.prototype.setMenuUIBlock = function (Y) {
       this.settingMenuUIBlock.active = Y;
     };
+    // 依語系調整提示排版
     N.prototype.updateLayout = function (Y) {
       if (Y) {
         this.settingToastLayout.horizontalDirection = cc.Layout.HorizontalDirection.RIGHT_TO_LEFT;

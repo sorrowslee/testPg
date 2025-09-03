@@ -20,6 +20,7 @@ if (!cc._RF.push(module, "4403eAPMfNGO4d5KWMoVrU7", "ScrollViewEx")) {
       return u;
     }
     __extends(C, k);
+    // 將暫存的 cell 重新掛回內容節點
     C.prototype.cellsInsertToParent = function () {
       if (this.freeCells.length) {
         for (var u = 0; u < this.content.children.length; u++) {
@@ -33,6 +34,7 @@ if (!cc._RF.push(module, "4403eAPMfNGO4d5KWMoVrU7", "ScrollViewEx")) {
       }
       this.snapPause = false;
     };
+    // 將 cell 從內容節點移出並暫存到目標節點
     C.prototype.cellsPullOutFromParent = function (u) {
       if (!this.freeCells.length) {
         this.snapPause = true;
@@ -55,40 +57,50 @@ if (!cc._RF.push(module, "4403eAPMfNGO4d5KWMoVrU7", "ScrollViewEx")) {
         return this.freeCells;
       }
     };
+    // 設定是否暫停吸附效果
     C.prototype.setSnapPause = function (u) {
       this.snapPause = u;
     };
+    // 標記吸附動作是否完成
     C.prototype.setSnapDone = function (u) {
       this.snapDone = u;
     };
+    // 取得吸附動作是否完成
     C.prototype.isSnapDone = function () {
       return this.snapDone;
     };
+    // 指定下一個將出現的節點
     C.prototype.setNextAppearTarget = function (u) {
       this.nextAppearTarget = u;
     };
+    // 設定吸附完成後的回呼
     C.prototype.setSnapFinish = function (u) {
       this.snapFinish = u;
     };
+    // 綁定觸控監聽
     C.prototype._bindTouchListener = function (u) {
       u.on(cc.Node.EventType.TOUCH_START, this._clickStart, this);
       u.on(cc.Node.EventType.TOUCH_END, this._clickEnd, this);
       u.on(cc.Node.EventType.TOUCH_MOVE, this._clickMove, this);
       u.on(cc.Node.EventType.TOUCH_CANCEL, this._clickCancel, this);
     };
+    // 取消觸控監聽
     C.prototype._unbindTouchListener = function (u) {
       u.off(cc.Node.EventType.TOUCH_START, this._clickStart, this);
       u.off(cc.Node.EventType.TOUCH_END, this._clickEnd, this);
       u.off(cc.Node.EventType.TOUCH_MOVE, this._clickMove, this);
       u.off(cc.Node.EventType.TOUCH_CANCEL, this._clickCancel, this);
     };
+    // 記錄點擊起始位置
     C.prototype._clickStart = function (u) {
       var c = u.touch.getLocation();
       this.clickPos = c;
       this.clickTarget = u.currentTarget;
       this.timer = Date.now();
     };
+    // 觸控移動事件暫不處理
     C.prototype._clickMove = function () {};
+    // 點擊結束時判斷是否為點擊
     C.prototype._clickEnd = function (u) {
       if (this.clickPos) {
         var c = u.touch.getLocation();
@@ -99,6 +111,7 @@ if (!cc._RF.push(module, "4403eAPMfNGO4d5KWMoVrU7", "ScrollViewEx")) {
         }
       }
     };
+    // 取消點擊時判斷是否為點擊
     C.prototype._clickCancel = function (u) {
       if (this.clickPos) {
         var c = u.touch.getLocation();
@@ -109,9 +122,11 @@ if (!cc._RF.push(module, "4403eAPMfNGO4d5KWMoVrU7", "ScrollViewEx")) {
         }
       }
     };
+    // 判斷兩點距離是否超過最小觸控距離
     C.prototype._touchMinDistance = function (u, c) {
       return Math.abs(c - u) > 100;
     };
+    // 單維度線性插值，用於吸附動畫
     C.prototype._lerp1D = function (u, c, p, j = 1, l) {
       G = cc.v2(u, 0);
       V = cc.v2(c, 0);
@@ -140,6 +155,7 @@ if (!cc._RF.push(module, "4403eAPMfNGO4d5KWMoVrU7", "ScrollViewEx")) {
       }
       return Q;
     };
+    // 重置點擊狀態
     C.prototype._resetClick = function () {
       this.clickTarget = undefined;
       this.timer = undefined;

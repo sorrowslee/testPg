@@ -6,6 +6,7 @@ if (!cc._RF.push(module, "932421Mfz5Ex6OqucWfhO+9", "SettingMenuAssetConfig")) {
   var T = require("ResourceLoader");
   var x = require("SettingMenuHelper");
   var L = [];
+  // 回傳設定選單需要載入的資源清單
   exports.getSettingMenuAssetConfig = function () {
     if (L.length > 0) {
       return L;

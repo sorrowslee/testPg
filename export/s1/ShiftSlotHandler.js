@@ -17,6 +17,7 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
       enumerable: false,
       configurable: true
     });
+    // 初始化轉輪掉落相關參數
     C.prototype.init = function (u) {
       this._slotItemHolder = u.slotItemHolder;
       this._slotViews = u.slotViews;
@@ -37,9 +38,11 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
       this._newSlotItemList = [];
       this._shouldPlayCollapseAudio = true;
     };
+    // 重置慢速掉落延遲
     C.prototype.reset = function () {
       this._slowDropDelay = this._originalSlowDropDelay;
     };
+    // 播放舊符號掉落動畫
     C.prototype.playDropOldItemsEffect = function (j, G) {
       var V = this._slotViews;
       var Q = this._symbolHeight;
@@ -90,6 +93,7 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
       }
       M();
     };
+    // 播放新符號掉落動畫
     C.prototype.playDropNewItemsEffect = function (j) {
       var G = j.newData;
       var V = j.isSlowDrop;
@@ -143,11 +147,13 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
       }
       H();
     };
+    // 從物件池取得新的符號
     C.prototype._getSlotItem = function (u) {
       var c = this._slotItemPool.getSlotItemCustom(u, false);
       this._newSlotItemList.push(c);
       return c;
     };
+    // 釋放所有新取得的符號
     C.prototype.releaseAllSlotItem = function () {
       var u = this._slotItemPool;
       this._newSlotItemList.forEach(function (c) {
@@ -155,6 +161,7 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
       });
       this._newSlotItemList = [];
     };
+    // 取得符號掉落的動作序列
     C.prototype._getDropAction = function (u, p, j, G) {
       var V = this;
       var Q = this._slotHandler.isTurboMode() ? this._acceleration * 5 : this._acceleration;
@@ -179,6 +186,7 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
         }), cc.moveBy(W, cc.v2(0, Y)).easing(cc.easeOut(this._bounceFactor)), cc.moveBy(W, cc.v2(0, -Y)).easing(cc.easeIn(this._bounceFactor)), cc.callFunc(G));
       }
     };
+    // 將新符號加入並執行掉落
     C.prototype._newItemsDrop = function (j, G, V, Q, N, Y) {
       var W = this._slotViews;
       var q = this._symbolHeight;
@@ -214,6 +222,7 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
         X.runAction(this._getDropAction(Q, J, Z0, Y));
       }
     };
+    // 依符號類型生成層級
     C.prototype._generateZIndex = function (u) {
       var c = u.slotItemNode;
       var p = u.slotItem;
@@ -229,9 +238,11 @@ if (!cc._RF.push(module, "ba321VG3GRG4IniSaffUCkG", "ShiftSlotHandler")) {
       }
       return G + -j.slotViewIndex * 980 + -p.positionIndex + l;
     };
+    // 允許再次播放崩落音效
     C.prototype._enableCollapseAudio = function () {
       this._shouldPlayCollapseAudio = true;
     };
+    // 播放符號崩落音效
     C.prototype._playCollapseSound = function (u, c, p) {
       if (p) {
         if (c === 0) {

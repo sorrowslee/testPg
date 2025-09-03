@@ -61,14 +61,17 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
       return Y;
     }
     __extends(N, Q);
+    // 初始化並綁定效果更新
     N.prototype.onLoad = function () {
       Q.prototype.onLoad.call(this);
       this.turboButtonEffect.getComponent(D.default).setUpdateTurboMiddleIconCallback(this.changeTurboSprite.bind(this));
     };
+    // 設定渦輪模式的圖示
     N.prototype.setTurboSprites = function (Y, W) {
       this.turboSpinOn = Y;
       this.turboSpinOff = W;
     };
+    // 播放啟動渦輪的光效
     N.prototype.playTurboLighting = function () {
       this.spriteEffect.spriteFrame = undefined;
       this.turboSpinEffectAnim.once("finished", this._playTurboIdleAnim, this);
@@ -79,6 +82,7 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
         this.turboSpinEffectAnim.play("turbo_icon_up");
       }
     };
+    // 停止所有渦輪光效
     N.prototype.stopTurboLighting = function () {
       var Y = this._abortTurboLoop;
       this._abortTurboLoop = undefined;
@@ -98,14 +102,17 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
       this.spriteLightEffectNode.y = 0;
       this.spriteEffect.node.opacity = 255;
     };
+    // 根據狀態切換渦輪圖示
     N.prototype.changeTurboSprite = function () {
       var Y = this.getTurboSpinCallback && this.getTurboSpinCallback();
       this.sprite.spriteFrame = Y ? this.turboSpinOn : this.turboSpinOff;
     };
+    // 播放待機的渦輪動畫
     N.prototype._playTurboIdleAnim = function () {
       this._playRandomLighting();
       this._playTurboLoop();
     };
+    // 隨機觸發閃電效果
     N.prototype._playRandomLighting = function () {
       var Y = this;
       this._abortRandomLighting = L.delayCallback(1)(function () {
@@ -121,6 +128,7 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
         Y.lightingEffectAnim.play(W.animName);
       });
     };
+    // 循環播放渦輪動畫
     N.prototype._playTurboLoop = function () {
       var Y = this;
       this._abortTurboLoop = L.delayCallback(3)(function () {
@@ -128,25 +136,31 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
         Y.turboSpinEffectAnim.play("turbo_icon_loop");
       });
     };
+    // 調整圖示縮放大小
     N.prototype.setSpriteScaleSize = function (Y) {
       this.sprite.node.setScale(cc.v2(Y, Y));
     };
+    // 設定按鈕標題文字
     N.prototype.setTitle = function (Y) {
       this.titleLabel.string = Y;
     };
+    // 設定開啟時的按鈕顏色鍵
     N.prototype.setButtonOnColor = function (Y, W) {
       this._buttonOnColorDK = Y;
       this._buttonOnColorCK = W;
     };
+    // 設定關閉時的按鈕顏色鍵
     N.prototype.setButtonOffColor = function (Y, W) {
       this._buttonOffColorDK = Y;
       this._buttonOffColorCK = W;
     };
+    // 依狀態切換按鈕顏色
     N.prototype.changeButtonColor = function (Y) {
       this.buttonTheme.domainKey = Y ? this._buttonOnColorDK : this._buttonOffColorDK;
       this.buttonTheme.colorKey = Y ? this._buttonOnColorCK : this._buttonOffColorCK;
       Q.prototype.changeButtonColor.call(this, false);
     };
+    // 按下按鈕時的縮放效果
     N.prototype.changeButtonPressedColor = function (Y) {
       if (Y) {
         this.node.runAction(cc.scaleTo(0.05, 0.9));
@@ -154,6 +168,7 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
         this.node.runAction(cc.sequence(cc.scaleTo(0.05, 1.1), cc.scaleTo(0.05, 1.05), cc.scaleTo(0.05, 1)));
       }
     };
+    // 根據互動狀態調整整體顏色
     N.prototype.interactableButtonColor = function (Y) {
       if (this.buttonTheme) {
         var W = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -167,6 +182,7 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
         L.setNodeColorWithOpacity(this.sprite.node, S);
       }
     };
+    // 依主題更新特效顏色
     N.prototype.changeSpriteEffectColor = function () {
       if (this.buttonTheme) {
         var Y = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -176,6 +192,7 @@ if (!cc._RF.push(module, "eaed475bBBLf69c2AHexgPy", "SettingTurboSpinButton")) {
         L.setNodeColorWithOpacity(this.spriteLightShadowEffectNode, Y);
       }
     };
+    // 銷毀前停止光效
     N.prototype.destroy = function () {
       this.stopTurboLighting();
       return Q.prototype.destroy.call(this);
