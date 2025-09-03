@@ -11,6 +11,7 @@ if (!cc._RF.push(module, "99b03/f499C5qBVb5FCdxDf", "AppStateMachine")) {
     D[D.End = 3] = "End";
   })(T ||= {});
   var L = function () {
+    // 建構子：設定取得下一狀態與離開時的回呼
     function D(p) {
       this._previousAppState = undefined;
       this._currentAppState = undefined;
@@ -64,15 +65,18 @@ if (!cc._RF.push(module, "99b03/f499C5qBVb5FCdxDf", "AppStateMachine")) {
       enumerable: false,
       configurable: true
     });
+    // 設定狀態機結束時的回呼
     D.prototype.setExitAppStateMachineCallback = function (p) {
       this._exitAppStateMachineCallback = p;
     };
+    // 啟動狀態機
     D.prototype.run = function () {
       if (this.isStateReady) {
         this._stateMachineStatus = T.Running;
         this._evaluateState();
       }
     };
+    // 請求離開當前狀態機
     D.prototype.exit = function (p) {
       if (!this.isStateExiting && !this.isStateEnd) {
         this._stateMachineStatus = T.Exiting;
@@ -83,6 +87,7 @@ if (!cc._RF.push(module, "99b03/f499C5qBVb5FCdxDf", "AppStateMachine")) {
         }
       }
     };
+    // 將事件轉發給目前的狀態
     D.prototype.dispatchEvent = function (p, j) {
       if (this.isStateRunning) {
         var l = this.currentAppState;
@@ -91,10 +96,12 @@ if (!cc._RF.push(module, "99b03/f499C5qBVb5FCdxDf", "AppStateMachine")) {
         }
       }
     };
+    // 銷毀狀態機
     D.prototype.destroy = function () {
       this._exitAppStateMachineCallback = undefined;
       this._getNextAppState = undefined;
     };
+    // 取得並進入下一個狀態
     D.prototype._evaluateState = function () {
       var p = this;
       if (this.isStateRunning) {
@@ -140,6 +147,7 @@ if (!cc._RF.push(module, "99b03/f499C5qBVb5FCdxDf", "AppStateMachine")) {
         }
       }
     };
+    // 結束狀態機並呼叫回呼
     D.prototype._exit = function () {
       if (!this.isStateEnd) {
         this._stateMachineStatus = T.End;

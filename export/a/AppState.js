@@ -13,6 +13,7 @@ if (!cc._RF.push(module, "d2312uy7dZCAaD3zr1W6wqW", "AppState")) {
     k[k.End = 3] = "End";
   })(T = exports.APPStateStatus ||= {});
   var D = function () {
+    // 建構子：設定資料來源、控制器池與離開回呼
     function k(p, j, l) {
       this.name = "App State";
       this.appStateStatus = T.Ready;
@@ -42,6 +43,7 @@ if (!cc._RF.push(module, "d2312uy7dZCAaD3zr1W6wqW", "AppState")) {
       enumerable: false,
       configurable: true
     };
+    // 預留事件監聽器，可由子類別實作
     k.prototype.eventListener = function () {};
     Object.defineProperty(k.prototype, "isStateReady", C);
     Object.defineProperty(k.prototype, "isStateRunning", u);
@@ -53,19 +55,24 @@ if (!cc._RF.push(module, "d2312uy7dZCAaD3zr1W6wqW", "AppState")) {
       enumerable: false,
       configurable: true
     });
+    // 設定資料來源
     k.prototype.setDataSource = function (p) {
       this.dataSource = p;
     };
+    // 設定控制器池
     k.prototype.setControllerPool = function (p) {
       this.controllerPool = p;
     };
+    // 設定結束時的回呼函式
     k.prototype.setExitCallback = function (p) {
       this.finalCallback = p;
     };
+    // 將狀態切換為執行中
     k.prototype.run = function () {
       this.appStateStatus = T.Running;
       this.onRun();
     };
+    // 請求離開狀態
     k.prototype.exit = function (p) {
       var j = this;
       if (!this.isStateExiting && !this.isStateEnd) {
@@ -101,6 +108,7 @@ if (!cc._RF.push(module, "d2312uy7dZCAaD3zr1W6wqW", "AppState")) {
         });
       }
     };
+    // 強制離開狀態
     k.prototype.forceExit = function (p) {
       var j = this;
       this.appStateStatus = T.Exiting;
@@ -134,6 +142,7 @@ if (!cc._RF.push(module, "d2312uy7dZCAaD3zr1W6wqW", "AppState")) {
         }
       });
     };
+    // 銷毀狀態並清理參考
     k.prototype.destroy = function () {
       var p = this;
       this.onDestroy(function () {
@@ -142,6 +151,7 @@ if (!cc._RF.push(module, "d2312uy7dZCAaD3zr1W6wqW", "AppState")) {
         p.controllerPool = undefined;
       });
     };
+    // 派發事件給當前監聽器
     k.prototype.dispatchEvent = function (p, j) {
       this.eventListener(p, j);
     };

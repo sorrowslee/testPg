@@ -54,12 +54,14 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         setTimeout(this.load.bind(this), 0);
       }
     }
+    // 載入音訊資源
     _Y.prototype.load = function () {
       if (this._state !== k.AUDIO_ADAPTER_STATE.LOADED && this._state !== k.AUDIO_ADAPTER_STATE.LODING) {
         this._loader.load(this._src, this._onLoadComplete.bind(this));
         this._state = k.AUDIO_ADAPTER_STATE.LODING;
       }
     };
+    // 音訊載入完成時的處理
     _Y.prototype._onLoadComplete = function (W, q) {
       if (W) {
         this._emit(k.AUDIO_ADAPTER_EVENT.LOAD_ERROR, undefined, W.message || W);
@@ -76,6 +78,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 釋放音訊資源
     _Y.prototype.unload = function () {
       if (this._state !== k.AUDIO_ADAPTER_STATE.UNLOADED) {
         if (this._state !== k.AUDIO_ADAPTER_STATE.LODING) {
@@ -91,6 +94,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 播放音效，回傳實例 ID
     _Y.prototype.play = function (W) {
       var q = this;
       if (this._state !== k.AUDIO_ADAPTER_STATE.LOADED) {
@@ -151,6 +155,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       this._emit(k.AUDIO_ADAPTER_EVENT.PLAY, P);
       return P;
     };
+    // 停止音效，可指定實例或全部停止
     _Y.prototype.stop = function (W) {
       if (this._state !== k.AUDIO_ADAPTER_STATE.LOADED) {
         throw Error("Audio Adapter :: stop : Attemp to stop not loaded audio!");
@@ -176,6 +181,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 暫停音效播放
     _Y.prototype.pause = function (W) {
       if (typeof W == "number") {
         if ((S = this._sounds[W]) && S.playing) {
@@ -196,6 +202,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 恢復音效播放
     _Y.prototype.resume = function (W) {
       if (typeof W == "number") {
         if ((S = this._sounds[W]) && S.paused) {
@@ -217,6 +224,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
     };
     _Y.prototype.setMute = function (W, q) {
+      // 設定靜音狀態
       if (typeof q == "number") {
         if ((z = this._sounds[q]) && z.muted !== W) {
           z.muted = W;
@@ -243,6 +251,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
       return this._mute;
     };
+    // 設定音量
     _Y.prototype.setVolume = function (W, q) {
       if (typeof q == "number") {
         if ((z = this._sounds[q]) && z.volume !== W) {
@@ -263,6 +272,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 取得音量
     _Y.prototype.getVolume = function (W) {
       if (typeof W == "number") {
         var q = this._sounds[W];
@@ -274,6 +284,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
       return this._volume;
     };
+    // 取得即時音量（淡入淡出使用）
     _Y.prototype.getInstantVolume = function (W) {
       var q = this._sounds[W];
       if (q) {
@@ -282,6 +293,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         return 0;
       }
     };
+    // 對音效進行淡入淡出
     _Y.prototype.fade = function (W, q, S, z) {
       var f = this;
       if (this._state !== k.AUDIO_ADAPTER_STATE.LOADED) {
@@ -314,6 +326,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 設定是否循環播放
     _Y.prototype.setLoop = function (W, q) {
       if (typeof q == "number") {
         if (z = this._sounds[q]) {
@@ -330,6 +343,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 判斷是否循環播放
     _Y.prototype.isLoop = function (W) {
       if (typeof W == "number") {
         var q = this._sounds[W];
@@ -337,6 +351,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
       return this._loop;
     };
+    // 設定播放速率
     _Y.prototype.setRate = function (W, q) {
       if (typeof q == "number") {
         if (z = this._sounds[q]) {
@@ -353,6 +368,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 取得播放速率
     _Y.prototype.getRate = function (W) {
       if (typeof W == "number") {
         var q = this._sounds[W];
@@ -362,6 +378,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
       return this._rate;
     };
+    // 判斷音效是否正在播放
     _Y.prototype.isPlaying = function (W) {
       if (typeof W == "number") {
         var q = this._sounds[W];
@@ -369,6 +386,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
       return this._numberOfInstance > 0 && this._paused === false;
     };
+    // 取得音效總長度
     _Y.prototype.getDuration = function (W) {
       if (typeof W == "number") {
         var q = this._sounds[W];
@@ -380,9 +398,11 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
       }
       return 0;
     };
+    // 取得當前適配器狀態
     _Y.prototype.getState = function () {
       return this._state;
     };
+    // 取得指定實例的播放時間
     _Y.prototype.getCurrentTime = function (W) {
       var q = this._sounds[W];
       if (q) {
@@ -391,6 +411,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         return 0;
       }
     };
+    // 跳到指定播放時間
     _Y.prototype.seek = function (W, q) {
       var S = this;
       if (this._state !== k.AUDIO_ADAPTER_STATE.LOADED) {
@@ -426,9 +447,11 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         }
       }
     };
+    // 從池中取得可用的音效物件
     _Y.prototype.getAudioFromPool = function () {
       return this.factory.get() || new shell.WebAudio(this._clip);
     };
+    // 將音效物件回收至池中
     _Y.prototype.addAudioToPool = function (W) {
       W.reset();
       W.removeAll();
@@ -436,6 +459,7 @@ if (!cc._RF.push(module, "5c3d2SrYLxJYqXl2p30apID", "AudioAdapter")) {
         W.destroy();
       }
     };
+    // 預留立體聲調整函式
     _Y.prototype.stereo = function () {};
     _Y.getNewId = G;
     return _Y;
