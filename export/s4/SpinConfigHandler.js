@@ -3,6 +3,7 @@ if (!cc._RF.push(module, "636ecG9L2tOfadXZr7kHqve", "SpinConfigHandler")) {
     value: true
   });
   exports.initSpinConfig = exports.featureConfig = undefined;
+  // 旋轉配置的預設值
   var L = {
     minimumSpinningTime: 0,
     regularSpinningTime: 1,
@@ -12,6 +13,7 @@ if (!cc._RF.push(module, "636ecG9L2tOfadXZr7kHqve", "SpinConfigHandler")) {
     turboSpinFeature: false
   };
   exports.featureConfig = L;
+  // 初始化旋轉時間與功能設定
   exports.initSpinConfig = function (D) {
     var k = D.jurisdictionModel;
     var C = D.minimumSpinningTime;

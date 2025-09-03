@@ -5,12 +5,14 @@ if (!cc._RF.push(module, "b4807S7wZxNyKaQIPwkQNfI", "SymbolPayoutPanelGenerator"
   exports.regeneratePanel = exports.getButtonList = exports.getButtonComponentList = exports.getButtonControllerList = exports.generatePanel = exports.symbolPayoutPanelGenerator = undefined;
   var T = require("ButtonController");
   var x = function () {
+    // 建構函式，初始化按鈕池與列表
     function L() {
       this._button = [];
       this._buttonController = [];
       this._buttonComponent = [];
       this._buttonPool = new cc.NodePool();
     }
+    // 根據索引計算按鈕在面板中的位置
     L.prototype._setButtonPosition = function (D, k, C, j, G, V, Q) {
       var N = Math.floor(C % Q);
       var Y = Math.floor(C / Q);
@@ -22,6 +24,7 @@ if (!cc._RF.push(module, "b4807S7wZxNyKaQIPwkQNfI", "SymbolPayoutPanelGenerator"
       var M = z + k.width * Y;
       k.setPosition(M, A);
     };
+    // 產生派彩按鈕面板
     L.prototype.generatePanel = function (D) {
       var k = D.containerNode;
       var C = D.containerSize ? D.containerSize : k.getContentSize();
@@ -69,15 +72,19 @@ if (!cc._RF.push(module, "b4807S7wZxNyKaQIPwkQNfI", "SymbolPayoutPanelGenerator"
         this._buttonComponent.push(M);
       }
     };
+    // 取得所有按鈕節點
     L.prototype.getButtonList = function () {
       return this._button;
     };
+    // 取得按鈕控制器列表
     L.prototype.getButtonControllerList = function () {
       return this._buttonController;
     };
+    // 取得按鈕元件列表
     L.prototype.getButtonComponentList = function () {
       return this._buttonComponent;
     };
+    // 重新生成面板，並回收舊按鈕
     L.prototype.regeneratePanel = function (D) {
       var k = this;
       this._button.forEach(function (C) {

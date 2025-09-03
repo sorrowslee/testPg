@@ -10,6 +10,7 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
   var C = k.ccclass;
   var p = k.property;
   var j = function (G) {
+    // 建構函式，初始化派彩面板相關物件
     function V() {
       var Q = G !== null && G.apply(this, arguments) || this;
       Q.popOutItem = undefined;
@@ -24,6 +25,7 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
       return Q;
     }
     __extends(V, G);
+    // 初始化面板與遮罩
     V.prototype.init = function (Q) {
       Q.containerNode = Q.containerNode ? Q.containerNode : this.node;
       this._config = Q;
@@ -57,32 +59,40 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
         this._extraInitialzation(Q);
       }
     };
+    // 重新生成面板資料
     V.prototype.resetPanel = function (Q) {
       Q.containerNode = Q.containerNode ? Q.containerNode : this.node;
       this._config = Q;
       this._symbolPayoutPanelGenerator.regeneratePanel(Q);
       this._singlePayoutModel.payoutData = Q.payoutData ? Q.payoutData : this._singlePayoutModel.payoutData;
     };
+    // 設定額外的初始化流程
     V.prototype.setExtraInitialzation = function (Q) {
       this._extraInitialzation = Q;
     };
+    // 指定彈出項目的顯示容器
     V.prototype.setPopOutDisplayHolder = function (Q) {
       this._popOutDisplayHolder = Q;
     };
+    // 指定遮罩的放置容器
     V.prototype.setPopOutTintHolder = function (Q) {
       this._popOutTintHolder = Q;
     };
+    // 設定轉軸與延伸資料
     V.prototype.setReelData = function (Q, N, Y) {
       this._singlePayoutModel.reelData = Q;
       this._singlePayoutModel.extendSymbolData = N;
       this._singlePayoutModel.extendBlockData = Y;
     };
+    // 設定額外的派彩資料
     V.prototype.setAdditionalData = function (Q) {
       this._singlePayoutModel.additionalData = Q;
     };
+    // 設定遮罩顏色等配置
     V.prototype.setTintConfig = function (Q) {
       this._tintConfig = Q;
     };
+    // 依需求註冊按鈕點擊事件
     V.prototype.setupButtonEvent = function (Q) {
       var N = this;
       if (Q === undefined) {
@@ -109,29 +119,35 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
         }
       });
     };
+    // 設定額外的點擊回呼
     V.prototype.setAdditionalOnClickCallback = function (Q) {
       this._additionalOnClickCallback = Q;
     };
+    // 設定額外的取消回呼
     V.prototype.setAdditionalOnCancelCallback = function (Q) {
       this._additionalOnCancelCallback = Q;
     };
+    // 清除所有按鈕點擊回呼
     V.prototype.clearOnClickCallback = function () {
       this._symbolPayoutPanelGenerator.getButtonControllerList().forEach(function (Q) {
         Q.clearClickCallback();
       });
     };
+    // 啟用面板與按鈕互動
     V.prototype.enablePanel = function () {
       this.node.active = true;
       this._symbolPayoutPanelGenerator.getButtonComponentList().forEach(function (Q) {
         Q.interactable = true;
       });
     };
+    // 停用面板並禁止按鈕
     V.prototype.disablePanel = function () {
       this._symbolPayoutPanelGenerator.getButtonComponentList().forEach(function (Q) {
         Q.interactable = false;
       });
       this.node.active = false;
     };
+    // 隱藏彈出項目
     V.prototype.hidePopOutItem = function (Q) {
       this._hidePopOutItem(Q);
     };
@@ -156,6 +172,7 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
       enumerable: false,
       configurable: true
     });
+    // 顯示彈出項目並處理點擊回呼
     V.prototype._showPopOutItem = function (Q, N, Y) {
       var W = this;
       this._setPopOutItemCancelCallback(this._hidePopOutItem.bind(this));
@@ -163,6 +180,7 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
         W._runAdditionalOnClickCallback();
       });
     };
+    // 計算彈出項目的顯示位置與方向
     V.prototype.setPopOutItemLayout = function (Q, N) {
       var Y;
       Y = N < Math.round(this._config.numberOfColumn / 2) * this._config.numberOfRow;
@@ -172,6 +190,7 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
         position: this._popOutDisplayHolder.convertToNodeSpaceAR(W)
       };
     };
+    // 建立並顯示彈出資訊內容
     V.prototype._setupPopOutItem = function (Q, N, Y, W) {
       var q = this._singlePayoutModel;
       var S = q.extendSymbolData;
@@ -191,9 +210,11 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
       var F = M.position;
       this._popoutItemHandler.runPopoutItemShowCallback(W, Y, Q, N, cc.v2(F), E, S, z, f);
     };
+    // 設定彈出項目的取消回呼
     V.prototype._setPopOutItemCancelCallback = function (Q) {
       this._popoutItemHandler.setCancelCallback(Q);
     };
+    // 顯示遮罩並於完成後回呼
     V.prototype._showPopOutTint = function (Q, N, Y) {
       function W() {
         if (Y) {
@@ -212,6 +233,7 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
         });
       }
     };
+    // 隱藏遮罩與彈出項目
     V.prototype._hidePopOutItem = function (Q) {
       this._popoutItemHandler.runPopoutItemHideCallback();
       function N() {
@@ -230,16 +252,19 @@ if (!cc._RF.push(module, "7c05ali6OlCEJ+GOnxbYWHT", "SymbolPayoutController")) {
       }
       this._runAdditionalOnCancelCallback();
     };
+    // 執行額外設定的點擊回呼
     V.prototype._runAdditionalOnClickCallback = function () {
       if (this._additionalOnClickCallback) {
         this._additionalOnClickCallback();
       }
     };
+    // 執行額外設定的取消回呼
     V.prototype._runAdditionalOnCancelCallback = function () {
       if (this._additionalOnCancelCallback) {
         this._additionalOnCancelCallback();
       }
     };
+    // 若有自訂面板產生器則替換
     V.prototype._overrideSymbolPayoutPanel = function () {
       if (this._config.symbolPayoutPanelGenerator) {
         this._symbolPayoutPanelGenerator = this._config.symbolPayoutPanelGenerator;
