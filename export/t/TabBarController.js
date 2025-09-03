@@ -24,49 +24,58 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
       return Q;
     }
     __extends(V, G);
+    // 初始化內容區與 TabBar 尺寸，並監聽大小變化
     V.prototype.onLoad = function () {
       this._resizeContent();
       this._resizeTabBar();
       this._resizeBottomPlaceHolder();
       this.node.on("size-changed", this._resize, this);
     };
+    // 啟用目前選取的控制器
     V.prototype.onEnable = function () {
       var Q = this._selectedController;
       if (Q) {
         Q.enabled = true;
       }
     };
+    // 停用目前選取的控制器
     V.prototype.onDisable = function () {
       var Q = this._selectedController;
       if (Q) {
         Q.enabled = false;
       }
     };
+    // 控制器即將顯示時轉發事件
     V.prototype.viewWillAppear = function (Q) {
       var N = this._selectedController;
       if (N) {
         N.viewWillAppear(Q);
       }
     };
+    // 控制器顯示完成時轉發事件
     V.prototype.viewDidAppear = function (Q) {
       var N = this._selectedController;
       if (N) {
         N.viewDidAppear(Q);
       }
     };
+    // 控制器即將隱藏時轉發事件
     V.prototype.viewWillDisappear = function (Q) {
       var N = this._selectedController;
       if (N) {
         N.viewWillDisappear(Q);
       }
     };
+    // 控制器隱藏完成時轉發事件
     V.prototype.viewDidDisappear = function (Q) {
       var N = this._selectedController;
       if (N) {
         N.viewDidDisappear(Q);
       }
     };
+    // 佈局完成後的回呼，暫未實作
     V.prototype.viewDidLayoutSubviews = function () {};
+    // 設定子控制器與對應的 Tab 項目
     V.prototype.setControllers = function (Q, N = 0, Y = false) {
       if (Array.isArray(Q)) {
         this._selectedIndex = N;
@@ -99,12 +108,15 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         this._moveContentToIndex(N);
       }
     };
+    // 取得目前選取的控制器
     V.prototype.getSelectedController = function () {
       return this._selectedController;
     };
+    // 取得目前選取的 Tab 項目
     V.prototype.getSelectedTabBarItem = function () {
       return this.tabBar.getSelectedItem();
     };
+    // 隱藏 TabBar 並重新計算版面
     V.prototype.hideTabBar = function () {
       if (this.tabBar.node.active || this.bottomNode.active) {
         this.tabBar.node.active = false;
@@ -112,6 +124,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         this._resize();
       }
     };
+    // 顯示 TabBar 並重新計算版面
     V.prototype.showTabBar = function () {
       if (!this.tabBar.node.active || !this.bottomNode.active) {
         this.tabBar.node.active = true;
@@ -119,6 +132,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         this._resize();
       }
     };
+    // 調整指定控制器的尺寸與位置
     V.prototype._resizeController = function (Q) {
       var N = this._controllers[Q];
       var Y = this.content;
@@ -134,6 +148,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         W.setPosition(A, M);
       }
     };
+    // 取得底部安全區域高度
     V.prototype._getBottomSafeArea = function () {
       if (this.tabBar.node.active === true) {
         return this.safeAreaInsets.bottom;
@@ -141,6 +156,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         return 0;
       }
     };
+    // 依據安全區域調整內容區大小
     V.prototype._resizeContent = function () {
       var Q = this._getBottomSafeArea();
       var N = this.node;
@@ -148,11 +164,13 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
       var W = N.height;
       this.content.setContentSize(Y, W - Q);
     };
+    // 調整 TabBar 的垂直位置
     V.prototype._resizeTabBar = function () {
       var Q = this._getBottomSafeArea();
       var N = this.node.height;
       this.tabBar.node.y = Q + this.tabBar.node.height - N;
     };
+    // 更新底部占位節點的大小與位置
     V.prototype._resizeBottomPlaceHolder = function () {
       if (this.tabBar.node.active) {
         var Q = this._getBottomSafeArea();
@@ -164,6 +182,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         q.y = Q - W;
       }
     };
+    // 重新計算所有相關尺寸
     V.prototype._resize = function () {
       var Q = this._selectedIndex;
       this._resizeContent();
@@ -171,9 +190,11 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
       this._resizeBottomPlaceHolder();
       this._resizeController(Q);
     };
+    // 將內容區移動到指定索引
     V.prototype._moveContentToIndex = function (Q) {
       this.content.x = -Q * this.content.width;
     };
+    // 選取指定索引的 Tab 並處理轉場動畫
     V.prototype._selectTabAtIndex = function (Q, N) {
       if (!this._isOnTransistion && Q !== this._selectedIndex) {
         var Y = this._controllers;
@@ -217,6 +238,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         }
       }
     };
+    // 執行自訂的 Tab 切換動畫
     V.prototype._playCustomSelectTabAnim = function (Q, N, Y, W) {
       var q = this;
       var S = new L.TransitionContext(N, Y, N.view, Y.view, this.content);
@@ -224,6 +246,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         q._selectTabBarFinish(N, Y, W, true);
       });
     };
+    // 使用預設淡入效果切換 Tab
     V.prototype._playDefaultSelectTabAnim = function (Q, N, Y) {
       var W = this;
       var q = N.navigator ? N.navigator : N;
@@ -234,6 +257,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
       }));
       q.node.runAction(S);
     };
+    // 切換 Tab 完成後的狀態處理
     V.prototype._selectTabBarFinish = function (Q, N, Y, W) {
       if (N.tabBarItem && N.tabBarItem.animFinish) {
         N.tabBarItem.animFinish();
@@ -250,6 +274,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
       this._isOnTransistion = false;
       this._reduceDrawCalls();
     };
+    // 在切換範圍內暫時顯示控制器避免繪圖問題
     V.prototype._handleSwitchNavigationDrawCalls = function (Q) {
       var N;
       var Y;
@@ -266,6 +291,7 @@ if (!cc._RF.push(module, "b2f70mOAvdOxZtKjfDu/lHM", "TabBarController")) {
         q[S].node.opacity = 255;
       }
     };
+    // 將非選取控制器透明以減少繪圖量
     V.prototype._reduceDrawCalls = function () {
       var Q = this._selectedIndex;
       for (var N = this._controllers, Y = 0; Y < N.length; Y++) {

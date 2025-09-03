@@ -193,3 +193,19 @@
 | export/s4/SystemModel.js | 重新導出 SystemModel |
 | export/s4/SymbolPayoutController.js | 管理符號派彩面板與彈出顯示 |
 | export/s4/SymbolPayoutPanelGenerator.js | 生成符號派彩面板按鈕佈局 |
+| export/t/TabBar.js | 控制底部頁籤項目的顯示與切換 |
+| export/t/TabBarController.js | 管理多個控制器並透過 TabBar 切換 |
+| export/t/TabBarItem.js | 單個頁籤項目，處理觸控與狀態 |
+| export/t/TimedWinRollBaseController.js | 基礎的計時數字滾動控制器 |
+| export/t/TimedWinRollController.js | 使用 NumberDisplayController 的計時數字滾動 |
+| export/t/TimedWinRollCurveController.js | 使用 NumberCurvedController 的計時數字滾動 |
+| export/t/TimedWinRollLabelController.js | 使用 NumberLabelController 的計時數字滾動 |
+| export/t/TotalWinController.js | 總贏畫面控制器，處理播放與收集流程 |
+| export/t/TotalWinController.spec.js | 自動化測試用的 Total Win 事件觸發 |
+| export/t/TransactionModel.js | 重新導出 BVFramework 的 TransactionModel |
+| export/t/TransactionStateMachineHandler.js | 重新導出 TransactionStateMachineHandler |
+| export/t/TransitionContext.js | 轉場動畫的上下文資訊容器 |
+| export/t/TransitionEnum.js | 定義轉場操作的列舉 |
+| export/t/TurboButtonEffect.js | 渦輪按鈕圖示切換效果 |
+| export/t/TweaksConfig.js | 不確定用途 |
+| export/t/TweaksData.js | 不確定用途 |
