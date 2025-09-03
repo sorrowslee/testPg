@@ -40,16 +40,19 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
       return q;
     }
     __extends(W, Y);
+    // 設定相關按鈕的回呼
     W.prototype.setupButtonConfig = function (q) {
       this._featureDialogShowCallback = q.showDialogCallback;
       this._featureBuySpinCallback = q.confirmFeatureBuyCallback;
       this._featureBuyCancelCallback = q.cancelBuyCallback;
     };
+    // 重置按鈕回呼設定
     W.prototype.resetButtonConfig = function () {
       this._featureBuySpinCallback = undefined;
       this._featureBuyCancelCallback = undefined;
       this._featureDialogShowCallback = undefined;
     };
+    // 初始化各項節點與文字
     W.prototype.init = function (q) {
       var S = q.featureBuyButtonController;
       var z = q.featureBuyText;
@@ -61,20 +64,25 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
       this.startBtnSprite.spriteFrame = z.getSpriteFrame("fb_start");
       this.cancelBtnSprite.spriteFrame = z.getSpriteFrame("fb_cancel");
     };
+    // 設定是否允許購買
     W.prototype.setFeatureBuyButtonState = function (q) {
       this._featureBuyButtonEnableState = q;
     };
+    // 設定購買倍數
     W.prototype.setFeatureBuyMultiply = function (q) {
       this._currentBetMultiply = q;
     };
+    // 顯示 Feature Buy 按鈕
     W.prototype.showFeatureBuy = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this._featureBuyButtonController.show();
       }
     };
+    // 隱藏 Feature Buy 按鈕
     W.prototype.hideFeatureBuy = function () {
       this._featureBuyButtonController.hide();
     };
+    // 顯示整個 Feature Buy 功能
     W.prototype.showFeatureButton = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this.node.active = true;
@@ -82,22 +90,26 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         this.showFeatureBuy();
       }
     };
+    // 隱藏整個 Feature Buy 功能
     W.prototype.hideFeatureButton = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this.node.active = false;
         this._featureBuyButtonController.hideButton();
       }
     };
+    // 播放按鈕懸停效果
     W.prototype.playButtonHoverEffect = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this._featureBuyButtonController.playHoverEffect();
       }
     };
+    // 停止按鈕懸停效果
     W.prototype.stopButtonHoverEffect = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this._featureBuyButtonController.stopHoverEffect();
       }
     };
+    // 啟用 Feature Buy 功能
     W.prototype.enableFeatureBuy = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this._featureBuyButtonController.setButtonEnable();
@@ -105,6 +117,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         this._featureBuyButtonController.registerHoverEvent();
       }
     };
+    // 停用 Feature Buy 功能
     W.prototype.disableFeatureBuy = function () {
       if (this._featureBuyButtonEnableState !== false) {
         this._featureBuyButtonController.setButtonDisable();
@@ -112,6 +125,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         this._featureBuyButtonController.unregisterHoverEvent();
       }
     };
+    // 顯示購買對話框
     W.prototype.showFeatureBuyDialog = function () {
       if (this._featureBuyState !== T.SHOW) {
         x.playAudio(L.GENERAL_AUDIO.featureBuyBtn.key);
@@ -134,6 +148,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         }
       }
     };
+    // 點擊確認購買
     W.prototype.onFeatureBuyClick = function () {
       if (this._featureBuyState !== T.HIDE) {
         this._featureBuyState = T.HIDE;
@@ -141,6 +156,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         this._dismissDialog(q);
       }
     };
+    // 點擊取消購買
     W.prototype.onFeatureCancelClick = function () {
       if (this._featureBuyState !== T.HIDE) {
         this._featureBuyState = T.HIDE;
@@ -150,6 +166,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         D.settingMenuHelper.setAllButtonsInteractable(true);
       }
     };
+    // 關閉對話框並執行回呼
     W.prototype._dismissDialog = function (q) {
       var S = this;
       j.sequenceCallback(function (z) {
@@ -174,6 +191,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
         }
       });
     };
+    // 開始按鈕的懸停效果
     W.prototype._playStartBtnHoverEffect = function () {
       this.startBtnNode.stopAllActions();
       this.startBtnNode.runAction(cc.sequence(cc.scaleTo(0.3, 1.15).easing(cc.easeIn(2)), cc.scaleTo(0.15, 1.1).easing(cc.easeOut(2))));
@@ -182,6 +200,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
       this.startBtnHoverNode.stopAllActions();
       this.startBtnHoverNode.runAction(cc.repeatForever(cc.sequence(cc.tintTo(0.3, q.getR(), q.getG(), q.getB()), cc.delayTime(0.5), cc.tintTo(0.3, S.getR(), S.getG(), S.getB()), cc.delayTime(0.5))));
     };
+    // 停止開始按鈕的懸停效果
     W.prototype._stopStartBtnHoverEffect = function () {
       this.startBtnNode.stopAllActions();
       this.startBtnNode.runAction(cc.scaleTo(0.3, 1));
@@ -189,6 +208,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
       this.startBtnHoverNode.stopAllActions();
       this.startBtnHoverNode.runAction(cc.tintTo(0.3, q.getR(), q.getG(), q.getB()));
     };
+    // 取消按鈕的懸停效果
     W.prototype._playCancelBtnHoverEffect = function () {
       this.cancelBtnNode.stopAllActions();
       this.cancelBtnNode.runAction(cc.sequence(cc.scaleTo(0.3, 1.1).easing(cc.easeIn(2)), cc.scaleTo(0.15, 1.05).easing(cc.easeOut(2))));
@@ -197,6 +217,7 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
       this.cancelBtnHoverNode.stopAllActions();
       this.cancelBtnHoverNode.runAction(cc.repeatForever(cc.sequence(cc.tintTo(0.3, q.getR(), q.getG(), q.getB()), cc.delayTime(0.5), cc.tintTo(0.3, S.getR(), S.getG(), S.getB()), cc.delayTime(0.5))));
     };
+    // 停止取消按鈕的懸停效果
     W.prototype._stopCancelBtnHoverEffect = function () {
       this.cancelBtnNode.stopAllActions();
       this.cancelBtnNode.runAction(cc.scaleTo(0.3, 1));
@@ -204,18 +225,21 @@ if (!cc._RF.push(module, "f4066bmbddDQY5MrDK5Qie2", "FeatureBuyController")) {
       this.cancelBtnHoverNode.stopAllActions();
       this.cancelBtnHoverNode.runAction(cc.tintTo(0.3, q.getR(), q.getG(), q.getB()));
     };
+    // 重置兩個按鈕的懸停效果
     W.prototype._resetStartAndCancelHover = function () {
       this.startBtnHoverNode.stopAllActions();
       this.cancelBtnHoverNode.stopAllActions();
       this.startBtnHoverNode.color = cc.Color.BLACK;
       this.cancelBtnHoverNode.color = cc.Color.BLACK;
     };
+    // 註冊對話框內按鈕的懸停事件
     W.prototype._registerHoverListenner = function () {
       this.startBtnNode.on(cc.Node.EventType.MOUSE_ENTER, this._playStartBtnHoverEffect, this);
       this.startBtnNode.on(cc.Node.EventType.MOUSE_LEAVE, this._stopStartBtnHoverEffect, this);
       this.cancelBtnNode.on(cc.Node.EventType.MOUSE_ENTER, this._playCancelBtnHoverEffect, this);
       this.cancelBtnNode.on(cc.Node.EventType.MOUSE_LEAVE, this._stopCancelBtnHoverEffect, this);
     };
+    // 解除對話框內按鈕的懸停事件
     W.prototype._unregisterHorverListenner = function () {
       this.startBtnNode.off(cc.Node.EventType.MOUSE_ENTER, this._playStartBtnHoverEffect, this);
       this.startBtnNode.off(cc.Node.EventType.MOUSE_LEAVE, this._stopStartBtnHoverEffect, this);

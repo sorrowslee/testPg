@@ -15,6 +15,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
       this._betMultiplier = W;
       this._threshold = q;
     }
+    // 是否支援 Feature Buy
     Object.defineProperty(Q.prototype, "isSupported", {
       get: function () {
         return this._isSupported;
@@ -22,6 +23,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
       enumerable: false,
       configurable: true
     });
+    // 取得購買倍數
     Object.defineProperty(Q.prototype, "betMultiplier", {
       get: function () {
         return this._betMultiplier;
@@ -29,6 +31,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
       enumerable: false,
       configurable: true
     });
+    // 取得購買門檻
     Object.defineProperty(Q.prototype, "threshold", {
       get: function () {
         return this._threshold;
@@ -45,6 +48,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
     featureBuyOnlyTitle: shell.I18n.t("FeatureBuy.FeatureBuyOnly"),
     betForFeatureBuyOnly: shell.I18n.t("FeatureBuy.BetForFeatureBuyOnly")
   };
+  // 初始化 Feature Buy 幫手並註冊事件
   exports.initFeatureBuyHelper = function (Q, N) {
     if (!T) {
       C = Q;
@@ -56,6 +60,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
       Y.on("Game.RequestPlay", V, undefined, "Low");
     }
   };
+  // 移除事件監聽
   exports.cleanUpFeatureBuyHelper = function () {
     if (!T) {
       var Q = x.getGameContext();
@@ -63,6 +68,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
       Q.off("Game.RequestPlay", V);
     }
   };
+  // 根據設定產生 Feature Buy 模型
   exports.generateFeatureBuyModel = function (Q) {
     var N = Q.gcs && Q.gcs.bf ? Q.gcs.bf : Q.fb;
     if (T === undefined) {
@@ -79,6 +85,7 @@ if (!cc._RF.push(module, "0ce45lWhypN46eCVKRkmiLJ", "FeatureBuyHelper")) {
   };
   cc._RF.pop();
 }
+// FlowStateChanged 事件處理，切換 UI 封鎖
 function G(Q) {
   var N = x.getGameContext();
   var Y = Q.payload;
@@ -90,6 +97,7 @@ function G(Q) {
     }
   }
 }
+// 處理投注過低導致的錯誤並顯示提示
 function V(Q) {
   if (Q.response && Q.response.error && Q.response.error.code === 1017 && Q.payload.totalBet <= k) {
     var N = shell.I18n;

@@ -38,3 +38,21 @@
 | export/b/ButtonController.js | 一般按鈕控制器，處理點擊回呼 |
 | export/b/ButtonHitTest.js | 判斷按鈕是否被點擊 |
 | export/b/ButtonTheme.js | 依主題套用按鈕外觀 |
+| export/cdef/CanvasResizeBroadcaster.js | 重新導出 CanvasResizeBroadcaster，監聽畫布尺寸變化 |
+| export/cdef/ClickEffectController.js | 控制點擊與閃光效果的顯示 |
+| export/cdef/CommonDummy.js | 空模組，不確定用途 |
+| export/cdef/CreatorTweaks.js | Creator 調整設定的佔位，不確定用途 |
+| export/cdef/DataSource.js | 重新導出 DataSource |
+| export/cdef/DefaultStartScroller.js | 開始滾動的加速與彈跳控制 |
+| export/cdef/DefaultStopScroller.js | 停止滾動的減速與回彈控制 |
+| export/cdef/Deserializer.js | 重新導出 Deserializer |
+| export/cdef/DrawLine.js | 依節點尺寸繪製水平或垂直線 |
+| export/cdef/EffectItemRegisterHandler.js | 將特效項目註冊到物件池 |
+| export/cdef/ErrorHandler.js | 重新導出 ErrorHandler |
+| export/cdef/FPSTracker.js | 重新導出 FPSTracker |
+| export/cdef/FastSpinController.js | 控制快速旋轉特效與音效 |
+| export/cdef/FeatureBuyButtonController.js | 管理 Feature Buy 按鈕的互動與特效 |
+| export/cdef/FeatureBuyController.js | 控制 Feature Buy 對話框與流程 |
+| export/cdef/FeatureBuyHelper.js | 提供 Feature Buy 功能檢查與事件處理 |
+| export/cdef/ForegroundController.js | 切換前景 UI 與發光效果 |
+| export/cdef/FreeSpinWonController.js | 顯示免費遊戲獲得提示動畫 |

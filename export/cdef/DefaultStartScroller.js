@@ -26,19 +26,23 @@ if (!cc._RF.push(module, "a9e6d7qkYZPw5K5UPSZUUME", "DefaultStartScroller")) {
       return p;
     }
     __extends(u, C);
+    // 重置滾動器狀態，移除更新函式
     u.prototype.onReset = function () {
       this.update = undefined;
     };
+    // 開始加速滾動
     u.prototype.onRun = function () {
       this.emitEvent(L.SCROLLER_EVENT.RUN);
       this.accumulatedTime = 0;
       this.previousY = 0;
       this.update = this.bindedRunUpdate;
     };
+    // 結束滾動並切換至結束更新流程
     u.prototype.onEnd = function () {
       this.update = this.bindedEndUpdate;
       this.emitEvent(L.SCROLLER_EVENT.END);
     };
+    // 執行加速與彈跳效果的位移計算
     u.prototype.runUpdate = function (c) {
       var p = this.runtimeConfig;
       c = this.accumulatedTime += c;
@@ -63,6 +67,7 @@ if (!cc._RF.push(module, "a9e6d7qkYZPw5K5UPSZUUME", "DefaultStartScroller")) {
       this.emitEvent(L.SCROLLER_EVENT.ACCELERATE, 1);
       this.end();
     };
+    // 結束後持續以最大速度位移
     u.prototype.endUpdate = function (c) {
       this.runtimeConfig.scrollCallback(this, c * this.runtimeConfig.maxSpeed);
     };
