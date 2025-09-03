@@ -110,6 +110,7 @@ if (!cc._RF.push(module, "35d29M3VudMFqjm4gRoo2G6", "SettingMenuHelper")) {
       enumerable: false,
       configurable: true
     });
+    // 設定外部的 SettingMenuController
     U.prototype.setSettingMenuController = function (B) {
       this._settingMenuController = B;
     };
@@ -123,12 +124,15 @@ if (!cc._RF.push(module, "35d29M3VudMFqjm4gRoo2G6", "SettingMenuHelper")) {
       enumerable: false,
       configurable: true
     });
+    // 初始化音效設定
     U.prototype.initAudio = function (B) {
       this._initAudio(B);
     };
+    // 載入音效資源
     U.prototype.loadAudio = function (B) {
       this._loadAudio(B);
     };
+    // 設定按鈕預製體與是否能被禁用
     U.prototype.setButtonPrefab = function (B, P, X = false) {
       this._settingMenuButtonHelper.setButtonPrefab(B, P, X);
     };

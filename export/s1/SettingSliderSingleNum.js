@@ -10,13 +10,16 @@ if (!cc._RF.push(module, "449bftyQ69GBqYbHra7PRW2", "SettingSliderSingleNum")) {
       onColor: cc.Color,
       offColor: cc.Color
     },
+    // 初始化數字顯示
     onLoad: function () {
       this.numberLabel.string = this.num;
     },
+    // 設定數字高亮與暗色
     setColor: function (T, x) {
       this.onColor = T;
       this.offColor = x;
     },
+    // 切換數字是否高亮
     setLight: function (T) {
       if (T) {
         (0, K.setNodeColorWithOpacity)(this.numberLabel.node, this.onColor);

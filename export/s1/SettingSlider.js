@@ -13,10 +13,12 @@ if (!cc._RF.push(module, "357638pYQ9Eibsf8KFNqaZK", "SettingSlider")) {
       isPositive: false,
       showValue: false
     },
+    // 設定數值顯示的開關顏色
     setValueColor: function (g, T) {
       this._valueOnColor = g;
       this._valueOffColor = T;
     },
+    // 初始化滑桿與數字項目
     init: function () {
       var g = this;
       var T = this._sliderNums = [];
@@ -87,6 +89,7 @@ if (!cc._RF.push(module, "357638pYQ9Eibsf8KFNqaZK", "SettingSlider")) {
         Q.active = false;
       }
     },
+    // 高亮顯示對應數值
     setLight: function (g, T = false) {
       this._currentSliderValue;
       if (!T) {
@@ -113,21 +116,26 @@ if (!cc._RF.push(module, "357638pYQ9Eibsf8KFNqaZK", "SettingSlider")) {
         this.saveValue(this._currentSliderValue);
       }
     },
+    // 設定預設顯示的數值
     setDefaultFirstSliderNum: function (g) {
       var T = (g - this.minNum) / 5;
       var x = -621 - T * 105;
       this.content.x = x;
       this.setLight(T / 2, true);
     },
+    // 儲存目前選取的數值
     setValue: function (g) {
       this._currentSliderValue = g;
     },
+    // 取得目前選取的數值
     getValue: function () {
       return this._currentSliderValue;
     },
+    // 更新滑桿位置與顯示
     updateSlider: function () {
       this.setDefaultFirstSliderNum(this._currentSliderValue);
     },
+    // 測試用，隨機設定數值
     testSetSliderNum: function () {
       this.setDefaultFirstSliderNum(Math.floor(Math.random() * 21) * 5);
     }

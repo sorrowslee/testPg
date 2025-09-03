@@ -140,6 +140,22 @@
 | export/r/RemainingFreeSpinController.js | 顯示剩餘免費旋轉次數並處理增加效果 |
 | export/r/ResRC.js | 轉換並導出共用的 ResRC 資源管理函式 |
 | export/r/ResultState.js | 控制轉輪結果呈現與快速停止的狀態 |
+| export/s1/ScatterEffectController.js | 控制 Scatter 特效顯示與動畫 |
+| export/s1/ScrollViewEx.js | 擴充 ScrollView，提供 cell 拖移與點擊判定 |
+| export/s1/Serializer.js | 重新導出 Serializer |
+| export/s1/SettingInfoFooterController.js | 管理設定頁下方資訊板與翻轉效果 |
+| export/s1/SettingMenuAssetConfig.js | 提供設定選單需載入的資源設定 |
+| export/s1/SettingMenuButtonHelper.js | 管理設定選單按鈕建立與鎖定 |
+| export/s1/SettingMenuController.js | 控制設定選單顯示、切換及提示 |
+| export/s1/SettingMenuHandlers.js | 處理設定選單的回呼與音效切換 |
+| export/s1/SettingMenuHelper.js | 提供設定選單相關功能與狀態管理 |
+| export/s1/SettingSlider.js | 多段式數值滑桿控制 |
+| export/s1/SettingSliderNum.js | 滑桿上的數字顯示項目 |
+| export/s1/SettingSliderSingle.js | 單一列表形式的滑桿控制 |
+| export/s1/SettingSliderSingleNum.js | 單一滑桿的數字項目 |
+| export/s1/SettingTurboSpinButton.js | 控制渦輪旋轉按鈕特效與顏色 |
+| export/s1/ShiftSlotHandler.js | 處理轉輪符號掉落與音效 |
+| export/s1/SimpleAnimationController.js | 簡易動畫控制器 |
 | export/s2/SinglePayoutModel.js | 儲存單一派彩的轉輪與相關資料 |
 | export/s2/SlotAnalyticsHelper.js | 送出快速停止的 GA 事件 |
 | export/s2/SlotDependencyManager.js | 重新導出 WalletHelper 的 walletHelper |

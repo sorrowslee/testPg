@@ -10,13 +10,16 @@ if (!cc._RF.push(module, "41cdfy0E9FKC7KilcTyf7iZ", "SettingSliderSingle")) {
       valueLabel: cc.Label,
       alwaysShow: false
     },
+    // 啟用時調整數字起點並監聽尺寸變化
     onEnable: function () {
       this._changeNumberStartPoint();
       this.node.on("size-changed", this._changeNumberStartPoint, this);
     },
+    // 停用時移除尺寸監聽
     onDisable: function () {
       this.node.off("size-changed", this._changeNumberStartPoint, this);
     },
+    // 根據畫布寬度重新排列數字
     _changeNumberStartPoint: function () {
       this._middlePoint = cc.Canvas.instance.node.width / 2;
       if (this._inited) {
@@ -27,21 +30,26 @@ if (!cc._RF.push(module, "41cdfy0E9FKC7KilcTyf7iZ", "SettingSliderSingle")) {
         this.updateSlider();
       }
     },
+    // 將滑桿設定為最大值
     setBiggestValue: function () {
       var g = this.numbers.length - 1;
       this.setLight(g);
       this.content.x = -this._middlePoint - g * 183;
     },
+    // 設定可選數字列表
     setNumberList: function (g) {
       this.numbers = g;
     },
+    // 設定數字亮暗顏色
     setValueColor: function (g, T) {
       this._valueOnColor = g;
       this._valueOffColor = T;
     },
+    // 設定播放音效的方法
     setPlaySound: function (g) {
       this._playSound = g;
     },
+    // 初始化滑桿與數字項目
     init: function () {
       var g = this;
       this._inited = false;
@@ -111,6 +119,7 @@ if (!cc._RF.push(module, "41cdfy0E9FKC7KilcTyf7iZ", "SettingSliderSingle")) {
       }
       this._inited = true;
     },
+    // 高亮選取的數字並觸發音效
     setLight: function (g, T = false) {
       g = Math.round(g);
       var x = this._currentSliderValue;
@@ -140,6 +149,7 @@ if (!cc._RF.push(module, "41cdfy0E9FKC7KilcTyf7iZ", "SettingSliderSingle")) {
         this.saveValue(this._currentSliderValue);
       }
     },
+    // 設定預設顯示的數字
     setDefaultFirstSliderNum: function (g) {
       var T = this.numbers.indexOf(g);
       if (T === -1) {
@@ -150,18 +160,23 @@ if (!cc._RF.push(module, "41cdfy0E9FKC7KilcTyf7iZ", "SettingSliderSingle")) {
       this.content.x = L;
       this.setLight(T, true);
     },
+    // 儲存目前數值
     setValue: function (g) {
       this._currentSliderValue = g;
     },
+    // 取得目前數值
     getValue: function () {
       return this._currentSliderValue;
     },
+    // 依照數值更新滑桿位置
     updateSlider: function () {
       this.setDefaultFirstSliderNum(this._currentSliderValue);
     },
+    // 測試用隨機設定數字
     testSetSliderNum: function () {
       this.setDefaultFirstSliderNum(Math.floor(Math.random() * 21) * 5);
     },
+    // 播放滑動音效（預留）
     _playSound: function () {}
   });
   exports.default = K;
