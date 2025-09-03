@@ -36,14 +36,18 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
       return Q;
     }
     __extends(V, G);
+    // 由子類別覆寫的更新函式
     V.prototype.update = function () {};
+    // 設定數值達成時的回呼清單
     V.prototype.setNumbersCallback = function (Q) {
       this._numberCallbackList = Q;
     };
+    // 設定時間達成的回呼清單與觸發函式
     V.prototype.setTimeCallback = function (Q, N) {
       this._timeCallbackList = Q;
       this._onTimeReachedCallback = N;
     };
+    // 依傳入設定初始化門檻與時間
     V.prototype.init = function (Q) {
       this._winThreshold = [Q.bigWinThreshold, Q.megaWinThreshold, Q.superMegaWinThreshold];
       this._winDuration = [Q.bigWinDuration, Q.megaWinDuration, Q.superMegaWinDuration];
@@ -56,6 +60,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
       }
       this._calculatePlayTime();
     };
+    // 取得目前判定的獲獎類型與步驟
     V.prototype.getWinType = function () {
       var Q = {
         winStyle: this._winType,
@@ -63,6 +68,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
       };
       return Q;
     };
+    // 開始執行數字滾動並設定回呼
     V.prototype.play = function (Q) {
       if (this._parametersSanityCheck()) {
         this._accumulatedDt = 0;
@@ -74,6 +80,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
         this._isRolling = true;
       }
     };
+    // 直接跳到最大值並觸發回呼
     V.prototype.skip = function () {
       var Q = this;
       if (this._isRolling) {
@@ -85,6 +92,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
         });
       }
     };
+    // 停止數字滾動並清理狀態
     V.prototype.stop = function (Q = true) {
       if (Q) {
         this.displayController.clear();
@@ -95,12 +103,14 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
       this._isRolling = false;
       this.update = function () {};
     };
+    // 檢查必要參數是否完整
     V.prototype._parametersSanityCheck = function () {
       if (this._numberCallbackList) {
         this._numberCallbackList.length;
       }
       return !!this._winDuration && !!this._winThreshold && !(this._maxValue < 0);
     };
+    // 依最大值計算各階段的滾動時間
     V.prototype._calculatePlayTime = function () {
       var Q = this._maxValue;
       var N = this._winThreshold;
@@ -139,6 +149,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
       this._rollTo = z;
       this._lerp = j(0, this._rollTo[0]);
     };
+    // 校正獲獎階段的滾動時間
     V.prototype._calibrateWinTime = function (Q, N, Y, W, q) {
       var S = this._totalWinDuration[W];
       for (var z = this._winDuration[W], f = (Q - N) / (Y - N), A = 0, M = 0; M < z.length; M++) {
@@ -164,6 +175,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
       }
       return A;
     };
+    // 根據經過時間更新內插並顯示數值
     V.prototype._doRollNumber = function (Q) {
       var N;
       var Y;
@@ -210,6 +222,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
         this._checkTimeReach(this._accumulatedDt);
       }
     };
+    // 更新顯示的數字並通知已達成的數值
     V.prototype._updateNumber = function (Q) {
       var N = this._numberCallbackList;
       var Y = this._maxValue;
@@ -238,6 +251,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
         });
       });
     };
+    // 檢查是否達到指定時間點並觸發回呼
     V.prototype._checkTimeReach = function (Q) {
       var N = this._timeCallbackList;
       if (N !== undefined && N.length && N[0] <= Q) {
@@ -254,6 +268,7 @@ if (!cc._RF.push(module, "12aa3hO3pdL6oUvYmprts/7", "TimedWinRollBaseController"
   exports.default = p;
   cc._RF.pop();
 }
+// 建立簡單的線性內插器
 function j(G, V) {
   var Q = V - G;
   var N = {

@@ -3,6 +3,7 @@ if (!cc._RF.push(module, "b3d0cO57FNIT68ecOLFdA43", "TotalWinController.spec")) 
     value: true
   });
   exports.initTotalWinNodes = exports.skipTotalWinAnimationShownEvent = exports.collectTotalWinButtonShownEvent = undefined;
+  // 測試時通知 Total Win 收集按鈕已顯示
   exports.collectTotalWinButtonShownEvent = function () {
     var T = System.get("automation") && System.get("automation").GameData;
     if (T) {
@@ -11,6 +12,7 @@ if (!cc._RF.push(module, "b3d0cO57FNIT68ecOLFdA43", "TotalWinController.spec")) 
       });
     }
   };
+  // 測試時通知可跳過 Total Win 動畫
   exports.skipTotalWinAnimationShownEvent = function () {
     var T = System.get("automation") && System.get("automation").GameData;
     if (T) {
@@ -19,6 +21,7 @@ if (!cc._RF.push(module, "b3d0cO57FNIT68ecOLFdA43", "TotalWinController.spec")) 
       });
     }
   };
+  // 初始化測試所需的節點設定
   exports.initTotalWinNodes = function (T) {
     var x = System.get("automation") && System.get("automation").GameConfigs;
     if (x) {

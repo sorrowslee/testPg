@@ -16,6 +16,7 @@ if (!cc._RF.push(module, "b8f7436fYdNnryqvtnVtqIL", "TabBar")) {
       return u;
     }
     __extends(C, k);
+    // 初始化背景、陰影與項目容器大小與節點一致
     C.prototype.onLoad = function () {
       var u = this.node.width;
       var c = this.node.height;
@@ -23,6 +24,7 @@ if (!cc._RF.push(module, "b8f7436fYdNnryqvtnVtqIL", "TabBar")) {
       this.shadow.node.width = u;
       this.itemsContainer.setContentSize(u, c);
     };
+    // 設定所有 Tab 項目並選擇預設索引
     C.prototype.setItems = function (u, c) {
       var p = u.length;
       if (p && !(p < 1)) {
@@ -37,9 +39,11 @@ if (!cc._RF.push(module, "b8f7436fYdNnryqvtnVtqIL", "TabBar")) {
         this._tabBarItems = u;
       }
     };
+    // 取得目前所有的 Tab 項目
     C.prototype.getItems = function () {
       return this._tabBarItems;
     };
+    // 根據索引切換選取的 Tab 項目
     C.prototype.selectItemAtIndex = function (u) {
       if (!(u >= this._tabBarItems.length)) {
         var c = this._selectedTabBarItem;
@@ -51,24 +55,29 @@ if (!cc._RF.push(module, "b8f7436fYdNnryqvtnVtqIL", "TabBar")) {
         this._selectedTabBarItem = p;
       }
     };
+    // 取得目前選取中的 Tab 項目
     C.prototype.getSelectedItem = function () {
       return this._selectedTabBarItem;
     };
+    // 設定未選取項目的顏色
     C.prototype.setTintColor = function (u) {
       for (var c = this._tabBarItems, p = 0; p < c.length; p++) {
         c[p].setTintColor(u);
       }
     };
+    // 設定選取項目的顏色
     C.prototype.setSelectedTintColor = function (u) {
       for (var c = this._tabBarItems, p = 0; p < c.length; p++) {
         c[p].setSelectedTintColor(u);
       }
     };
+    // 套用標題文字的樣式屬性
     C.prototype.setTitleAttributes = function (u) {
       for (var c = this._tabBarItems, p = 0; p < c.length; p++) {
         c[p].setTitleAttributes(u);
       }
     };
+    // 設定背景圖片或顏色
     C.prototype.setBackgroundImage = function (u, c) {
       if (u) {
         this.background.spriteFrame = u;
