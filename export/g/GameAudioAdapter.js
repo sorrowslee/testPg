@@ -5,6 +5,7 @@ if (!cc._RF.push(module, "8c0ecQgQvxM3oNottpd7IZl", "GameAudioAdapter")) {
   var T = require("AudioAdapter");
   var x = require("AudioManager");
   var L = function (D) {
+    // 建立音效資源並設定是否為音樂
     function k(C, u) {
       var c = D.call(this, C) || this;
       c._gameAudioManagerType = undefined;
@@ -13,6 +14,7 @@ if (!cc._RF.push(module, "8c0ecQgQvxM3oNottpd7IZl", "GameAudioAdapter")) {
       return c;
     }
     __extends(k, D);
+    // 載入後註冊音效到遊戲音效管理器
     k.prototype.load = function () {
       var C = this;
       D.prototype.load.call(this);
@@ -26,6 +28,7 @@ if (!cc._RF.push(module, "8c0ecQgQvxM3oNottpd7IZl", "GameAudioAdapter")) {
       this.once("load", u);
       this.once("loaderror", c);
     };
+    // 卸載時從遊戲音效管理器移除
     k.prototype.unload = function () {
       x.unregisterAudio(this, this._gameAudioManagerType);
       D.prototype.unload.call(this);

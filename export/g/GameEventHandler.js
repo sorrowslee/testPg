@@ -25,9 +25,11 @@ if (!cc._RF.push(module, "6da04mFMhpNcpdeGLQM+RKD", "GameEventHandler")) {
     subscribeSessionSocketConnectionStatusRequestEvent: "subscribeOperationSocketConnectionStatusRequestEvent"
   };
   var x = __assign({}, g);
+  // 重新對應事件名稱以符合遊戲需求
   Object.keys(T).forEach(function (D) {
     x[T[D]] = x[D];
   });
+  // 發送遊戲中獲勝公告的空函式
   x.emitGameWinAnnouncement = function () {};
   for (var L in x) {
     module.exports[L] = x[L];
