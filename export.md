@@ -114,3 +114,18 @@
 | export/mn/NumberRollController.js | 使用 NumberDisplayController 的數字滾動 |
 | export/mn/NumberRollCurveController.js | 沿曲線顯示的數字滾動 |
 | export/mn/NumberRollLabelController.js | 使用標籤顯示的數字滾動 |
+| export/opq/OperatorJurisdictionModel.js | 重新導出 OperatorJurisdictionModel |
+| export/opq/PageControl.js | 控制頁面點點切換 |
+| export/opq/PageControlButton.js | 頁面切換點點按鈕 |
+| export/opq/PayoutEffectBackController.js | 控制派彩背景特效 |
+| export/opq/PayoutEffectController.js | 管理派彩特效的總控制器 |
+| export/opq/PayoutEffectFrontController.js | 控制派彩前景特效 |
+| export/opq/PlayerModel.js | 重新導出 PlayerModel |
+| export/opq/PopOutItem.js | 顯示派彩資訊的彈出項目 |
+| export/opq/PopOutItemHandler.js | 管理彈出項目的顯示與隱藏 |
+| export/opq/PopOutTintController.js | 控制彈出時的遮罩效果 |
+| export/opq/Preference.js | 重新導出 Preference |
+| export/opq/Printer.js | 重新導出 Printer |
+| export/opq/PrizeState.js | 處理得獎顯示流程 |
+| export/opq/QuitGame.js | 重新導出 QuitGame |
+| export/opq/QuitGameWithEvent.js | 重新導出 QuitGameWithEvent |

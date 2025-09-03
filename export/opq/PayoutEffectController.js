@@ -33,135 +33,146 @@ if (!cc._RF.push(module, "73aac2A++ZIEKvEvkb2PS7F", "PayoutEffectController")) {
       return z;
     }
     __extends(S, q);
-    S.prototype.clear = function () {
-      this._currentPayoutEffectState = T.NONE;
-      this._payoutEffectBackController = undefined;
-      this._payoutEffectFrontController = undefined;
-      this.hideWildVfx(false);
-      this.backVfxHolder.removeAllChildren();
-      this.frontVfxHolder.removeAllChildren();
-    };
-    S.prototype.destroy = function () {
-      this.clear();
-      this.node.destroy();
-      return q.prototype.destroy.call(this);
-    };
-    S.prototype.highlightSymbol = function (z = false) {
-      if (this._currentPayoutEffectState !== T.HIGHLIGHT) {
-        this._currentPayoutEffectState = T.HIGHLIGHT;
+      S.prototype.clear = function () {
+        // 重置並清除所有派彩特效狀態
+        this._currentPayoutEffectState = T.NONE;
+        this._payoutEffectBackController = undefined;
+        this._payoutEffectFrontController = undefined;
+        this.hideWildVfx(false);
+        this.backVfxHolder.removeAllChildren();
+        this.frontVfxHolder.removeAllChildren();
+      };
+      S.prototype.destroy = function () {
+        // 銷毀控制器並回收節點
+        this.clear();
+        this.node.destroy();
+        return q.prototype.destroy.call(this);
+      };
+      S.prototype.highlightSymbol = function (z = false) {
+        // 顯示符號高亮特效
+        if (this._currentPayoutEffectState !== T.HIGHLIGHT) {
+          this._currentPayoutEffectState = T.HIGHLIGHT;
+          if (!this._payoutEffectBackController) {
+            this._initBackItem(this.backVfxHolder);
+          }
+          this._payoutEffectBackController.highlightSymbol(z);
+        }
+      };
+      S.prototype.stopHighlightSymbol = function (z) {
+        // 停止高亮特效並回收背景物件
+        var A = this;
         if (!this._payoutEffectBackController) {
           this._initBackItem(this.backVfxHolder);
         }
-        this._payoutEffectBackController.highlightSymbol(z);
-      }
-    };
-    S.prototype.stopHighlightSymbol = function (z) {
-      var A = this;
-      if (!this._payoutEffectBackController) {
-        this._initBackItem(this.backVfxHolder);
-      }
-      this._payoutEffectBackController.stopHighlightSymbol(function () {
-        A._enqueceBackItem();
-        if (z) {
-          z();
-        }
-      });
-    };
-    S.prototype.breakSymbol = function (z, A) {
-      var M = this;
-      if (this._currentPayoutEffectState !== T.BREAK_SYMBOL) {
-        this._currentPayoutEffectState = T.BREAK_SYMBOL;
-        if (!this._payoutEffectFrontController) {
-          var E = z ? this.backVfxHolder : this.frontVfxHolder;
-          this._initFrontItem(E);
-        }
-        k.stopAudio(D.GENERAL_AUDIO.symShrink.key);
-        k.playAudio(D.GENERAL_AUDIO.symShrink.key);
-        if (!z) {
-          this.hideWildVfx(true);
-        }
-        this._payoutEffectFrontController.breakSymbol(function () {
-          if (M._payoutEffectBackController) {
-            M._payoutEffectBackController.stopHighlightSymbol();
-          }
-        }, function () {
-          M._enqueceFrontItem();
-          if (A) {
-            A();
+        this._payoutEffectBackController.stopHighlightSymbol(function () {
+          A._enqueceBackItem();
+          if (z) {
+            z();
           }
         });
-      }
-    };
-    S.prototype.showWildVfx = function (z = true) {
-      if (this._currentPayoutEffectState !== T.SHOW_WILD) {
-        this._currentPayoutEffectState = T.SHOW_WILD;
-        var A = this.wildVfxAnim;
-        A.stop();
-        A.play();
-        var M = A.node;
-        M.active = true;
-        M.stopAllActions();
-        M.opacity = 0;
-        if (z) {
-          M.runAction(cc.fadeIn(0.3));
-        } else {
-          M.opacity = 255;
+      };
+      S.prototype.breakSymbol = function (z, A) {
+        // 播放符號破碎特效
+        var M = this;
+        if (this._currentPayoutEffectState !== T.BREAK_SYMBOL) {
+          this._currentPayoutEffectState = T.BREAK_SYMBOL;
+          if (!this._payoutEffectFrontController) {
+            var E = z ? this.backVfxHolder : this.frontVfxHolder;
+            this._initFrontItem(E);
+          }
+          k.stopAudio(D.GENERAL_AUDIO.symShrink.key);
+          k.playAudio(D.GENERAL_AUDIO.symShrink.key);
+          if (!z) {
+            this.hideWildVfx(true);
+          }
+          this._payoutEffectFrontController.breakSymbol(function () {
+            if (M._payoutEffectBackController) {
+              M._payoutEffectBackController.stopHighlightSymbol();
+            }
+          }, function () {
+            M._enqueceFrontItem();
+            if (A) {
+              A();
+            }
+          });
         }
-      }
-    };
-    S.prototype.hideWildVfx = function (z) {
-      if (this._currentPayoutEffectState !== T.HIDE_WILD || !z) {
-        this._currentPayoutEffectState = T.HIDE_WILD;
-        var A = this.wildVfxAnim;
-        var M = A.node;
-        if (z) {
-          M.stopAllActions();
-          M.runAction(cc.sequence(cc.fadeOut(0.3), cc.callFunc(function () {
-            A.stop();
-          })));
-        } else {
+      };
+      S.prototype.showWildVfx = function (z = true) {
+        // 顯示 wild 特效動畫
+        if (this._currentPayoutEffectState !== T.SHOW_WILD) {
+          this._currentPayoutEffectState = T.SHOW_WILD;
+          var A = this.wildVfxAnim;
           A.stop();
+          A.play();
+          var M = A.node;
+          M.active = true;
+          M.stopAllActions();
+          M.opacity = 0;
+          if (z) {
+            M.runAction(cc.fadeIn(0.3));
+          } else {
+            M.opacity = 255;
+          }
         }
-      }
-    };
-    S.prototype._initFrontItem = function (z) {
-      var A = L.nodePoolHandler.dequeueReusableItem(C.NodePoolName.PayoutEffectFrontItem);
-      this._payoutEffectFrontController = A.getComponent(G.default);
-      this._payoutEffectFrontController.clear();
-      z.addChild(A);
-      return A;
-    };
-    S.prototype._enqueceFrontItem = function () {
-      var z = this;
-      x.delayCallback(1)(function () {
-        if (z._payoutEffectFrontController) {
+      };
+      S.prototype.hideWildVfx = function (z) {
+        // 隱藏 wild 特效動畫
+        if (this._currentPayoutEffectState !== T.HIDE_WILD || !z) {
+          this._currentPayoutEffectState = T.HIDE_WILD;
+          var A = this.wildVfxAnim;
+          var M = A.node;
+          if (z) {
+            M.stopAllActions();
+            M.runAction(cc.sequence(cc.fadeOut(0.3), cc.callFunc(function () {
+              A.stop();
+            })));
+          } else {
+            A.stop();
+          }
+        }
+      };
+      S.prototype._initFrontItem = function (z) {
+      // 從物件池取得前景特效節點
+        var A = L.nodePoolHandler.dequeueReusableItem(C.NodePoolName.PayoutEffectFrontItem);
+        this._payoutEffectFrontController = A.getComponent(G.default);
+        this._payoutEffectFrontController.clear();
+        z.addChild(A);
+        return A;
+      };
+      S.prototype._enqueceFrontItem = function () {
+        // 將前景特效節點歸還物件池
+        var z = this;
+        x.delayCallback(1)(function () {
           if (z._payoutEffectFrontController) {
-            z._payoutEffectFrontController.clear();
+            if (z._payoutEffectFrontController) {
+              z._payoutEffectFrontController.clear();
+            }
+            L.nodePoolHandler.enqueueReusableItem(z._payoutEffectFrontController.node, C.NodePoolName.PayoutEffectFrontItem);
+            z._payoutEffectFrontController = undefined;
           }
-          L.nodePoolHandler.enqueueReusableItem(z._payoutEffectFrontController.node, C.NodePoolName.PayoutEffectFrontItem);
-          z._payoutEffectFrontController = undefined;
-        }
-      });
-    };
-    S.prototype._initBackItem = function (z) {
-      var A = L.nodePoolHandler.dequeueReusableItem(C.NodePoolName.PayoutEffectBackItem);
-      this._payoutEffectBackController = A.getComponent(j.default);
-      this._payoutEffectBackController.clear();
-      z.addChild(A);
-      return A;
-    };
-    S.prototype._enqueceBackItem = function () {
-      var z = this;
-      x.delayCallback(1)(function () {
-        if (z._payoutEffectBackController) {
+        });
+      };
+      S.prototype._initBackItem = function (z) {
+        // 從物件池取得背景特效節點
+        var A = L.nodePoolHandler.dequeueReusableItem(C.NodePoolName.PayoutEffectBackItem);
+        this._payoutEffectBackController = A.getComponent(j.default);
+        this._payoutEffectBackController.clear();
+        z.addChild(A);
+        return A;
+      };
+      S.prototype._enqueceBackItem = function () {
+        // 將背景特效節點歸還物件池
+        var z = this;
+        x.delayCallback(1)(function () {
           if (z._payoutEffectBackController) {
-            z._payoutEffectBackController.clear();
+            if (z._payoutEffectBackController) {
+              z._payoutEffectBackController.clear();
+            }
+            L.nodePoolHandler.enqueueReusableItem(z._payoutEffectBackController.node, C.NodePoolName.PayoutEffectBackItem);
+            z._payoutEffectBackController = undefined;
           }
-          L.nodePoolHandler.enqueueReusableItem(z._payoutEffectBackController.node, C.NodePoolName.PayoutEffectBackItem);
-          z._payoutEffectBackController = undefined;
-        }
-      });
-    };
+        });
+      };
     __decorate([Y(cc.Node)], S.prototype, "backVfxHolder", undefined);
     __decorate([Y(cc.Node)], S.prototype, "frontVfxHolder", undefined);
     __decorate([Y(V.default)], S.prototype, "wildVfxAnim", undefined);

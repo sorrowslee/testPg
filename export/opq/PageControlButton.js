@@ -20,6 +20,7 @@ if (!cc._RF.push(module, "49dd983G1VDGoSnw7stgTlI", "PageControlButton")) {
     }
     __extends(u, C);
     u.prototype.init = function () {
+      // 初始化點點按鈕的外觀
       if (this.selectImg) {
         this.sprite.SpriteFrame = this.normalImg;
       }
@@ -27,6 +28,7 @@ if (!cc._RF.push(module, "49dd983G1VDGoSnw7stgTlI", "PageControlButton")) {
       this._isSelect = false;
     };
     u.prototype.setSelect = function () {
+      // 設為選取狀態並更新顏色
       if (!this._isSelect) {
         if (this.selectImg) {
           this.sprite.spriteFrame = this.selectImg;
@@ -36,6 +38,7 @@ if (!cc._RF.push(module, "49dd983G1VDGoSnw7stgTlI", "PageControlButton")) {
       }
     };
     u.prototype.setUnselect = function () {
+      // 取消選取狀態
       if (this._isSelect) {
         if (this.selectImg) {
           this.sprite.spriteFrame = this.normalImg;
@@ -45,6 +48,7 @@ if (!cc._RF.push(module, "49dd983G1VDGoSnw7stgTlI", "PageControlButton")) {
       }
     };
     u.prototype.selectDot = function () {
+      // 點擊時切換為選取並通知委派
       if ((!this.delegate || !this.delegate.canChangePage || !!this.delegate.canChangePage()) && !this._isSelect) {
         if (this.selectImg) {
           this.sprite.spriteFrame = this.selectImg;

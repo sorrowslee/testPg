@@ -18,6 +18,7 @@ if (!cc._RF.push(module, "db0df9/6UZNW6sskb9QIFSg", "PageControl")) {
     }
     __extends(_u, C);
     _u.prototype.init = function (c, p, j) {
+      // 初始化頁面控制器，生成對應頁數的點點按鈕
       if (!(c >= p) && !(c < 0)) {
         this.node.removeAllChildren();
         this._totalPage = p;
@@ -38,9 +39,11 @@ if (!cc._RF.push(module, "db0df9/6UZNW6sskb9QIFSg", "PageControl")) {
       }
     };
     _u.prototype.layoutContainer = function (c) {
+      // 設定點點按鈕的水平間距
       this.getComponent(cc.Layout).spacingX = c;
     };
     _u.prototype.changeCurrentPage = function (c) {
+      // 切換目前的頁面索引
       var p = this._totalPage;
       if (!(c < 0) && !(c >= p)) {
         var j = this._dotButtons;
@@ -50,9 +53,11 @@ if (!cc._RF.push(module, "db0df9/6UZNW6sskb9QIFSg", "PageControl")) {
       }
     };
     _u.prototype.getCurrentPage = function () {
+      // 取得目前頁面索引
       return this._currentPage;
     };
     _u.prototype.didSelectDotAtIndex = function (c) {
+      // 點擊點點時更新選取並通知委派物件
       this._dotButtons[this._currentPage].setUnselect();
       this._currentPage = c;
       if (this.delegate && this.delegate.changePage) {
@@ -60,6 +65,7 @@ if (!cc._RF.push(module, "db0df9/6UZNW6sskb9QIFSg", "PageControl")) {
       }
     };
     _u.prototype.canChangePage = function () {
+      // 判斷是否允許切換頁面
       var c = this.delegate;
       return !c || !c.enableChangePage || !!c.enableChangePage();
     };

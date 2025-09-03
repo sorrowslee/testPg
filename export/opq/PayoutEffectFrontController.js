@@ -17,6 +17,7 @@ if (!cc._RF.push(module, "047ecNX+XBPIY0Z8sYHPeIe", "PayoutEffectFrontController
     }
     __extends(c, u);
     c.prototype.clear = function () {
+      // 清除並重設前景特效狀態
       var p = this.psVfxDAnim;
       var j = this.psVfxEAnim;
       var G = this.bulletHoleAnim;
@@ -34,6 +35,7 @@ if (!cc._RF.push(module, "047ecNX+XBPIY0Z8sYHPeIe", "PayoutEffectFrontController
       G.node.getComponent(cc.Sprite).spriteFrame = undefined;
     };
     c.prototype.breakSymbol = function (p, j) {
+      // 播放符號破裂動畫與特效
       var G = this;
       var V = this.bulletHoleAnim;
       var Q = V.node;
@@ -61,6 +63,7 @@ if (!cc._RF.push(module, "047ecNX+XBPIY0Z8sYHPeIe", "PayoutEffectFrontController
       });
     };
     c.prototype.destroy = function () {
+      // 銷毀控制器節點
       this.node.destroy();
       return u.prototype.destroy.call(this);
     };
