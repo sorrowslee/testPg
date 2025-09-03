@@ -16,6 +16,7 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
     function u() {
       this.refreshWorldGameState = T.STANDARD;
     }
+    // 初始化遊戲所需的控制器與資料來源
     u.prototype.initialize = function (c) {
       this.generalControllers = c.generalController;
       this.bonusControllers = c.bonusController ? c.bonusController : undefined;
@@ -26,19 +27,24 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
       this.walletHelper = c.walletHelper;
       this.refreshWorldGameState = c.refreshWorldGameState ? c.refreshWorldGameState : T.STANDARD;
     };
+    // 錢包切換後重新整理遊戲狀態並維持閒置
     u.prototype.refreshWorldByChangeWalletIdle = function (c, p) {
       L.sequenceCallback(this.loadBundle.bind(this), this._setUpBetValue.bind(this), this._exitAutoSpinAndDisabledSpinButton.bind(this), this._settingMenuCleanUp.bind(this), this.resetController.bind(this), L.deferCallback(true), L.deferCallback(true), this.executeTransition.bind(this), c, this._getReevaluateBet.bind(this), this._setupWallet.bind(this), this.changeWalletIdleSetUp.bind(this), this.reenableSpinButton.bind(this))(p);
     };
+    // 下注選項變更後重新整理遊戲狀態
     u.prototype.refreshWorldByBetOptionIdle = function (c, p) {
       var j = p || function () {};
       L.sequenceCallback(this.loadBundle.bind(this), this._exitAutoSpinAndDisabledSpinButton.bind(this), this._showLoadingPage.bind(this), this._settingMenuCleanUp.bind(this), this._getChangeBetOptionsApiCall.bind(this), this.resetController.bind(this), L.deferCallback(true), L.deferCallback(true), this.executeTransition.bind(this), c, this._setupWallet.bind(this), this.betOptionPreIdleSetUp.bind(this), this._hideLoadingPage.bind(this), this.betOptionIdleSetUp.bind(this), this.reenableSpinButton.bind(this))(j);
     };
+    // 顯示載入畫面
     u.prototype._showLoadingPage = function (c) {
       D.showLoadingPage(c);
     };
+    // 隱藏載入畫面
     u.prototype._hideLoadingPage = function (c) {
       D.hideLoadingPage(c);
     };
+    // 初始化玩家錢包資料
     u.prototype._setupWallet = function (c) {
       var p = this.walletHelper;
       var j = this.dataSource;
@@ -47,6 +53,7 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
         c();
       }
     };
+    // 設定下注相關數值
     u.prototype._setUpBetValue = function (p) {
       var j = this.dataSource;
       var G = this.settingMenuHelper;
@@ -69,6 +76,7 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
         p();
       }
     };
+    // 呼叫 API 取得新的下注選項資訊
     u.prototype._getChangeBetOptionsApiCall = function (c) {
       var p = this.dataSource.transactionModel;
       var j = {
@@ -77,6 +85,7 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
       };
       this._getNewWorldInfo(c, j);
     };
+    // 透過 API 更新遊戲資訊
     u.prototype._getNewWorldInfo = function (c, p) {
       var j = this.apiClient;
       var G = this.dataSource;
@@ -105,6 +114,7 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
         }
       });
     };
+    // 退出自動旋轉並停用旋轉按鈕
     u.prototype._exitAutoSpinAndDisabledSpinButton = function (c) {
       var p = this.generalControllers;
       p.spinButtonController.exitAutoSpinMode();
@@ -113,12 +123,14 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
         c();
       }
     };
+    // 清理設定選單的暫存資料
     u.prototype._settingMenuCleanUp = function (c) {
       this.settingMenuHelper.setWinAmount(0);
       if (c) {
         c();
       }
     };
+    // 重新評估下注設定
     u.prototype._getReevaluateBet = function (c) {
       var p = this.settingMenuHelper;
       if (p.reevaluateBet()) {
@@ -128,6 +140,7 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
         c();
       }
     };
+    // 依遊戲狀態決定是否更新下注 API
     u.prototype._checkGameStateAndUpdateBetAPI = function (c) {
       switch (this.refreshWorldGameState) {
         case T.STANDARD:
@@ -139,11 +152,13 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
           this._getChangeBetOptionsApiCall(c);
       }
     };
+    // 載入資源包的佔位函式
     u.prototype.loadBundle = function (c) {
       if (c) {
         c();
       }
     };
+    // 重新啟用旋轉按鈕
     u.prototype.reenableSpinButton = function (c) {
       var p = this.generalControllers.spinButtonController;
       p.idle();
@@ -152,26 +167,31 @@ if (!cc._RF.push(module, "4ef5cJw0YpAx5UIePlauVio", "RefreshWorldHandler")) {
         c();
       }
     };
+    // 重置控制器的佔位函式
     u.prototype.resetController = function (c) {
       if (c) {
         c();
       }
     };
+    // 執行狀態轉換的佔位函式
     u.prototype.executeTransition = function (c) {
       if (c) {
         c();
       }
     };
+    // 錢包變更時的預設處理
     u.prototype.changeWalletIdleSetUp = function (c) {
       if (c) {
         c();
       }
     };
+    // 下注選項變更前的預設處理
     u.prototype.betOptionPreIdleSetUp = function (c) {
       if (c) {
         c();
       }
     };
+    // 下注選項變更後的預設處理
     u.prototype.betOptionIdleSetUp = function (c) {
       if (c) {
         c();

@@ -14,6 +14,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
     function C() {
       this._retryHandler = new x.default();
     }
+    // 載入單一資源，可支援自訂或 Cocos 資源
     C.prototype.loadAsset = function (u) {
       if (u.type === T.CUSTOM) {
         return this._loadCustomAsset(u);
@@ -21,6 +22,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         return this._loadCocosAsset(u);
       }
     };
+    // 釋放單一資源
     C.prototype.releaseAsset = function (u) {
       if (u.type === T.CUSTOM) {
         return this._releaseCustomAsset(u);
@@ -28,6 +30,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         return this._releaseCocosAsset(u);
       }
     };
+    // 載入多個資源包並支援失敗重試
     C.prototype.loadBundle = function (u) {
       var c = this;
       var p = this._retryHandler;
@@ -85,6 +88,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         E();
       });
     };
+    // 釋放多個資源包
     C.prototype.releaseBundle = function (u) {
       var c = this;
       var p = [];
@@ -101,6 +105,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         });
       });
     };
+    // 透過 Cocos 方式載入資源
     C.prototype._loadCocosAsset = function (u) {
       return new Promise(function (c, p) {
         var j = u.isLocalized ? D.getResourceURL(u.url) : u.url;
@@ -117,6 +122,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         });
       });
     };
+    // 使用自訂函式載入資源
     C.prototype._loadCustomAsset = function (u) {
       return new Promise(function (c, p) {
         u.loadFunc(function (j) {
@@ -130,6 +136,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         });
       });
     };
+    // 釋放 Cocos 資源
     C.prototype._releaseCocosAsset = function (u) {
       return new Promise(function (c) {
         var p = u.isLocalized ? D.getResourceURL(u.url) : u.url;
@@ -139,6 +146,7 @@ if (!cc._RF.push(module, "517d1jsi4lLyboQPLjM/Od/", "ResourceLoader")) {
         });
       });
     };
+    // 釋放自訂資源
     C.prototype._releaseCustomAsset = function (u) {
       return new Promise(function (c) {
         if (u.releaseFunc) {
