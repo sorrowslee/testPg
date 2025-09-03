@@ -156,3 +156,16 @@
 | export/s1/SettingTurboSpinButton.js | 控制渦輪旋轉按鈕特效與顏色 |
 | export/s1/ShiftSlotHandler.js | 處理轉輪符號掉落與音效 |
 | export/s1/SimpleAnimationController.js | 簡易動畫控制器 |
+| export/s2/SinglePayoutModel.js | 儲存單一派彩的轉輪與相關資料 |
+| export/s2/SlotAnalyticsHelper.js | 送出快速停止的 GA 事件 |
+| export/s2/SlotDependencyManager.js | 重新導出 WalletHelper 的 walletHelper |
+| export/s2/SlotGenerator.js | 建立轉輪與遮罩節點並回傳控制器 |
+| export/s2/SlotImageHandler.js | 管理符號與背景的圖片及骨骼資源 |
+| export/s2/SliderEx.js | 擴充滑桿，支援滾輪並同步內容位置 |
+| export/s2/SlotController.spec.js | 自動化測試用的轉輪控制器事件 |
+| export/s2/SlotGameConstants.js | 定義大獎顯示與自動旋轉等常數 |
+| export/s2/SlotHandler.js | 處理轉輪旋轉、快速停止與符號效果 |
+| export/s2/SlotAnalyticsEnum.js | 定義轉輪分析用的列舉常數 |
+| export/s2/SlotDataHandler.js | 處理轉輪資料與符號取得邏輯 |
+| export/s2/SlotGameTools.js | 判斷獲獎門檻並發送大獎事件 |
+| export/s2/SlotHelper.js | 管理轉輪視圖、捲動器與符號操作 |

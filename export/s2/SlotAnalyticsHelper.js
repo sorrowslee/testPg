@@ -4,6 +4,7 @@ if (!cc._RF.push(module, "4d769Qc8epMlozoEYpeBTit", "SlotAnalyticsHelper")) {
   });
   exports.sendFastStopGA = undefined;
   var T = require("AnalyticsHelper");
+  // 送出快速停止旋轉的 GA 事件
   exports.sendFastStopGA = function (x, L) {
     var D = {
       type: x,

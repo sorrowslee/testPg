@@ -53,6 +53,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
   var Z7 = Object.freeze(Q);
   var Z8 = Object.freeze(N);
   var Z9 = function () {
+    // 建構函式，初始化轉輪處理相關狀態
     function ZZ() {
       this._shiftSlotHandler = undefined;
       this._slotHelper = undefined;
@@ -75,33 +76,42 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       this._fastSpinDisposer = [];
     }
     Object.defineProperty(ZZ.prototype, "slotHelper", {
+      // 取得內部的 SlotHelper
       get: function () {
         return this._slotHelper;
       },
       enumerable: false,
       configurable: true
     });
+    // 設定旋轉停止後的回呼
     ZZ.prototype.setOnSpinStopCallback = function (ZI) {
       this._onSpinStopCallback = ZI;
     };
+    // 設定轉軸開始時的回呼
     ZZ.prototype.setOnReelStartCallback = function (ZI) {
       this._onReelStartCallback = ZI;
     };
+    // 設定轉軸停止時的回呼
     ZZ.prototype.setOnReelStopCallback = function (ZI) {
       this._onReelStopCallback = ZI;
     };
+    // 設定散佈符號效果開始的回呼
     ZZ.prototype.setOnScatterEffectStartCallback = function (ZI) {
       this._onScatterEffectStartCallback = ZI;
     };
+    // 設定散佈符號效果結束的回呼
     ZZ.prototype.setOnScatterEffectStopCallback = function (ZI) {
       this._onScatterEffectStopCallback = ZI;
     };
+    // 設定重新載入前的回呼
     ZZ.prototype.setOnBeforeReloadCallback = function (ZI) {
       this._onBeforeReloadCallback = ZI;
     };
+    // 設定重新載入後的回呼
     ZZ.prototype.setOnAfterReloadCallback = function (ZI) {
       this._onAfterReloadCallback = ZI;
     };
+    // 初始化轉輪與相關資源
     ZZ.prototype.init = function (ZI) {
       var Zd = {
         maxSpeed: -5000
@@ -169,6 +179,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         bounceFactor: 1.7
       });
     };
+    // 單一轉軸停止時的處理
     ZZ.prototype._onReelStopped = function (ZI) {
       var Zd = this;
       if (this._onReelStopCallback) {
@@ -197,6 +208,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         }
       }
     };
+    // 所有轉軸停止後的處理
     ZZ.prototype._onSpinStopped = function () {
       if (this._onSpinStopCallback) {
         this._onSpinStopCallback();
@@ -212,16 +224,20 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         this._fastSpinDisposer = [];
       }
     };
+    // 判斷是否為心跳模式
     ZZ.prototype.isHeartBeat = function () {
       return Z0.wbsDataSource.transactionModel.previousScatterCount === w.FAST_SCROLL_MIN_REQUIRE_SCATTER;
     };
+    // 判斷是否需要慢速掉落效果
     ZZ.prototype.isSlowDrop = function () {
       return Z0.wbsDataSource.transactionModel.previousScatterCount >= w.FAST_SCROLL_MIN_REQUIRE_SCATTER;
     };
+    // 播放移除舊符號的動畫
     ZZ.prototype.playShiftOldSlotEffect = function (ZI) {
       var Zd = Z0.wbsDataSource.transactionModel.positionToBeRemove;
       this._shiftSlotHandler.playDropOldItemsEffect(Zd, ZI);
     };
+    // 播放加入新符號的動畫
     ZZ.prototype.playShiftNewSlotEffect = function (ZI, Zd, ZO, ZR) {
       var ZK = this._generateRespinReels(ZI, Zd);
       var Zg = this.isSlowDrop();
@@ -236,6 +252,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       this._shiftSlotHandler.reset();
       this._shiftSlotHandler.playDropNewItemsEffect(Zx);
     };
+    // 重新載入轉輪資料
     ZZ.prototype.reloadData = function (ZI) {
       if (this._onBeforeReloadCallback) {
         this._onBeforeReloadCallback();
@@ -247,6 +264,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         this._onAfterReloadCallback();
       }
     };
+    // 開始旋轉並設定相關參數
     ZZ.prototype.spin = function (ZI, Zd = false) {
       this._startScrollingTime = Date.now();
       this._canFastStop = true;
@@ -270,9 +288,11 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       this._slotHelper.setSpinType(ZI);
       this._slotHelper.startScroll();
     };
+    // 停止旋轉
     ZZ.prototype.stopSpin = function () {
       this._slotHelper.stopScroll();
     };
+    // 立即停止轉輪並重新載入資料
     ZZ.prototype.instantStopScroll = function () {
       var ZI = this;
       if (this._canFastStop) {
@@ -294,18 +314,23 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         }
       }
     };
+    // 設定新的轉輪資料
     ZZ.prototype.setReelData = function (ZI) {
       this._setReelData(ZI);
     };
+    // 啟用或關閉快速停止
     ZZ.prototype.setFastStop = function (ZI = true) {
       this._isFastStop = ZI;
     };
+    // 取得快速停止狀態
     ZZ.prototype.getFastStop = function () {
       return this._isFastStop;
     };
+    // 變更指定位置的符號
     ZZ.prototype.changeSymbol = function (ZI, Zd) {
       this._slotHelper.changeSymbol(ZI, Zd);
     };
+    // 取得多個符號的世界座標
     ZZ.prototype.getSlotItemsWorldPosition = function () {
       var ZI;
       var Zd = [];
@@ -314,9 +339,11 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       }
       return (ZI = this._slotHelper).getItemsWorldPositionAR.apply(ZI, __spread(Zd));
     };
+    // 取得格式化後的轉輪資料
     ZZ.prototype.getFormattedData = function (ZI) {
       return this._slotHelper.getFormattedData(ZI);
     };
+    // 設定多個符號的可見狀態
     ZZ.prototype.setSlotItemsVisible = function (ZI) {
       var Zd;
       var ZO = [];
@@ -325,16 +352,19 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       }
       return (Zd = this._slotHelper).setItemsVisible.apply(Zd, __spread([ZI], ZO));
     };
+    // 依索引取得符號物件
     ZZ.prototype.getSlotItemByIndices = function (ZI) {
       var Zd;
       ZI ||= [];
       return (Zd = this._slotHelper.slotItemHandler).getSlotItems.apply(Zd, __spread(ZI));
     };
+    // 判斷是否觸發快速旋轉
     ZZ.prototype.isFastSpin = function () {
       return this._reels.filter(function (ZI) {
         return ZI === w.SlotSymbols.Scatter;
       }).length >= 2;
     };
+    // 判斷指定轉軸是否達到快速旋轉條件
     ZZ.prototype.isFastSpinScroller = function (ZI) {
       var Zd = this._reels;
       var ZO = 0;
@@ -351,12 +381,15 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       }
       return ZO >= w.FAST_SCROLL_MIN_REQUIRE_SCATTER;
     };
+    // 是否已開始快速旋轉效果
     ZZ.prototype.isFastSpinStarted = function () {
       return this._isFastSpinStarted;
     };
+    // 取得快速旋轉的轉軸索引
     ZZ.prototype.getFastSpinReelIndex = function () {
       return this._fastSpinReelIndex;
     };
+    // 取得隨機符號，包含散佈符號機率控制
     ZZ.prototype._getRandomSymbol = function (ZI) {
       var Zd = Y.randomInt(1, 9);
       this._randomScatterAppearCount++;
@@ -373,9 +406,11 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       }
       return Zd;
     };
+    // 取得符號的層級
     ZZ.prototype._getSymbolZOrder = function () {
       return 1;
     };
+    // 根據狀態運行對應的捲動器
     ZZ.prototype._runScroller = function (ZI, Zd) {
       if (ZI === q.SlotState.START) {
         return this._runStartScroller(Zd);
@@ -385,6 +420,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         return undefined;
       }
     };
+    // 播放開始捲動動畫
     ZZ.prototype._runStartScroller = function (ZI) {
       var Zd = this._onReelStartCallback;
       if (this._isTurboSpin) {
@@ -414,6 +450,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         }
       };
     };
+    // 播放停止捲動動畫
     ZZ.prototype._runStopScroller = function (ZI) {
       var Zd = this;
       if (this._isFastStop) {
@@ -451,15 +488,18 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
         Zg();
       }, 0.2, ZO);
     };
+    // 判斷是否為快速模式
     ZZ.prototype.isTurboMode = function () {
       return J.settingMenuHelper.turboSpinOn && !this.isFreeSpin();
     };
+    // 判斷是否在免費遊戲狀態
     ZZ.prototype.isFreeSpin = function () {
       var ZI = Z0.wbsDataSource.transactionModel.stateTransitionFrom;
       var Zd = ZI === w.TransitionState.FREE_SPIN;
       var ZO = ZI === w.TransitionState.FREE_SPIN_RESPIN;
       return Zd || ZO;
     };
+    // 產生重新旋轉用的轉輪資料
     ZZ.prototype._generateRespinReels = function (ZI, Zd) {
       var ZO = [[], [], [], [], [], []];
       for (var ZR = 0; ZR < ZI.length; ZR++) {
@@ -476,6 +516,7 @@ if (!cc._RF.push(module, "1cd993EvjFMRYt4APU9sav3", "SlotHandler")) {
       }
       return ZO;
     };
+    // 設定並處理新的轉輪資料
     ZZ.prototype._setReelData = function (ZI) {
       var Zd = ZI.originalReels;
       var ZO = ZI.goldSymbolBefore;
