@@ -22,12 +22,15 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
       return S;
     }
     __extends(N, Q);
+    // 狀態開始時設定可用操作
     N.prototype.onRun = function () {
       this._setAvailableActions();
     };
+    // 狀態就緒時監聽滾輪停止
     N.prototype.onReady = function () {
       this.controllerPool.generalControllers.slotController.setOnEachStopColumnCallback(this._onEachReelStop.bind(this));
     };
+    // 依停止方式停止轉輪
     N.prototype.invokeSlotStop = function () {
       var Y = this.slotController;
       var W = this.dataSource.transactionModel.originalReels;
@@ -37,6 +40,7 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
         Y.stopSpin();
       }
     };
+    // 轉輪尚未停止時觸發快速停止
     N.prototype.triggerFastStopWhileStopping = function () {
       var Y = this.dataSource.transactionModel.originalReels;
       var W = this.slotController;
@@ -46,6 +50,7 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
       W.setOnClickCallback(undefined);
       W.fastStop(Y);
     };
+    // 設定派彩面板與轉輪資料
     N.prototype.setSlotData = function () {
       var Y = this.dataSource.transactionModel;
       var W = Y.reels;
@@ -55,6 +60,7 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
       S.setReelData(z);
       this.slotController.setReelData(Y);
     };
+    // 結果開始呈現時切換到下個狀態
     N.prototype.resultDidStartRender = function (Y) {
       if (this.dataSource.transactionModel.isTransactionEnd) {
         T.goToStateCallback("prize", true)(Y);
@@ -62,6 +68,7 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
         T.goToStateCallback("idle", true)(Y);
       }
     };
+    // 根據狀態播放額外效果
     N.prototype.renderFeature = function (Y) {
       switch (this.dataSource.transactionModel.stateTransitionFrom) {
         case k.TransitionState.RESPIN:
@@ -76,17 +83,20 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
           }
       }
     };
+    // 銷毀時移除回呼
     N.prototype.onDestroy = function (Y) {
       this.controllerPool.generalControllers.slotController.setOnEachStopColumnCallback(undefined);
       if (Y) {
         Y();
       }
     };
+    // 每列停止時播放音效
     N.prototype._onEachReelStop = function () {
       if (this.controllerPool.generalControllers.slotController.getStopStyle() !== L.StopStyle.FAST) {
         G.playAudio(j.GENERAL_AUDIO.spinStop.key);
       }
     };
+    // 設定當前流程狀態
     N.prototype._setAvailableActions = function () {
       switch (this.dataSource.transactionModel.stateTransitionFrom) {
         case k.TransitionState.RESPIN:
@@ -99,6 +109,7 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
           this.process = x.SpinStateProcess.REEL_SPINNING;
       }
     };
+    // 播放新符號掉落並更新資料
     N.prototype._playDropNewSymbols = function (Y) {
       var W = this.slotController;
       var q = this.dataSource.transactionModel;
@@ -110,6 +121,7 @@ if (!cc._RF.push(module, "ae16e5Ei4VNGopxdeQ1ARYp", "WBSResultState")) {
         }
       });
     };
+    // 移動並更新倍數顯示
     N.prototype._shiftMultiplier = function (Y) {
       var W = this.controllerPool.generalControllers.multiplierController;
       var q = this.dataSource.transactionModel;

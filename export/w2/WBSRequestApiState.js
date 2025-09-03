@@ -15,6 +15,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
   var N = require("AudioConstant");
   var Y = cc._decorator.ccclass;
   var W = function (q) {
+    // 建構子，初始化轉輪控制器與按鈕控制器
     function S(A, M, E) {
       var F = q.call(this, A, M, E) || this;
       var b = {
@@ -32,6 +33,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
     }
     var z = {
       get: function () {
+        // 取得下一次旋轉的回傳資料
         return this._data.nextSpinData;
       },
       enumerable: false,
@@ -39,6 +41,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
     };
     __extends(S, q);
     Object.defineProperty(S.prototype, "nextSpinData", z);
+    // 觸發 API 請求或等待資料後切換狀態
     S.prototype.callApi = function (A) {
       var M = this;
       if (this.nextSpinData) {
@@ -50,15 +53,19 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
         });
       }
     };
+    // 狀態準備完成時註冊 API 事件
     S.prototype.onReady = function () {
       q.prototype.onReady.call(this);
       L.goToStateCallback("result", true)(this._requestApi.bind(this));
     };
+    // 此狀態運行時無額外動作
     S.prototype.onRun = function () {};
+    // 離開狀態時停止震動效果
     S.prototype.onExit = function (A) {
       this._disableShake();
       q.prototype.onExit.call(this, A);
     };
+    // 強制離開時清除觀察者
     S.prototype.onForceExit = function (A) {
       var M = this._dispose;
       if (M) {
@@ -67,6 +74,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
       }
       q.prototype.onForceExit.call(this, A);
     };
+    // 銷毀狀態時釋放觀察者
     S.prototype.onDestroy = function (A) {
       var M = this._dispose;
       if (M) {
@@ -75,6 +83,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
       }
       q.prototype.onDestroy.call(this, A);
     };
+    // 根據交易狀態啟動轉輪並顯示提示
     S.prototype.startSlotController = function () {
       var A = this.controllerPool.generalControllers.featureBuyController;
       var M = this.dataSource.transactionModel.stateTransitionTo;
@@ -95,6 +104,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
           this._resetMultiplier(true);
       }
     };
+    // 觀察 nextSpinData 是否被清空
     S.prototype._observe = function (A) {
       return T.observeCallback(this._data, "nextSpinData")(function (M) {
         if (!M) {
@@ -102,11 +112,13 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
         }
       });
     };
+    // 顯示訊息板提示文字
     S.prototype._displayInfoboardTips = function (A) {
       var M = this.controllerPool.generalControllers.infoboardController;
       M.resetWinEffect();
       M.showTips(A, V.settingMenuHelper.turboSpinOn);
     };
+    // 發送旋轉 API 請求並儲存結果
     S.prototype._requestApi = function () {
       var A = this;
       x.doTransactionAPIRequest({
@@ -122,6 +134,7 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
         A._data.nextSpinData = F;
       });
     };
+    // 根據 API 回應切換至結果狀態
     S.prototype._changeState = function (A) {
       var M = this.nextSpinData;
       var E = M.error;
@@ -135,9 +148,11 @@ if (!cc._RF.push(module, "884a62tCFZCe4sJiY2iRKqr", "WBSRequestApiState")) {
         L.transitionCompleteCallback("result")(A);
       }
     };
+    // 重置倍數顯示
     S.prototype._resetMultiplier = function (A = false) {
       this.controllerPool.generalControllers.multiplierController.playReset(A);
     };
+    // 停止所有符號的震動效果
     S.prototype._disableShake = function (A) {
       this.slotController.stopSlotItemsShakeEffect(A);
     };

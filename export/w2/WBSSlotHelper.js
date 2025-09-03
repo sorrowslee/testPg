@@ -11,6 +11,7 @@ if (!cc._RF.push(module, "239d699csBFGqLUk4z1+S78", "WBSSlotHelper")) {
       return C;
     }
     __extends(k, D);
+    // 初始化 SlotHelper 並設定視圖索引
     k.prototype.init = function (C) {
       this._topBufferRow = C.topBufferRow;
       C.slotViews.forEach(function (u, c) {
@@ -18,6 +19,7 @@ if (!cc._RF.push(module, "239d699csBFGqLUk4z1+S78", "WBSSlotHelper")) {
       });
       D.prototype.init.call(this, C);
     };
+    // 計算滾動器需要停止的距離
     k.prototype.scrollerGetStopDistance = function (C) {
       var u;
       var c = this._scrollerController.indexOfScroller(C);

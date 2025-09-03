@@ -35,21 +35,27 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
     H.getSlotItemByIndex = function (U) {
       return w.slotHandler.getSlotItemByIndices([U])[0];
     };
+    // 設定轉輪點擊的回呼
     H.prototype.setOnClickCallback = function (U) {
       this._onClickCallback = U;
     };
+    // 設定停止完成時的回呼
     H.prototype.setStopCompletedCallback = function (U) {
       this._didStopSpinCompleteCallback = U;
     };
+    // 設定每列停止時的回呼
     H.prototype.setOnEachStopColumnCallback = function (U) {
       this._onEachStopColumnCallback = U;
     };
+    // 設定 Scatter 特效開始時的回呼
     H.prototype.setScatterEffectStartCallback = function (U) {
       this._scatterEffectStartCallback = U;
     };
+    // 設定 Scatter 特效結束時的回呼
     H.prototype.setScatterEffectStopCallback = function (U) {
       this._scatterEffectStopCallback = U;
     };
+    // 注入外部控制器供後續使用
     H.prototype.setupControllers = function (U) {
       this._infoboardController = U.infoboardController;
       this._clickEffectController = U.clickEffectController;
@@ -60,6 +66,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
       this._slowDropEffectController = U.slowDropEffectController;
       this._foregroundController = U.foregroundController;
     };
+    // 初始化自訂符號物件池
     H.prototype._initSlotItemCustom = function () {
       var U = [];
       L.nodePoolHandler.registerReusableItem(k.NodePoolName.SlotItemCustom, this.slotItemPrefab, "WBSSlotItemController", 30);
@@ -72,6 +79,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         L.nodePoolHandler.enqueueReusableItem(P, k.NodePoolName.SlotItemCustom);
       }
     };
+    // 初始化轉輪與相關回呼
     H.prototype.init = function (U) {
       this._initNodes({
         reelArea: this.node
@@ -90,6 +98,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         containerNode: this.node
       });
     };
+    // 啟動轉輪並處理快速停止
     H.prototype.spin = function (U, B) {
       this.removeOverlaySlotItems();
       this._stateMachine.spin(0.3, z.featureConfig.regularSpinningTime);
@@ -104,6 +113,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
       this._enableTouchEvent();
       this.exitSlotItemSpine();
     };
+    // 首次進場時的攝影機縮放效果
     H.prototype.gameIntroCameraZoomIn = function (U, B) {
       var P = this;
       if (U === undefined) {
@@ -143,6 +153,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         });
       }
     };
+    // 攝影機放大畫面
     H.prototype.cameraZoomIn = function (U, B) {
       var P = this;
       if (U === undefined) {
@@ -175,6 +186,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }, 0.87, 1, 1);
       }
     };
+    // 攝影機縮小畫面
     H.prototype.cameraZoomOut = function (U, B) {
       var P = this;
       if (U === undefined) {
@@ -207,10 +219,12 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }, 1, 0.87, 4);
       }
     };
+    // 播放舊符號向下掉落的效果
     H.prototype.playShiftOldSlotEffect = function (U) {
       this.removeOverlaySlotItems();
       w.slotHandler.playShiftOldSlotEffect(U);
     };
+    // 播放新符號填入的效果
     H.prototype.playShiftNewSlotEffect = function (U) {
       var B = this;
       var P = j.wbsDataSource.transactionModel;
@@ -258,20 +272,25 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       });
     };
+    // 顯示慢落特效
     H.prototype._playSlowDrop = function (U) {
       this._slowDropEffectController.show(U);
     };
+    // 停止慢落特效
     H.prototype._stopSlowDrop = function () {
       this._slowDropEffectController.hide();
     };
+    // 停止轉輪
     H.prototype.stopSpin = function () {
       if (this.getStopStyle() === D.StopStyle.NORMAL) {
         this._stateMachine.stop(w.slotHandler.stopSpin.bind(w.slotHandler));
       }
     };
+    // 取得目前停止的方式
     H.prototype.getStopStyle = function () {
       return this._stateMachine.getStopStyle();
     };
+    // 立即快速停止所有滾輪
     H.prototype.fastStop = function () {
       this._showTips(true);
       this._fastSpinController.reset();
@@ -279,30 +298,38 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
       w.slotHandler.setFastStop();
       this._stateMachine.fastStop(w.slotHandler.instantStopScroll.bind(w.slotHandler));
     };
+    // 標記為即將快速停止
     H.prototype.markFastStop = function () {
       w.slotHandler.setFastStop();
       this._stateMachine.markFastStop();
     };
+    // 取消快速停止標記
     H.prototype.unmarkFastStop = function () {
       w.slotHandler.setFastStop(false);
       this._stateMachine.unmarkFastStop();
     };
+    // 設定輪帶資料
     H.prototype.setReelData = function (U) {
       w.slotHandler.setReelData(U);
     };
+    // 重新載入輪帶資料
     H.prototype.reloadData = function (U) {
       w.slotHandler.reloadData(U);
     };
+    // 重新載入前清除覆蓋符號
     H.prototype._onBeforeReload = function () {
       this.removeOverlaySlotItems();
     };
+    // 重新載入後播放待機動畫並加上覆蓋
     H.prototype._onAfterReload = function () {
       this._playSymbolIdleEffect(true);
       this.addOverlayScatterAndWild();
     };
+    // 取得底層 slotHandler
     H.prototype.getSlotHandler = function () {
       return w.slotHandler;
     };
+    // 單列停止時觸發的處理
     H.prototype._onReelStopCallback = function (U) {
       var B = this;
       var P = this.getSlotItems(k.SLOT_ITEM_MAP[U]);
@@ -362,6 +389,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         this._onEachStopColumnCallback(U);
       }
     };
+    // 所有滾輪停止後的回呼
     H.prototype._onSpinStopCallback = function () {
       this.addOverlayScatterAndWild();
       this._stateMachine.stopped();
@@ -372,12 +400,14 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         U();
       }
     };
+    // Scatter 特效開始時的回呼
     H.prototype._onScatterEffectStartCallback = function (U) {
       x.deferCallback(this, true)(this._playScatterFastSpinStartEffect.bind(this, U));
       if (this._scatterEffectStartCallback) {
         this._scatterEffectStartCallback(U);
       }
     };
+    // Scatter 特效結束時的回呼
     H.prototype._onScatterEffectStopCallback = function (U, B) {
       if (U === k.NUMBER_OF_COLUMN - 1) {
         this._playScatterFastSpinExitEffect();
@@ -388,12 +418,15 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         B();
       }
     };
+    // 啟用轉輪區域的觸控事件
     H.prototype._enableTouchEvent = function () {
       this.node.on(cc.Node.EventType.TOUCH_START, this.onSlotRegionClicked, this);
     };
+    // 停用轉輪區域的觸控事件
     H.prototype._disableTouchEvent = function () {
       this.node.off(cc.Node.EventType.TOUCH_START, this.onSlotRegionClicked, this);
     };
+    // 點擊轉輪區域時觸發
     H.prototype.onSlotRegionClicked = function (U) {
       if (this._onClickCallback) {
         this._disableTouchEvent();
@@ -411,21 +444,26 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
     H.prototype.getSlotItems = function (U) {
       return w.slotHandler.getSlotItemByIndices(U);
     };
+    // 設定指定符號的可見狀態
     H.prototype.setSlotItemsVisible = function (U, B) {
       var P;
       if (B.length !== 0) {
         (P = w.slotHandler).setSlotItemsVisible.apply(P, __spread([U], B));
       }
     };
+    // 取得所有符號的世界座標
     H.prototype.getAllSlotItemPosition = function () {
       return w.slotHandler.getSlotItemsWorldPosition();
     };
+    // 讓指定輪帶進入暗色模式
     H.prototype.enableDarkReel = function (U = [], B = true) {
       this._slotTintController.enableDarkReel(U, B);
     };
+    // 關閉暗色模式
     H.prototype.disableDarkMode = function (U = true) {
       this._slotTintController.disableDarkMode(U);
     };
+    // 加上 Scatter 的覆蓋圖層
     H.prototype.addOverlayScatter = function () {
       this.removeOverlaySlotItems();
       for (var U = this.getSlotItems(), B = 0; B < U.length; B++) {
@@ -435,6 +473,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       }
     };
+    // 加上 Scatter 與 Wild 的覆蓋圖層
     H.prototype.addOverlayScatterAndWild = function () {
       this.removeOverlaySlotItems();
       for (var U = this.getSlotItems(), B = 0; B < U.length; B++) {
@@ -445,9 +484,11 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       }
     };
+    // 移除所有覆蓋圖層
     H.prototype.removeOverlaySlotItems = function () {
       this._slotTintController.removeOverlaySlotItem();
     };
+    // 播放符號震動效果
     H.prototype.playSlotItemsShakeEffect = function () {
       var U = this;
       this._shakeItemDisposer = x.delayCallback(0.5)(function () {
@@ -458,6 +499,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         });
       });
     };
+    // 停止符號震動效果
     H.prototype.stopSlotItemsShakeEffect = function (U) {
       var B = this;
       if (this._shakeItemDisposer) {
@@ -490,12 +532,15 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         U.playSpineExit();
       });
     };
+    // 是否為慢落狀態
     H.prototype.isSlowDrop = function () {
       return w.slotHandler.isSlowDrop();
     };
+    // 是否為心跳加速狀態
     H.prototype.isHeartBeat = function () {
       return w.slotHandler.isHeartBeat();
     };
+    // 移除得獎符號並隱藏
     H.prototype.removeSymbols = function (U) {
       var B = j.wbsDataSource.transactionModel;
       var P = B.winPositionList;
@@ -508,9 +553,11 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         U();
       }
     };
+    // 是否處於快速停止狀態
     H.prototype.isFastStop = function () {
       return w.slotHandler.getFastStop();
     };
+    // 某列停止後啟用快速旋轉提示
     H.prototype._enableFastSpin = function (U) {
       var B = U + 1 > k.NUMBER_OF_COLUMN - 1 ? undefined : U + 1;
       var P = this.isFastStop();
@@ -525,6 +572,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       }
     };
+    // 最後一列停止後關閉快速旋轉提示
     H.prototype._disableFastSpin = function () {
       if (w.slotHandler.isFastSpinScroller(k.NUMBER_OF_COLUMN - 1)) {
         var U = j.wbsDataSource.transactionModel;
@@ -542,6 +590,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       }
     };
+    // 播放符號生成的動畫
     H.prototype._playSymbolSpawnEffect = function (U = [], B) {
       var P = U.length;
       var X = 0;
@@ -558,6 +607,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         B();
       }
     };
+    // 播放符號待機動畫
     H.prototype._playSymbolIdleEffect = function (U = false) {
       var B = this.getSlotItems();
       var P = B.length;
@@ -569,6 +619,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       }
     };
+    // 播放 Scatter 心跳動畫
     H.prototype._playScatterHeartbeatEffect = function () {
       W.playAudio(q.GENERAL_AUDIO.heartBeatNoise.key);
       var U = this.getSlotItems();
@@ -579,6 +630,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       }
     };
+    // 播放 Scatter 得獎動畫
     H.prototype.playScatterWinEffect = function () {
       W.playAudio(q.GENERAL_AUDIO.scatterWinHighlight.key);
       this.getSlotItems().forEach(function (U) {
@@ -590,6 +642,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
       });
       this._infoboardController.showFreeSpinWonTip();
     };
+    // 依狀態顯示提示文字
     H.prototype._showTips = function (U = false) {
       var B = this._infoboardController;
       var P = j.wbsDataSource.transactionModel.stateTransitionFrom;
@@ -599,6 +652,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         B.showTips(Y.InfoboardUIState.FREE_SPIN_TIPS);
       }
     };
+    // 播放 Scatter 快速旋轉開始效果
     H.prototype._playScatterFastSpinStartEffect = function (U, B) {
       var P = [];
       for (var X = 0; X < U; X++) {
@@ -626,6 +680,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         this._showTips(true);
       }
     };
+    // 播放 Scatter 快速旋轉結束效果
     H.prototype._playScatterFastSpinExitEffect = function (U = false, B) {
       if (!j.wbsDataSource.transactionModel.winLines) {
         this._showTips(true);
@@ -636,6 +691,7 @@ if (!cc._RF.push(module, "8057dBhRYNMxL+23kANKBOd", "WBSSlotController")) {
         }
       });
     };
+    // 初始化節點，實際實作由自動化測試補上
     H.prototype._initNodes = function () {};
     H.slotHandler = new C.default();
     __decorate([E(cc.Prefab)], H.prototype, "slotItemPrefab", undefined);

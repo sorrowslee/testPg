@@ -138,6 +138,7 @@ if (!cc._RF.push(module, "e3bbdJAS9hF9YTk/ZsIn/Fq", "WBSSlotTransactionModel")) 
     });
     Object.defineProperty(u.prototype, "isTransactionEnd", {
       get: function () {
+        // 判斷是否回到一般或免費遊戲狀態
         var c = this.stateTransitionTo;
         return c === x.TransitionState.NORMAL || c === x.TransitionState.FREE_SPIN;
       },
@@ -151,6 +152,7 @@ if (!cc._RF.push(module, "e3bbdJAS9hF9YTk/ZsIn/Fq", "WBSSlotTransactionModel")) 
       enumerable: false,
       configurable: true
     });
+    // 更新一次旋轉後的交易資訊
     u.prototype.updateSlotGameTransactionInfo = function (j) {
       var G = j.rns;
       var V = j.prbr;

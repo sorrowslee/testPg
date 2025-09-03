@@ -63,6 +63,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       enumerable: false,
       configurable: true
     });
+    // 初始化符號的基本設定
     q.prototype.init = function (S) {
       this.reset();
       this.content = S.sprite;
@@ -74,6 +75,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       var M = L.slotImageHandler.spines[A];
       this.fakeSpine.skeletonData = M;
     };
+    // 設定符號圖像與外觀
     q.prototype.setup = function (S, z, A, M = false) {
       this.symbolIndex = S % 100;
       this._blockType = Math.floor(S / 100) * 100;
@@ -95,6 +97,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       F.scale = 1;
       F.opacity = 255;
     };
+    // 依符號索引設定 Spine 動畫
     q.prototype.setSpine = function (S) {
       if (S !== undefined) {
         this.symbolIndex = S;
@@ -105,6 +108,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this.resetSpine();
       this.spine.node.active = false;
     };
+    // 切換符號為模糊或清晰
     q.prototype.setBlur = function (S) {
       var z = this.content;
       if (z) {
@@ -117,11 +121,13 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         A.node.scale = S ? 2 : 1;
       }
     };
+    // 設定符號在節點中的層級
     q.prototype.setZIndex = function (S = 0) {
       if (this.node) {
         this.node.zIndex = this._generateZIndex();
       }
     };
+    // 播放符號的待機動畫
     q.prototype.playSpineIdle = function (S = false) {
       if (this.symbolIndex === x.SlotSymbols.Wild || this.symbolIndex === x.SlotSymbols.Scatter) {
         this.resetSpine();
@@ -131,6 +137,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         z.setAnimation(0, "idle", true);
       }
     };
+    // 播放符號出現動畫
     q.prototype.playSpineSpawn = function (S) {
       var z = this;
       if (this.symbolIndex === x.SlotSymbols.Scatter) {
@@ -151,6 +158,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       A.setAnimation(0, "spawn", false);
       this.playScatterIdle();
     };
+    // 播放假符號的出現動畫
     q.prototype.playFakeSpineSpawn = function () {
       if (this.symbolIndex === x.SlotSymbols.Scatter) {
         this.scatterEffectController.playSmoke();
@@ -159,6 +167,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       S.node.active = true;
       S.setAnimation(0, "spawn", false);
     };
+    // 隱藏假符號的出現動畫
     q.prototype.hideFakeSpineSpawn = function (S) {
       var z = this.fakeSpine;
       z.clearTrack(0);
@@ -169,6 +178,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         S();
       }
     };
+    // 播放符號離場動畫
     q.prototype.playSpineExit = function (S) {
       var z = this;
       if (this.symbolIndex === x.SlotSymbols.Scatter || this.symbolIndex === x.SlotSymbols.Wild) {
@@ -188,6 +198,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         S();
       }
     };
+    // 播放符號得獎動畫
     q.prototype.playSpineWin = function (S) {
       var z = this;
       var A = this.spine;
@@ -205,12 +216,14 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       });
       A.setAnimation(0, "win", false);
     };
+    // 播放 Scatter 的閃爍待機效果
     q.prototype.playScatterIdle = function (S = false) {
       if (this.symbolIndex === x.SlotSymbols.Scatter) {
         this.scatterEffectController.show(S);
         this.scatterEffectController.playShine();
       }
     };
+    // Scatter 得獎後的待機動畫
     q.prototype.playScatterWinIdleSpine = function () {
       this.scatterEffectController.stopGlow();
       var S = this.spine;
@@ -219,6 +232,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this.resetSpine();
       S.setAnimation(0, "win_idle", true);
     };
+    // Scatter 的心跳動畫
     q.prototype.playScatterHeartBeat = function () {
       var S = this;
       if (this.symbolIndex === x.SlotSymbols.Scatter) {
@@ -235,15 +249,18 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         this.scatterEffectController.playGlow();
       }
     };
+    // 快速旋轉時的心跳縮放效果
     q.prototype.playScatterFastSpinBeat = function () {
       if (this.symbolIndex === x.SlotSymbols.Scatter) {
         var S = cc.sequence(cc.scaleTo(0.2, 1.2), cc.scaleTo(0.15, 0.95), cc.scaleTo(0.05, 1, 1), cc.delayTime(0.6));
         this.spine.node.runAction(S.repeatForever());
       }
     };
+    // 停止快速旋轉心跳效果
     q.prototype.stopScatterFastSpinBeat = function () {
       this.spine.node.stopAllActions();
     };
+    // 播放 Scatter 快速旋轉開始動畫
     q.prototype.playScatterFastSpinStart = function (S) {
       var z = this;
       this._isFastSpinSpine = true;
@@ -261,6 +278,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       });
       A.setAnimation(0, "fastspin_start", false);
     };
+    // 播放 Scatter 快速旋轉中的待機動畫
     q.prototype.playScatterFastSpinIdle = function () {
       this._isFastSpinSpine = true;
       var S = this.spine;
@@ -269,6 +287,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this.resetSpine();
       S.setAnimation(0, "fastspin_idle", true);
     };
+    // 播放 Scatter 快速旋轉結束動畫
     q.prototype.playScatterFastSpinExit = function (S, z) {
       var A = this;
       if (S === undefined) {
@@ -291,6 +310,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         M.setAnimation(0, "fastspin_exit", false);
       }
     };
+    // 亮起符號並播放得獎動畫
     q.prototype.playHighLight = function (S) {
       this.payoutEffectController.highlightSymbol();
       var z = this.contentHolder;
@@ -298,11 +318,13 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       z.runAction(cc.scaleTo(0.3, 1.1));
       this.playSpineWin(S);
     };
+    // 播放符號破碎前的搖晃動畫
     q.prototype.playPreBreak = function (S) {
       var z = this._blockType === x.BLOCK_TYPE.GOLD;
       this.playSymbolShake();
       this.payoutEffectController.breakSymbol(z, S);
     };
+    // 播放符號破碎動畫
     q.prototype.playBreak = function (S) {
       var z = this;
       var A = this._blockType === x.BLOCK_TYPE.GOLD;
@@ -346,9 +368,11 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         }
       });
     };
+    // 重設容器位置
     q.prototype.resetHolderPosition = function () {
       this.scaleHolder.setPosition(cc.Vec2.ZERO);
     };
+    // 重設符號狀態
     q.prototype.reset = function () {
       this.scatterEffectController.reset();
       this.resetSpine();
@@ -360,6 +384,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this._isFastSpinSpine = false;
       this.payoutEffectController.clear();
     };
+    // 重設 Spine 動畫狀態
     q.prototype.resetSpine = function () {
       var S = this.spine;
       if (S) {
@@ -368,10 +393,12 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         S.setCompleteListener(undefined);
       }
     };
+    // 播放符號晃動效果
     q.prototype.playSymbolShake = function () {
       var S = (Math.floor(Math.random() * 100) + 30) * 0.001;
       this.contentHolder.runAction(cc.repeatForever(cc.sequence(cc.moveBy(S, cc.v2(-2.5, 0)), cc.moveBy(S, cc.v2(5, 1.5)), cc.moveBy(S, cc.v2(-1, -4)), cc.moveBy(S, cc.v2(-3, 4.5)), cc.moveBy(S, cc.v2(4, -2)), cc.moveBy(S, cc.v2(-4, -1.5)), cc.moveBy(S, cc.v2(-1, 2.5)), cc.moveBy(S, cc.v2(2.5, -1)))));
     };
+    // 停止符號晃動效果
     q.prototype.stopSymbolShake = function (S) {
       this.contentHolder.stopAllActions();
       this.contentHolder.setPosition(cc.v2(0, 0));
@@ -379,6 +406,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
         S();
       }
     };
+    // 將符號轉換成 Wild
     q.prototype._transformToWild = function () {
       var S = x.SlotSymbols.Wild;
       this.symbolIndex = S;
@@ -393,6 +421,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this.playSpineIdle();
       this.payoutEffectController.showWildVfx();
     };
+    // 依符號類型設定外框圖片
     q.prototype._setupFrame = function () {
       var S = this._blockType;
       var z = undefined;
@@ -404,6 +433,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this._normalFrameSpriteFrame = z;
       this._blurredFrameSpriteFrame = A;
     };
+    // 依符號類型設定背景圖片
     q.prototype._setupBackground = function () {
       var S = this.symbolIndex;
       var z = undefined;
@@ -415,6 +445,7 @@ if (!cc._RF.push(module, "7086fUCRa9IQZnKVRemVnXo", "WBSSlotItemController")) {
       this._normalBgSpriteFrame = z;
       this._blurredBgSpriteFrame = A;
     };
+    // 依位置與符號類型計算層級
     q.prototype._generateZIndex = function () {
       if (this.slotViewIndex === undefined) {
         return 0;

@@ -234,3 +234,15 @@
 | export/w1/WalletHandlers.js | 初始化錢包控制與回呼 |
 | export/w1/WalletHelper.js | 管理錢包與免費/紅利資訊 |
 | export/w1/WaysController.js | 顯示 Ways 文字的控制器 |
+| export/w2/WBSRequestApiState.js | 處理 API 請求並切換到結果狀態 |
+| export/w2/WBSSlotController.js | 控制轉輪運作、快速旋轉與相關特效 |
+| export/w2/WBSSlotItemController.js | 管理單一符號的顯示與動畫 |
+| export/w2/WBSSlotScrollerController.js | 停用時停止所有捲動器 |
+| export/w2/WBSRespinState.js | 處理 Respin 狀態的符號崩塌與切換 |
+| export/w2/WBSResultState.js | 結果狀態，控制停輪與掉落新符號 |
+| export/w2/WBSSlotDataHandler.js | 設定並更新輪帶資料 |
+| export/w2/WBSSlotItemHandler.js | 依符號尺寸映射到功能性陣列 |
+| export/w2/WBSSlotSystemModel.js | 儲存系統設定與 Feature Buy 資料 |
+| export/w2/WBSSlotHelper.js | 計算滾動器停止距離與視圖索引 |
+| export/w2/WBSSlotItemPool.js | 管理符號物件池的取得與釋放 |
+| export/w2/WBSSlotTransactionModel.js | 儲存旋轉結果與倍數、scatter 等資訊 |

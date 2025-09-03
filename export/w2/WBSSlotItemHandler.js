@@ -9,6 +9,7 @@ if (!cc._RF.push(module, "3168eVYZ8VEEpk3F9fRKIUL", "WBSSlotItemHandler")) {
       return D !== null && D.apply(this, arguments) || this;
     }
     __extends(k, D);
+    // 將符號依大小填入功能性陣列
     k.prototype.setSlotItem = function (C, j, G = 0) {
       var V = x.NUMBER_OF_ROW_LIST[C];
       var Q = V - 1 - (j.positionIndex - G);
