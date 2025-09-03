@@ -9,7 +9,9 @@ if (!cc._RF.push(module, "2472eYgH9NBWJvtIuLXvIEh", "NavigationDefaultTransition
       return D !== null && D.apply(this, arguments) || this;
     }
     __extends(k, D);
+    // 回傳過渡動畫時間
     k.prototype.transitionDuration = function () {};
+    // 推入場景的移動動畫
     k.prototype.animateTransition = function (C, u) {
       var c = C.getToController();
       var p = C.getFromController();
@@ -37,7 +39,9 @@ if (!cc._RF.push(module, "2472eYgH9NBWJvtIuLXvIEh", "NavigationDefaultTransition
       return D !== null && D.apply(this, arguments) || this;
     }
     __extends(k, D);
+    // 回傳過渡動畫時間
     k.prototype.transitionDuration = function () {};
+    // 彈出場景的移動動畫
     k.prototype.animateTransition = function (C, u) {
       var c = C.getToController();
       var p = C.getFromController();

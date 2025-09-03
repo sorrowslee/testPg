@@ -11,6 +11,7 @@ if (!cc._RF.push(module, "ea5caTag+xJsrT667bFPlnC", "MoreMenuButton")) {
       return k !== null && k.apply(this, arguments) || this;
     }
     __extends(C, k);
+    // 初始設定額外的碰撞範圍位置
     C.prototype.customSetup = function () {
       this.circleCollider.x = -10;
     };

@@ -13,6 +13,7 @@ if (!cc._RF.push(module, "22ff3ETL9NJ6LV0gfCqckfH", "NumberCurvedController")) {
       return c;
     }
     __extends(u, C);
+    // 取得或建立數字容器節點
     u.prototype.dequeueNumberContainer = function (c) {
       var p = this.numberContainer.children[c];
       if (!p) {
@@ -24,6 +25,7 @@ if (!cc._RF.push(module, "22ff3ETL9NJ6LV0gfCqckfH", "NumberCurvedController")) {
       }
       return p;
     };
+    // 顯示數字並依曲度調整角度
     u.prototype.displayNumber = function (p, j = true, G) {
       C.prototype.displayNumber.call(this, p, j, G);
       this._layout.updateLayout();

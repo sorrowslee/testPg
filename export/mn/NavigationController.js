@@ -87,6 +87,7 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
       enumerable: false,
       configurable: true
     });
+    // 初始化導航控制器尺寸與監聽
     W.prototype.onLoad = function () {
       var q = cc.Canvas.instance.designResolution;
       var S = q.height;
@@ -101,12 +102,14 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
       this.statusBarPlaceholderNode.height = this.safeAreaInsets.top;
       this.node.on("size-changed", this._resize, this);
     };
+    // 啟用當前頂層控制器
     W.prototype.onEnable = function () {
       var q = this.topController;
       if (q) {
         q.enabled = true;
       }
     };
+    // 停用當前頂層控制器
     W.prototype.onDisable = function () {
       var q = this.topController;
       if (q) {
@@ -138,6 +141,7 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
       }
     };
     W.prototype.viewDidLayoutSubviews = function () {};
+    // 推入新的視圖控制器
     W.prototype.pushController = function (q, S) {
       if (!this._isOnTransistion && q) {
         this._isOnTransistion = true;
@@ -177,6 +181,7 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
         }
       }
     };
+    // 彈出頂層視圖控制器
     W.prototype.popController = function (q) {
       var S = this.topController;
       var z = this.backController;
@@ -234,24 +239,29 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
       this.navigationBar.background.node.active = true;
       this.navigationBar.shadow.active = true;
     };
+    // 隱藏導覽列並可選擇重新計算尺寸
     W.prototype.hideNavigationBar = function (q = true) {
       this.navigationBar.node.active = false;
       if (q) {
         this._resize();
       }
     };
+    // 顯示導覽列並可選擇重新計算尺寸
     W.prototype.showNavigationBar = function (q = true) {
       this.navigationBar.node.active = true;
       if (q) {
         this._resize();
       }
     };
+    // 啟用導覽列上的按鈕
     W.prototype.enableItems = function () {
       this.navigationBar.enableButtons();
     };
+    // 停用導覽列上的按鈕
     W.prototype.disableItems = function () {
       this.navigationBar.disableButtons();
     };
+    // 設定目前的控制器堆疊
     W.prototype.setControllers = function (q) {
       if (q && q.length && !(q.length < 1)) {
         var S = this.controllers;
@@ -269,6 +279,7 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
         this._controllers = q;
       }
     };
+    // 重新計算內容與控制器尺寸
     W.prototype._resize = function () {
       this._resizeContentNode();
       this._resizeViewControllers();
@@ -296,6 +307,7 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
         M.viewDidLayoutSubviews();
       });
     };
+    // 推入動畫結束後的處理
     W.prototype._pushViewControllerAnimateEnd = function (q, S = false) {
       if (this._checkIfNeedCallAppear()) {
         q.viewDidAppear(S);
@@ -309,6 +321,7 @@ if (!cc._RF.push(module, "d742diXy4tHCIVIgSy1jEIb", "NavigationController")) {
         z.enabled = false;
       }
     };
+    // 彈出動畫結束後的處理
     W.prototype._popViewControllerAnimateEnd = function (q = false) {
       var S = this.backController;
       if (S) {

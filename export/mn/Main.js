@@ -47,6 +47,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       return Zj;
     }
     __extends(Zp, Zc);
+    // 遊戲載入時進行初始化流程
     Zp.prototype.onLoad = function () {
       this._setupAppStateMachine();
       Q.initializeGame({
@@ -76,6 +77,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         gameResultVerifyConfig: true
       });
     };
+    // 設定轉輪相關的初始參數
     Zp.prototype._initSpinConfig = function (Zj) {
       var Zl = {
         minimumSpinningTime: 0.2,
@@ -89,9 +91,11 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         Zj();
       }
     };
+    // 串接多個初始化步驟建立遊戲
     Zp.prototype._gameSetup = function () {
       q.sequenceCallback(this._initSpinConfig.bind(this), this._initWalletHelper.bind(this), this._getInitGameInfo.bind(this), this._initAudioManager.bind(this), this._setupSettingMenu.bind(this), this._initLoader.bind(this), this._initRefreshWorldHandler.bind(this), this._load.bind(this), this._initializeSettingMenu.bind(this), this._setupWallets.bind(this), q.deferCallback(true), this._setupSlotController.bind(this), this._setupControllers.bind(this), q.deferCallback(true), this._initGeneralLocalSlotPositions.bind(this), this._setupUI.bind(this), this._setupFeatureBuy.bind(this), this._setupTransactionStateMachine.bind(this))(this._notifyPreloadComplete.bind(this));
     };
+    // 初始化錢包輔助工具
     Zp.prototype._initWalletHelper = function (Zj) {
       var Zl = {
         getGameInfo: this._getGameInfoByWallet.bind(this)
@@ -101,6 +105,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         Zj();
       }
     };
+    // 透過錢包資料取得遊戲資訊
     Zp.prototype._getGameInfoByWallet = function (Zj, Zl) {
       var Ze = Zj ? {
         wk: Zj
@@ -111,6 +116,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         }
       }, Ze);
     };
+    // 呼叫 API 取得遊戲資料
     Zp.prototype._getGameInfo = function (Zj, Zl) {
       Z0.doAPIRequest({
         name: "Get Game Info",
@@ -120,6 +126,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         retryMessage: shell.I18n.t("General.LoadingInfoRetry")
       }, this._gameInfoResultReturn(Zj));
     };
+    // 取得遊戲資訊後的處理函式
     Zp.prototype._initGameInfoResultReturn = function (Zj) {
       var Zl = Date.now();
       return function (Ze, ZG) {
@@ -131,6 +138,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         });
       };
     };
+    // 解析遊戲資訊並設定選單資料
     Zp.prototype._gameInfoResultReturn = function (Zj) {
       return function (Zl, Ze) {
         if (Ze && Ze.dt) {
@@ -155,6 +163,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         }
       };
     };
+    // 請求初始遊戲資訊
     Zp.prototype._getInitGameInfo = function (Zj) {
       var Zl = {
         eatk: Z6.wbsDataSource.systemModel.extraAssetTableKey
@@ -164,12 +173,14 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       W.showMessage(shell.I18n.t("General.LoadingInfo"));
       this._getGameInfo(this._initGameInfoResultReturn(Zj), Zl);
     };
+    // 初始化音效管理器
     Zp.prototype._initAudioManager = function (Zj) {
       Zd.init();
       if (Zj) {
         Zj();
       }
     };
+    // 設定選單並處理 Feature Buy 等邏輯
     Zp.prototype._setupSettingMenu = function (Zj) {
       var Zl = this;
       function Ze() {
@@ -208,6 +219,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       };
       Z2.setupSettingMenu(ZG);
     };
+    // 初始化載入控制器
     Zp.prototype._initLoader = function (Zj) {
       var Zl = {
         generalControllers: this.generalControllers,
@@ -220,6 +232,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         Zj();
       }
     };
+    // 建立重新整理世界的處理器
     Zp.prototype._initRefreshWorldHandler = function (Zj) {
       this._refreshWorldHandler.initialize({
         generalController: this.generalControllers,
@@ -235,6 +248,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         Zj();
       }
     };
+    // 載入遊戲資源
     Zp.prototype._load = function (Zj) {
       var Zl = Z6.wbsDataSource.transactionModel;
       var Ze = Zl.stateTransitionTo;
@@ -279,6 +293,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         callback: Zj
       });
     };
+    // 設定 Feature Buy 功能
     Zp.prototype._setupFeatureBuy = function (Zj) {
       var Zl = Z6.wbsDataSource.systemModel;
       var Ze = Zl.featureBuy;
@@ -333,6 +348,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       };
       Z3.setupWallets(Zl);
     };
+    // 初始化轉輪控制器
     Zp.prototype._setupSlotController = function (Zj) {
       var Zl = this.generalControllers;
       var Ze = Zl.slotController;
@@ -413,6 +429,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       this._loadingController.gameLaunched = true;
       this._gameEventSubscription();
     };
+    // 開始遊戲流程
     Zp.prototype._startGame = function () {
       var Zj = this;
       this._playBGM();
@@ -438,6 +455,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         this._appStateMachine.run();
       }
     };
+    // 播放背景音樂
     Zp.prototype._playBGM = function () {
       var Zj = this;
       var Zl = Z6.wbsDataSource.transactionModel.stateTransitionTo;
@@ -463,6 +481,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         ZZ.bgmHandler.playBgm(ZO.TransitionState.NORMAL);
       }
     };
+    // 建立應用狀態機
     Zp.prototype._setupAppStateMachine = function () {
       var Zj = new Z4.default({
         getNextAppState: this._evaluateAppState.bind(this),
@@ -471,6 +490,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       this._appStateMachine = Zj;
       this._refreshWorldHandler.setAppStateMachine(Zj);
     };
+    // 判斷當前狀態並啟動遊戲
     Zp.prototype._evaluateAppState = function () {
       switch (Z6.wbsDataSource.transactionModel.stateTransitionTo) {
         case ZO.TransitionState.NORMAL:
@@ -483,6 +503,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
           return;
       }
     };
+    // 取得一般旋轉狀態
     Zp.prototype._getNormalSpinState = function () {
       var Zj = this.generalControllers;
       var Zl = new ZK.default(Z6.wbsDataSource, {
@@ -491,6 +512,7 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       Z6.wbsDataSource.isRefreshWorld = false;
       return Zl;
     };
+    // 取得免費旋轉狀態
     Zp.prototype._getFreeSpinState = function () {
       var Zj = {
         generalControllers: this.generalControllers,
@@ -521,9 +543,11 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
         }
       });
     };
+    // 重新整理世界資料
     Zp.prototype._refreshWorld = function (Zj) {
       this._refreshWorldHandler.refreshWorldByChangeWalletIdle(this._setupUI.bind(this), Zj);
     };
+    // 建立遊戲介面
     Zp.prototype._setupUI = function (Zj) {
       var Zl = {
         dataSource: Z6.wbsDataSource,
@@ -532,9 +556,11 @@ if (!cc._RF.push(module, "0ae50wCvn9MBav8tA9gRg+G", "Main")) {
       };
       Z9.renderUIBaseOnState(Zl, Zj);
     };
+    // 更新設定選單中的餘額
     Zp.prototype._settingMenuUpdateBalance = function (Zj) {
       Z1.settingMenuHelper.setBalance(Zj);
     };
+    // 取得顯示贏分特效的門檻
     Zp.prototype._getWinThreshold = function () {
       var Zj = Z6.wbsDataSource.systemModel;
       var Zl = Zj.maxLineNumber;

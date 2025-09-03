@@ -27,6 +27,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       return j;
     }
     __extends(c, u);
+    // 重設音效參數
     c.prototype.reset = function (p) {
       this._startTime = 0;
       this._pausedTime = 0;
@@ -53,6 +54,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
         }
       }
     };
+    // 銷毀並清除所有設定
     c.prototype.destroy = function () {
       this.reset();
       this.removeAll();
@@ -125,6 +127,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       enumerable: false,
       configurable: true
     });
+    // 暫停播放
     c.prototype.pause = function () {
       if (!this.paused) {
         this._pausedTime = Date.now();
@@ -132,6 +135,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
         this._setScheduleDispose(undefined);
       }
     };
+    // 從暫停狀態恢復
     c.prototype.resume = function () {
       if (this.paused) {
         this._startTime += Date.now() - this._pausedTime;
@@ -169,6 +173,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       enumerable: false,
       configurable: true
     });
+    // 跳轉到指定時間點
     c.prototype.seek = function (p) {
       this._setFadeDispose(undefined);
       if (p >= this._duration && !this._loop) {
@@ -188,6 +193,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       }
       this.emit(shell.WebAudioEvent.SEEK);
     };
+    // 開始播放並設定持續時間
     c.prototype.play = function (p, j) {
       this._startTime = Date.now();
       this._duration = typeof j == "number" && j > 0 ? j : this._duration;
@@ -195,6 +201,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
         this._scheduleEnd();
       }
     };
+    // 播放結束時的處理
     c.prototype._onAudioEnded = function () {
       if (this._fadeDispose) {
         this._setFadeDispose(undefined);
@@ -204,6 +211,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       this._pausedTime = 0;
       this.emit(shell.WebAudioEvent.ENDED);
     };
+    // 停止播放並重置狀態
     c.prototype.stop = function () {
       this._setFadeDispose(undefined);
       this._setScheduleDispose(undefined);
@@ -211,13 +219,16 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       this._pausedTime = 0;
       this.emit(shell.WebAudioEvent.STOP);
     };
+    // 在一段時間內淡出音量
     c.prototype.fade = function (p, j, G) {
       this._volume = j;
       this._setFadeDispose(G);
     };
+    // 淡出結束後觸發事件
     c.prototype._onFadeEnded = function () {
       this.emit(shell.WebAudioEvent.FADED);
     };
+    // 排程播放結束時機
     c.prototype._scheduleEnd = function () {
       var p = this._duration - this.currentTime;
       if (p >= 0) {
@@ -226,6 +237,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
         this._setScheduleDispose(undefined);
       }
     };
+    // 設定或清除結束排程
     c.prototype._setScheduleDispose = function (p) {
       var j = this._scheduleDispose;
       if (j) {
@@ -233,6 +245,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       }
       this._scheduleDispose = p == null ? undefined : T.delayCallback(p)(this._onAudioEnded);
     };
+    // 設定或清除淡出排程
     c.prototype._setFadeDispose = function (p) {
       var j = this._fadeDispose;
       if (j) {
@@ -250,6 +263,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
       return j;
     }
     __extends(c, u);
+    // 取得音效長度
     c.prototype.getDuration = function (p) {
       if (typeof p == "number") {
         return u.prototype.getDuration.call(this, p);
@@ -257,6 +271,7 @@ if (!cc._RF.push(module, "d85610Qhw9DzLM9jdvZsDKB", "NoSoundAdapter")) {
         return this._estimatedDuration;
       }
     };
+    // 從音效池取得音源物件
     c.prototype.getAudioFromPool = function () {
       var p = this.factory.get();
       var j = {

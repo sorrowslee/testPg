@@ -100,11 +100,13 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
       enumerable: false,
       configurable: true
     });
+    // 監聽尺寸變化並記錄原始縮放
     G.prototype.onLoad = function () {
       this._originalScaleX = this.numberContainer.scaleX;
       this._originalScaleY = this.numberContainer.scaleY;
       this.numberContainer.on(cc.Node.EventType.SIZE_CHANGED, this.resizeNumberIfNeeded, this);
     };
+    // 解析數字並轉成顯示用陣列
     G.prototype.getNumberList = function (V, Q) {
       var N = /(?:\d+)(?:\.\d+)?/gm.exec(V.toString());
       if (N) {
@@ -119,6 +121,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
       }
       return Array.from(V.toString());
     };
+    // 取得非數字符號的顯示設定
     G.prototype.getSpriteConfig = function (V) {
       switch (V) {
         case ",":
@@ -165,6 +168,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
           return;
       }
     };
+    // 取得數字的顯示設定
     G.prototype.getNumberSpriteConfig = function (V, Q, N) {
       if (N) {
         return {
@@ -182,6 +186,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
         };
       }
     };
+    // 顯示數字並配置對應的精靈
     G.prototype.displayNumber = function (V, Q = true, N) {
       this._setupNumberContainer();
       var Y = this.getNumberList(V, Q);
@@ -233,6 +238,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
         }
       }
     };
+    // 清除顯示內容
     G.prototype.clear = function () {
       for (var V = this.numberContainer.children.length - 1; V > -1; V--) {
         var Q = this.numberContainer.children[V];
@@ -242,12 +248,14 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
       this._revertScale();
       this.numberContainer.width = 0;
     };
+    // 還原數字容器的縮放
     G.prototype._revertScale = function () {
       if (this._originalScaleX && this._originalScaleY) {
         this.numberContainer.scaleX = this._originalScaleX;
         this.numberContainer.scaleY = this._originalScaleY;
       }
     };
+    // 取得格式化後的數字字串
     G.prototype._getNumberDisplay = function (V, Q) {
       var N = V;
       var Y = "";
@@ -266,6 +274,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
       }
       return N + Y;
     };
+    // 取得小數部分字串
     G.prototype._getDecimalStringFrom = function (V, Q) {
       var N;
       var Y;
@@ -293,6 +302,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
         this.attributesForNumberContainer(V, Q, N, Y);
       }
     };
+    // 取得或建立顯示數字的節點
     G.prototype.dequeueNumberContainer = function (V) {
       var Q = this.numberContainer.children[V];
       if (!Q) {
@@ -308,6 +318,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
       }
       return Q;
     };
+    // 需要時調整數字大小
     G.prototype.resizeNumberIfNeeded = function () {
       var V = this.numberContainer.width;
       var Q = this.maxContainerSize / V;
@@ -316,9 +327,11 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
         this.numberContainer.scale = Q;
       }
     };
+    // 彈跳縮放動畫效果
     G.prototype._bounceEffect = function (V, Q, N) {
       this.numberContainer.runAction(cc.sequence(cc.scaleTo(0.08, V), cc.scaleTo(0.05, Q), cc.callFunc(N, this)));
     };
+    // 初始化數字容器與佈局
     G.prototype._setupNumberContainer = function () {
       if (!this._layout) {
         var V = this._layout = this.numberContainer.getComponent(cc.Layout);
@@ -330,6 +343,7 @@ if (!cc._RF.push(module, "e13cc9FLShL66GevrFVSv5p", "NumberDisplayController")) 
         V.spacingY = this.layoutSpacingY;
       }
     };
+    // 銷毀時移除監聽
     G.prototype.onDestroy = function () {
       this.attributesForNumberContainer = undefined;
     };

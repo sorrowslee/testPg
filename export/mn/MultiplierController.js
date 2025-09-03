@@ -72,6 +72,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
       return Z0;
     }
     __extends(J, X);
+    // 初始化倍數控制器並建立所需的物件池
     J.prototype.init = function () {
       this.reset();
       this._clearVfx();
@@ -83,6 +84,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         multiplierItemContainer: this.multiplierContainer
       });
     };
+    // 倍數面板向上縮放顯示
     J.prototype.zoomIn = function (Z0, Z1) {
       var Z2 = this;
       if (Z0 === undefined) {
@@ -110,6 +112,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         }, Z3, 893, 1);
       }
     };
+    // 倍數面板恢復原始位置
     J.prototype.zoomOut = function (Z0, Z1) {
       var Z2 = this;
       if (Z0 === undefined) {
@@ -225,6 +228,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         Z2._createMultiplier(Z4, Z5);
       });
     };
+    // 觸發倍數向右移動的動畫
     J.prototype.playShiftRight = function (Z0, Z1, Z2) {
       var Z3 = this;
       this._currentMultiplier = Z0;
@@ -242,6 +246,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         Z2();
       }
     };
+    // 觸發倍數向左移動的動畫
     J.prototype.playShiftLeft = function (Z0, Z1, Z2) {
       var Z3 = this;
       this._currentMultiplier = Z0;
@@ -257,6 +262,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         Z2();
       }
     };
+    // 播放重置倍數的動畫
     J.prototype.playReset = function (Z0, Z1) {
       var Z2 = Z0 ? 8 : 1;
       this.playShiftTo(Z2, Z0, Z1);
@@ -264,9 +270,11 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
     J.prototype.playShiftTo = function (Z0, Z1, Z2) {
       this._recursiveShift(Z0, Z1, Z2);
     };
+    // 重置所有倍數顯示狀態
     J.prototype.reset = function () {
       this._clear();
     };
+    // 播放指定倍數的效果
     J.prototype.playMultiplier = function (Z0) {
       var Z1 = this;
       var Z2 = k.nodePoolHandler.dequeueReusableItem(G.NodePoolName.Multiplier);
@@ -358,10 +366,12 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         Z1.exitBonusInto(false, Z0);
       });
     };
+    // 啟用半透明遮罩
     J.prototype._enableDim = function () {
       this.tint.stopAllActions();
       this.tint.runAction(cc.fadeTo(0.5, 102));
     };
+    // 關閉半透明遮罩
     J.prototype._disableDim = function () {
       this.tint.stopAllActions();
       this.tint.runAction(cc.fadeOut(1));
@@ -382,6 +392,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
         Z2();
       }
     };
+    // 清除所有倍數項目
     J.prototype._clear = function () {
       var Z0 = this;
       var Z1 = Object.keys(this._multiplierItemObject);
@@ -401,6 +412,7 @@ if (!cc._RF.push(module, "dfa18t2v9JGMYU5wqlXKj6g", "MultiplierController")) {
       Z1.opacity = 0;
       Z1.eulerAngles = cc.Vec3.ZERO;
     };
+    // 取得目前顯示的倍數項目列表
     J.prototype._getCurrentMultiplierItem = function () {
       var Z0 = this;
       var Z1 = [];

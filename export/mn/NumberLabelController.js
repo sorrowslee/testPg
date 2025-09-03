@@ -15,15 +15,18 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
       return u;
     }
     __extends(C, k);
+    // 初始化標籤並監聽尺寸變化
     C.prototype.onLoad = function () {
       this._originalScaleX = this.numberContainer.scaleX;
       this._originalScaleY = this.numberContainer.scaleY;
       this._setupNumberContainer();
       this.numberContainer.on(cc.Node.EventType.SIZE_CHANGED, this.resizeNumberIfNeeded, this);
     };
+    // 設定顯示在數字前的字串
     C.prototype.setPrefix = function (u) {
       this._prefix = u;
     };
+    // 顯示數字並可選擇立即完成
     C.prototype.displayNumber = function (u, c = true, p) {
       this._endCallback = p;
       var j = this.getNumberList(u, c);
@@ -36,6 +39,7 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
         }
       }
     };
+    // 取得格式化後的數字字串
     C.prototype.getNumberList = function (u, c) {
       var p = /(?:\d+)(?:\.\d+)?/gm.exec(u.toString());
       if (p) {
@@ -49,6 +53,7 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
       }
       return u.toString();
     };
+    // 處理千分位與縮寫的數字
     C.prototype._getNumberDisplay = function (u, c) {
       var p = u;
       var j = "";
@@ -67,6 +72,7 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
       }
       return p + j;
     };
+    // 取得小數部分文字
     C.prototype._getDecimalStringFrom = function (u, c) {
       var p;
       var j;
@@ -89,10 +95,12 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
       }
       return l;
     };
+    // 清除顯示文字並還原縮放
     C.prototype.clear = function () {
       this._label.string = "";
       this._revertScale();
     };
+    // 超出容器時調整字體大小
     C.prototype.resizeNumberIfNeeded = function () {
       var u = this;
       if (!this._isScaling) {
@@ -124,15 +132,18 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
         }
       }
     };
+    // 還原標籤縮放
     C.prototype._revertScale = function () {
       if (this._originalScaleX && this._originalScaleY) {
         this.numberContainer.scaleX = this._originalScaleX;
         this.numberContainer.scaleY = this._originalScaleY;
       }
     };
+    // 縮放彈跳效果
     C.prototype._bounceEffect = function (u, c, p) {
       this.numberContainer.runAction(cc.sequence(cc.scaleTo(0.08, u), cc.scaleTo(0.05, c), cc.callFunc(p, this)));
     };
+    // 初始化數字容器與字體
     C.prototype._setupNumberContainer = function () {
       this._label = this.numberContainer.getComponent(cc.Label);
       if (!this._label) {
@@ -142,6 +153,7 @@ if (!cc._RF.push(module, "b6e176hgIFCvo12TMjQIRc7", "NumberLabelController")) {
         this._label.string = "";
       }
     };
+    // 清理回呼與動畫函式
     C.prototype.onDestroy = function () {
       this._endCallback = null;
       this._resizeFunc = null;
