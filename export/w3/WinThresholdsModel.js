@@ -5,6 +5,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
   exports.WinThresholdsModel = undefined;
   var T = require("Utils");
   var x = function () {
+    // 建構函式，儲存各種獎項門檻
     function L(D) {
       if (D) {
         this._rawData = JSON.parse(JSON.stringify(D));
@@ -14,6 +15,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
         this._superMegaWin = D.smgw;
       }
     }
+    // 依下注與倍數計算各獎項門檻
     L.prototype.getAllThresholds = function (D, k, C) {
       var u = D * k * C;
       return {
@@ -24,6 +26,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
       };
     };
     Object.defineProperty(L.prototype, "rawData", {
+      // 回傳原始門檻資料
       get: function () {
         return this._rawData;
       },
@@ -31,6 +34,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
       configurable: true
     });
     Object.defineProperty(L.prototype, "mediumWin", {
+      // 取得中獎倍率門檻
       get: function () {
         return this._mediumWin;
       },
@@ -38,6 +42,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
       configurable: true
     });
     Object.defineProperty(L.prototype, "bigWin", {
+      // 取得大獎倍率門檻
       get: function () {
         return this._bigWin;
       },
@@ -45,6 +50,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
       configurable: true
     });
     Object.defineProperty(L.prototype, "megaWin", {
+      // 取得超級大獎倍率門檻
       get: function () {
         return this._megaWin;
       },
@@ -52,6 +58,7 @@ if (!cc._RF.push(module, "43fa7kpruFLXK4fYDhrIgSc", "WinThresholdsModel")) {
       configurable: true
     });
     Object.defineProperty(L.prototype, "superMegaWin", {
+      // 取得超級超級大獎倍率門檻
       get: function () {
         return this._superMegaWin;
       },

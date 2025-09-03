@@ -246,3 +246,19 @@
 | export/w2/WBSSlotHelper.js | 計算滾動器停止距離與視圖索引 |
 | export/w2/WBSSlotItemPool.js | 管理符號物件池的取得與釋放 |
 | export/w2/WBSSlotTransactionModel.js | 儲存旋轉結果與倍數、scatter 等資訊 |
+| export/w3/WBSSlotView.js | 控制單個轉輪視圖的符號排列與動態新增 |
+| export/w3/WBSSpinButtonController.js | 管理旋轉按鈕互動、動畫與自動旋轉顯示 |
+| export/w3/WBSTotalWinController.js | 總贏畫面控制器，播放效果並處理收集流程 |
+| export/w3/WBSTweaksConfig.js | 重新導出 Tweaks 設定與測試模式 |
+| export/w3/WBSUIState.js | 處理 UI 狀態轉換與免費旋轉邏輯 |
+| export/w3/WebSocketHandler.js | 重新導出 BVFramework 的 WebSocketHandler |
+| export/w3/WinHighlight.spec.js | 自動化測試用的獲獎高亮事件 |
+| export/w3/WinLinesModel.js | 儲存並查詢贏線位置資料 |
+| export/w3/WinRollBaseController.js | 數字滾動基底控制器，處理大獎閾值與速度 |
+| export/w3/WinRollController.js | 使用 NumberDisplayController 的數字滾動 |
+| export/w3/WinRollCurveController.js | 使用 NumberCurvedController 的數字滾動 |
+| export/w3/WinRollLabelController.js | 使用 NumberLabelController 的數字滾動 |
+| export/w3/WinTemplate.js | 不確定用途 |
+| export/w3/WinTemplateConstant.js | 定義總贏模板的狀態與時間常數 |
+| export/w3/WinThresholdsModel.js | 儲存中獎門檻並計算實際值 |
+| export/w3/WinValuesModel.js | 儲存並查詢獎金數值資料 |
