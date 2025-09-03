@@ -262,3 +262,6 @@
 | export/w3/WinTemplateConstant.js | 定義總贏模板的狀態與時間常數 |
 | export/w3/WinThresholdsModel.js | 儲存中獎門檻並計算實際值 |
 | export/w3/WinValuesModel.js | 儲存並查詢獎金數值資料 |
+| export/x/XHRFactory.js | 重新導出 common 模組的 XHRFactory |
+| export/x/XHRHandler.js | 重新導出 BVFramework 的 XHRHandler |
+| export/x/XHRHelper.js | 重新導出 BVFramework 的 XHRHelper |
