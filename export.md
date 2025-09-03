@@ -182,3 +182,14 @@
 | export/s3/SlotTintController.js | 控制滾輪暗色遮罩與覆蓋符號 |
 | export/s3/SlowDropEffectController.js | 管理慢落特效與頂部物件 |
 | export/s3/SlowDropTopItemController.js | 控制慢落特效的頂部動畫項目 |
+| export/s4/SoundButton.js | 音效開關按鈕，調整圖示與碰撞設定 |
+| export/s4/SpaceBarInterrupter.js | 監聽空白鍵並依 UI 狀態觸發對應事件 |
+| export/s4/SpinButtonController.js | 管理旋轉按鈕模式、動畫與滑鼠互動 |
+| export/s4/SpinButtonViewController.spec.js | 自動化測試用的旋轉按鈕節點設定 |
+| export/s4/SpinConfigHandler.js | 初始化旋轉時間與功能配置 |
+| export/s4/SpinOptionsButton.js | 自動旋轉選項按鈕，控制動畫與顏色 |
+| export/s4/SubControllerConfig.js | 定義功能子控制器的列舉 |
+| export/s4/SystemFeatureHandler.js | 處理系統事件並驗證旋轉合法性 |
+| export/s4/SystemModel.js | 重新導出 SystemModel |
+| export/s4/SymbolPayoutController.js | 管理符號派彩面板與彈出顯示 |
+| export/s4/SymbolPayoutPanelGenerator.js | 生成符號派彩面板按鈕佈局 |

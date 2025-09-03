@@ -9,6 +9,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
   var k = D.ccclass;
   var C = D.property;
   var u = function (p) {
+    // 建構函式，初始化自動旋轉按鈕相關節點
     function j() {
       var G = p !== null && p.apply(this, arguments) || this;
       G.holder = undefined;
@@ -19,6 +20,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
       return G;
     }
     __extends(j, p);
+    // 載入時套用按鈕主題顏色
     j.prototype.onLoad = function () {
       p.prototype.onLoad.call(this);
       if (this.buttonTheme) {
@@ -28,9 +30,11 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
         L.setNodeColorWithOpacity(this.autoSpinIconShadow, G);
       }
     };
+    // 設定自動旋轉圖示的圖片
     j.prototype.setAutoSpinSprite = function (G) {
       this.iconSprite.getComponent(cc.Sprite).spriteFrame = G;
     };
+    // 播放自動旋轉的轉動與陰影動畫
     j.prototype.playAutoSpinAnim = function () {
       this.stopAutoSpinAnim();
       var G = cc.repeatForever(cc.rotateBy(6, 360));
@@ -38,6 +42,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
       this.autoSpinIconShadow.parent.opacity = 0;
       this._playAutoSpinIconShadowAnim();
     };
+    // 停止自動旋轉動畫並重置圖示
     j.prototype.stopAutoSpinAnim = function () {
       var G = this._abortAutoSpinIconAnim;
       this._abortAutoSpinIconAnim = undefined;
@@ -49,6 +54,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
       this.autoSpinIconShadow.parent.opacity = 0;
       this.autoSpinIconShadow.parent.scale = 1;
     };
+    // 按下或釋放時的按鈕縮放效果
     j.prototype.changeButtonPressedColor = function (G) {
       if (G) {
         this.node.runAction(cc.scaleTo(0.05, 0.9));
@@ -56,6 +62,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
         this.node.runAction(cc.sequence(cc.scaleTo(0.05, 1.1), cc.scaleTo(0.05, 1.05), cc.scaleTo(0.05, 1)));
       }
     };
+    // 重複播放圖示陰影擴散動畫
     j.prototype._playAutoSpinIconShadowAnim = function () {
       var G = this;
       this._abortAutoSpinIconAnim = L.delayCallback(3)(function () {
@@ -66,6 +73,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
         })));
       });
     };
+    // 依互動狀態切換按鈕顏色
     j.prototype.interactableButtonColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -78,6 +86,7 @@ if (!cc._RF.push(module, "3ee68qGxY9G3q+WVKsHebfZ", "SpinOptionsButton")) {
         L.setNodeColorWithOpacity(this.autoSpinIconShadow, N);
       }
     };
+    // 銷毀前停止動畫並清理
     j.prototype.destroy = function () {
       var G = this._abortAutoSpinIconAnim;
       this._abortAutoSpinIconAnim = undefined;
