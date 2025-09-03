@@ -53,13 +53,16 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
       return w;
     }
     __extends(H, b);
+    // 檢查是否已載入 Bonus 資源
     H.prototype.hasBonusLoaded = function () {
       return this._hasBonusLoaded;
     };
+    // 初始化並設定層級
     H.prototype.setup = function (w) {
       b.prototype.setup.call(this, w);
       this._setupHolderZIndex();
     };
+    // 處理載入進度顯示
     H.prototype.progressCallback = function (w, U) {
       if (this._isShowBonusLoading) {
         this.generalControllers.bonusLoadingController.updateProgress(w, U);
@@ -67,6 +70,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
         b.prototype.progressCallback.call(this, w, U);
       }
     };
+    // 設定各節點的 Z 軸順序
     H.prototype._setupHolderZIndex = function () {
       this.spinButtonHolder.zIndex = x.EN_GAME_LAYER_Z_INDEX_HIGH + 50;
       this.settingMenuHolder.zIndex = x.EN_GAME_LAYER_Z_INDEX_HIGH + 51;
@@ -76,6 +80,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
       this.bigWinHolder.zIndex = x.EN_GAME_LAYER_Z_INDEX_HIGH + 55;
       this.totalWinHolder.zIndex = x.EN_GAME_LAYER_Z_INDEX_HIGH + 56;
     };
+    // 載入所有資源
     H.prototype.loadAllBundle = function (w) {
       shell.setProgressVisible(true);
       this._completedCallback = w;
@@ -88,6 +93,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
       }
       this.loadBundle(B, this._onAllTaskCompleteCallback.bind(this));
     };
+    // 載入 Bonus 相關資源
     H.prototype.loadBonusBundle = function (w) {
       this._completedCallback = w;
       this._isShowBonusLoading = true;
@@ -99,6 +105,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
       var B = this._bonusTaskComplete.bind(this);
       this.loadBundle(U, B);
     };
+    // 載入一般遊戲資源
     H.prototype.loadGeneralBundle = function (w) {
       var U = this;
       shell.setProgressVisible(true);
@@ -117,6 +124,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
         w();
       }
     };
+    // 所有載入任務完成時呼叫
     H.prototype._onAllTaskCompleteCallback = function (w) {
       this._normalTaskComplete(w);
       this._bonusTaskComplete(w);
@@ -126,6 +134,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
         U();
       }
     };
+    // 一般資源載入完成後初始化控制器
     H.prototype._normalTaskComplete = function (X) {
       var J = X.click_effect;
       var Z0 = X.spin_button_controller;
@@ -224,6 +233,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
       ZA.setupControllers(this.generalControllers);
       this.generalControllers.slotController = ZA;
     };
+    // Bonus 資源載入完成後初始化相關控制器
     H.prototype._bonusTaskComplete = function (w) {
       var U = w.free_spin_won_controller;
       var B = w.remaining_free_spin_controller;
@@ -258,6 +268,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
         Z5();
       }
     };
+    // 釋放已載入的 Bonus 資源
     H.prototype.releaseBonusBundle = function (w) {
       var U = this;
       if (this._hasBonusLoaded) {
@@ -279,6 +290,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
         w();
       }
     };
+    // 設定符號與特效圖像
     H.prototype._setupSymbolImage = function (w) {
       var U = w.symbol;
       var B = w.feature_symbol;
@@ -300,6 +312,7 @@ if (!cc._RF.push(module, "34a3aP50jNA1ItVjcX3dhLy", "LoadingController")) {
       };
       L.slotImageHandler.setup(Z2);
     };
+    // 註冊遊戲特效物件池
     H.prototype._setUpGameEffectItem = function () {
       var w = {
         name: N.NodePoolName.PayoutEffectFrontItem,

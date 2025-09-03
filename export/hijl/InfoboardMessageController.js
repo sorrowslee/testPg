@@ -70,6 +70,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
     };
     __extends(W, Y);
     Object.defineProperty(W.prototype, "willExpire", q);
+    // 初始化節點與語系方向
     W.prototype.onLoad = function () {
       if (shell.isRTLLanguage()) {
         this._anchorPoint = 1;
@@ -83,13 +84,16 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         }
       }
     };
+    // 設定數字顯示節點的事件
     W.prototype.initNumberDisplayNodeEvent = function () {
       this._initialNumberDisplayNodeScale = this.winDisplayNode.scale;
       this.winDisplayNode.on("size-changed", this.resizeNumberDisplay, this);
     };
+    // 設定數字顯示區最大寬度
     W.prototype.setNumberDisplayNodeWidth = function (F) {
       this._maxNumberDisplayNodeWidth = F;
     };
+    // 顯示事件訊息，可為文字或圖片
     W.prototype.setEventMessage = function (F, b = true, H = false) {
       if (!this._isWinAmountShown) {
         if (H) {
@@ -108,6 +112,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         }
       }
     };
+    // 清除目前顯示的訊息或提示
     W.prototype.clear = function (F = false) {
       if (this._isWinAmountShown || this._isEventShown || F || this._orderMessageState !== T.RANDOM) {
         if (this.sprite) {
@@ -119,6 +124,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         }
       }
     };
+    // 停止文字或圖片的動畫效果
     W.prototype.stop = function () {
       if (this.sprite) {
         this.sprite.node.stopAllActions();
@@ -127,34 +133,42 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         this.label.node.stopAllActions();
       }
     };
+    // 設定多語系的圖像資源
     W.prototype.setLocalizedSpriteFrame = function (F, b) {
       this.winText.spriteFrame = F;
       this.totalText.spriteFrame = b;
     };
+    // 設定可輪播的圖片清單
     W.prototype.setSprites = function (F) {
       this._sprites = undefined;
       this._sprites = F;
       this._availableSprites = F.slice();
     };
+    // 設定訊息播放順序
     W.prototype.setOrderOfMessage = function (F = T.RANDOM) {
       this._orderMessageState = F;
     };
+    // 調整圖片提示輪播的時間範圍
     W.prototype.setRandomSpriteScheduleTime = function (F = 4, b = 3) {
       this._spriteMessageRangeOfTimeAdded = b;
       this._spriteMessageMinDelayTime = F;
     };
+    // 立即排程下一次圖片提示
     W.prototype.playScheduleRandomSpriteTipsOverride = function () {
       var F = Math.floor(Math.random() * this._spriteMessageRangeOfTimeAdded) + this._spriteMessageMinDelayTime;
       this.unschedule(this.playRandomSpriteTips);
       this.scheduleOnce(this.playRandomSpriteTips, F);
     };
+    // 在指定時間後播放圖片提示
     W.prototype.playScheduleRandomSpriteTips = function (F = 0) {
       this.unschedule(this.playRandomSpriteTips);
       this.scheduleOnce(this.playRandomSpriteTips, F);
     };
+    // 取消圖片提示的排程
     W.prototype.unscheduleRandomSpriteTips = function () {
       this.unschedule(this.playRandomSpriteTips);
     };
+    // 控制顯示總得獎或單次得獎文字
     W.prototype.setTotalAndWinText = function (F, b) {
       this.totalText.node.active = F;
       this.winText.node.active = b;
@@ -163,6 +177,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         this._winDisplayLayout.updateLayout();
       }
     };
+    // 顯示訊息板內容
     W.prototype.showInfoboardMessage = function () {
       var F = this.maskNode.getComponent(cc.Mask);
       if (F) {
@@ -170,6 +185,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       }
       this.spriteMessageNode.active = true;
     };
+    // 隱藏訊息板內容
     W.prototype.hideInfoboardMessage = function () {
       this.spriteMessageNode.active = false;
       var F = this.maskNode.getComponent(cc.Mask);
@@ -177,6 +193,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         F.enabled = false;
       }
     };
+    // 直接顯示數字
     W.prototype.showDisplayNumber = function (F, b = false) {
       this._isWinAmountShown = true;
       if (this.winDisplayNode) {
@@ -188,9 +205,11 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         this._winDisplayLayout.updateLayout();
       }
     };
+    // 清除顯示的數字
     W.prototype.clearDisplayNumber = function () {
       this.numberDisplayController.clear();
     };
+    // 播放數字滾動效果
     W.prototype.showNumberRoll = function (F, b, H, w, U = true) {
       this._isEventShown = false;
       this._isWinAmountShown = true;
@@ -201,13 +220,16 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       this.numberRollController.rollDuration = F;
       this.numberRollController.play(b, H, this.onNumberRollComplete.bind(this), U);
     };
+    // 快速跳過數字滾動
     W.prototype.skipNumberRoll = function () {
       this.numberRollController.skip();
       this.onNumberRollComplete();
     };
+    // 停止數字滾動效果
     W.prototype.clearNumberRoll = function () {
       this.numberRollController.stop();
     };
+    // 設定圖片訊息並處理捲動
     W.prototype.setSpriteMessage = function (F) {
       var b = this;
       var H = this.padding;
@@ -238,6 +260,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         k.deferCallback(true)(this.playScheduleRandomSpriteTipsOverride.bind(this));
       }
     };
+    // 隨機播放圖片提示
     W.prototype.playRandomSpriteTips = function () {
       this._isWinAmountShown = false;
       this._isEventShown = false;
@@ -260,6 +283,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         this._availableSprites.splice(0, 1);
       }
     };
+    // 依最大寬度調整數字顯示比例
     W.prototype.resizeNumberDisplay = function () {
       var F = this._maxNumberDisplayNodeWidth;
       var b = this.winDisplayNode.width * this._initialNumberDisplayNodeScale;
@@ -269,6 +293,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         this.winDisplayNode.scale = w;
       }
     };
+    // 數字滾動完成時的回呼
     W.prototype.onNumberRollComplete = function () {
       var F = this._numberRollCompleteCallback;
       this._isWinAmountShown = false;
@@ -277,34 +302,43 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         F();
       }
     };
+    // 記錄文字節點原始 Y 座標
     W.prototype.initLabelNodeY = function () {
       this._labelOriginY = this.label.node.y;
     };
+    // 設定文字提示清單
     W.prototype.setTips = function (F) {
       this._tips = F;
       this._availableTips = F.slice();
     };
+    // 設定多語系字型
     W.prototype.setLocalizedFont = function (F) {
       this.label.font = F;
     };
+    // 調整字型行高
     W.prototype.setLabelFontHeight = function (F = 0) {
       var b = this.label.font;
       if (b[x._fntConfig]) {
         this.label.lineHeight = b[x._fntConfig].commonHeight + F;
       }
     };
+    // 設定得獎文字顏色
     W.prototype.setWinLabelColor = function (F) {
       this.winLabelColor = F;
     };
+    // 設定得獎文字外框顏色
     W.prototype.setWinLabelOutlineColor = function (F) {
       this.winLabelOutlineColor = F;
     };
+    // 設定提示文字顏色
     W.prototype.setTipsLabelColor = function (F) {
       this.tipsLabelColor = F;
     };
+    // 設定提示文字外框顏色
     W.prototype.setTipsLabelOutlineColor = function (F) {
       this.tipsLabelOutlineColor = F;
     };
+    // 顯示得獎金額文字
     W.prototype.setWinAmount = function (F, b = false, H = false) {
       if (F && F > 0) {
         this.unschedule(this.playRandomTips);
@@ -323,22 +357,27 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
         this.setLabel(B);
       }
     };
+    // 設定文字提示輪播時間
     W.prototype.setRandomLabelScheduleTime = function (F = 4, b = 3) {
       this._labelMessageRangeOfTimeAdded = b;
       this._labelMessageMinDelayTime = F;
     };
+    // 排程下一次文字提示
     W.prototype.scheduleRandomTips = function () {
       var F = Math.floor(Math.random() * this._labelMessageRangeOfTimeAdded) + this._labelMessageMinDelayTime;
       this.unschedule(this.playRandomTips);
       this.scheduleOnce(this.playRandomTips, F);
     };
+    // 在指定時間後播放文字提示
     W.prototype.playScheduleRandomTips = function (F = 0) {
       this.unschedule(this.playRandomTips);
       this.scheduleOnce(this.playRandomTips, F);
     };
+    // 取消文字提示排程
     W.prototype.unscheduleRandomTips = function () {
       this.unschedule(this.playRandomTips);
     };
+    // 隨機顯示文字提示
     W.prototype.playRandomTips = function () {
       this._isWinAmountShown = false;
       this._isEventShown = false;
@@ -360,6 +399,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       this.setLabel(F[b]);
       this._availableTips.splice(b, 1);
     };
+    // 設定訊息文字並檢查是否需要捲動
     W.prototype.setLabel = function (F) {
       var b = this.label;
       b.string = F;
@@ -367,6 +407,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       this.unschedule(this.determineOverFlow);
       this.scheduleOnce(this.determineOverFlow);
     };
+    // 判斷文字是否超出範圍
     W.prototype.determineOverFlow = function () {
       var F = this.label.node;
       var b = this.padding;
@@ -382,6 +423,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       }
       F.y = this._labelOriginY;
     };
+    // 文字超出時進行水平捲動
     W.prototype.scrollLabel = function () {
       var F = this.label;
       var b = this.padding;
@@ -397,6 +439,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       U = this._willExpire ? cc.sequence(P, X, cc.callFunc(this.playScheduleRandomTips, this)) : cc.sequence(P, X, cc.callFunc(this.scrollLabel, this));
       H.runAction(U);
     };
+    // 重置控制器狀態
     W.prototype._reset = function () {
       this.stop();
       this.numberRollController.stop();
@@ -421,6 +464,7 @@ if (!cc._RF.push(module, "f962cm61b9P6rw9Yco9B/O4", "InfoboardMessageController"
       this.tipsLabelOutlineColor = undefined;
       this._numberRollCompleteCallback = undefined;
     };
+    // 銷毀控制器並釋放資源
     W.prototype.destroy = function () {
       this._reset();
       this.node.destroy();

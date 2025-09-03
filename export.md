@@ -73,4 +73,22 @@
 | export/g/GeneralSlotTemplate.js | 設定通用老虎機模板參數 | 
 | export/g/GenericLoadingScreenController.js | 控制載入頁顯示與關閉 | 
 | export/g/GenericSettingButton.js | 通用設定按鈕，處理觸控與顏色狀態 | 
-| export/g/GridView.js | 可捲動的格狀列表元件 | 
+| export/g/GridView.js | 可捲動的格狀列表元件 |
+| export/hijl/HitPassThrough.js | 覆寫點擊判定以忽略特定區域 |
+| export/hijl/IdleState.js | 處理遊戲待機與自動旋轉邏輯 |
+| export/hijl/InfoBoardController.js | 控制訊息板顯示提示與獲獎效果 |
+| export/hijl/InfoboardMessageController.js | 管理訊息板文字、圖像提示與數字滾動 |
+| export/hijl/InfoboardMessageController.spec.js | 訊息板控制器的自動化測試輔助 |
+| export/hijl/JSONSerializer.js | 重新導出 JSONSerializer |
+| export/hijl/LabelLocalized.js | 依語系鍵更新標籤文字 |
+| export/hijl/LabelTheme.js | 依主題套用文字顏色與字型 |
+| export/hijl/LandscapeSettingInfoFooterController.js | 橫向設定頁底部資訊控制器 |
+| export/hijl/LandscapeSettingMenuController.js | 橫向設定選單控制器 |
+| export/hijl/LandscapeSoundButton.js | 橫向版音效按鈕控制 |
+| export/hijl/LateAssetConfig.js | 延遲載入資源設定 |
+| export/hijl/LaunchConfig.js | 重新導出 LaunchConfig 設定 |
+| export/hijl/ListView.js | 可重用項目列表視圖 |
+| export/hijl/ListViewCellUpdateAnim.js | 列表項目更新動畫介面 |
+| export/hijl/ListViewEnum.js | 列表視圖使用的列舉定義 |
+| export/hijl/LoadingController.js | 控制資源載入與控制器初始化 |
+| export/hijl/index.js | 自動化測試用的函式裝飾器 |

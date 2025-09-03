@@ -17,6 +17,7 @@ if (!cc._RF.push(module, "948ffXQc5hNbqpouW3VdkkX", "LandscapeSoundButton")) {
       return G;
     }
     __extends(j, p);
+    // 載入時啟用互動並依主題設置顏色
     j.prototype.onLoad = function () {
       this.enableTouchInteraction();
       if (this.buttonTheme) {
@@ -24,6 +25,7 @@ if (!cc._RF.push(module, "948ffXQc5hNbqpouW3VdkkX", "LandscapeSoundButton")) {
         L.setNodeColorWithOpacity(this.largeSprite.node, G);
       }
     };
+    // 按下按鈕時切換顏色
     j.prototype.changeButtonPressedColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -31,6 +33,7 @@ if (!cc._RF.push(module, "948ffXQc5hNbqpouW3VdkkX", "LandscapeSoundButton")) {
         L.setNodeColorWithOpacity(this.largeSprite.node, G ? Q : V);
       }
     };
+    // 控制按鈕可互動時的顏色
     j.prototype.interactableButtonColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");

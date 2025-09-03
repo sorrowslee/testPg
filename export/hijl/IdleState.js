@@ -28,21 +28,26 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       return M;
     }
     __extends(q, W);
+    // 設定轉輪控制器引用
     q.prototype.setSlotController = function (S) {
       this.slotController = S;
     };
+    // 設定旋轉按鈕控制器
     q.prototype.setSpinButtonController = function (S) {
       this.spinButtonController = S;
     };
+    // 設定自動旋轉的延遲時間
     q.prototype.setAutoSpinDelay = function (S) {
       this.autoSpinDelay = S;
     };
+    // 進入狀態時檢查系統事件
     q.prototype.run = function () {
       W.prototype.run.call(this);
       var S = this._defaultCheckSystemEventConfig;
       var z = this.defineSystemEventConfigParam();
       D.handleSystemEvent(__assign(__assign({}, S), z));
     };
+    // 離開狀態時處理自動旋轉與分析事件
     q.prototype.exit = function (S) {
       this.disposeAutoSpin();
       if (!this.dataSource.isGameReplaying) {
@@ -60,31 +65,43 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       this.removeGameResumeEvent();
       W.prototype.exit.call(this);
     };
+    // 銷毀狀態並清除控制器引用
     q.prototype.destroy = function () {
       W.prototype.destroy.call(this);
       this.spinButtonController = undefined;
       this.slotController = undefined;
     };
+    // 狀態準備時的回呼
     q.prototype.onReady = function () {};
+    // 狀態開始運行時的回呼
     q.prototype.onRun = function () {};
+    // 被強制離開狀態時的處理
     q.prototype.onForceExit = function (S) {
       S();
     };
+    // 正常離開狀態時的處理
     q.prototype.onExit = function (S) {
       S();
     };
+    // 狀態銷毀前的回呼
     q.prototype.onDestroy = function (S) {
       S();
     };
+    // 狀態完全閒置時的處理
     q.prototype.onStateFullyIdle = function () {};
+    // 啟用玩家可操作的功能
     q.prototype.enableAvailableActions = function () {};
+    // 停用玩家可操作的功能
     q.prototype.disableAvailableActions = function () {};
+    // 旋轉開始前的準備動作
     q.prototype.preStartSpinAction = function (S) {
       S();
     };
+    // 自訂系統事件檢查參數
     q.prototype.defineSystemEventConfigParam = function () {
       return {};
     };
+    // 計算一次旋轉所需花費
     q.prototype.getCostPerSpin = function (S) {
       if (S === L.SpinTrigger.FEATURE_BUY) {
         throw Error("overwrite getCostPerSpin function for support feature buy spin");
@@ -95,6 +112,7 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       var E = A.betLevelValue;
       return N.toDecimalWithExp(M * E * z, 2);
     };
+    // 處理旋轉按鈕點擊事件
     q.prototype.onClickSpinButton = function (S) {
       if (this.spinButtonController.isAutoSpin()) {
         this.exitAutoSpin();
@@ -103,12 +121,15 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
         this.validateSpin(S);
       }
     };
+    // 啟用旋轉按鈕
     q.prototype.enableSpinAction = function () {
       this.spinButtonController.setOnClickCallback(this.onClickSpinButton.bind(this));
     };
+    // 停用旋轉按鈕
     q.prototype.disableSpinAction = function () {
       this.spinButtonController.clearOnClickCallback();
     };
+    // 使用免費積分進行旋轉
     q.prototype.spinFreeCredit = function (S) {
       var z = this.spinButtonController;
       Q.settingMenuHelper.setWinAmount(0);
@@ -118,6 +139,7 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       }
       this.exit(S);
     };
+    // 使用現金積分進行旋轉
     q.prototype.spinCashCredit = function (S) {
       var z = this.spinButtonController;
       this.decreaseBalance(S);
@@ -126,16 +148,20 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       }
       this.exit(S);
     };
+    // 使用紅利積分進行旋轉
     q.prototype.spinBonusCredit = function (S) {
       this.spinCashCredit(S);
     };
+    // 下注無效時的處理
     q.prototype.spinInvalidBet = function () {
       this.exitAutoSpin();
       this.idle();
     };
+    // 餘額不足時的處理
     q.prototype.spinInsufficientCredit = function (S) {
       this.spinInvalidBet(S);
     };
+    // 嘗試進行自動旋轉
     q.prototype.tryAutoSpin = function () {
       var S = this;
       var z = this.spinButtonController;
@@ -159,6 +185,7 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
         this.idle();
       }
     };
+    // 取消排程的自動旋轉
     q.prototype.disposeAutoSpin = function () {
       var S = this._unscheduleAutoSpin;
       this._unscheduleAutoSpin = undefined;
@@ -166,10 +193,12 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
         S();
       }
     };
+    // 停用設定選單功能
     q.prototype.disableSettingMenu = function () {
       Q.settingMenuHelper.autoSpinCallback = undefined;
       Q.settingMenuHelper.setAllButtonsInteractable(false);
     };
+    // 退出自動旋轉模式並恢復相關功能
     q.prototype.exitAutoSpin = function () {
       this.disposeAutoSpin();
       var S = this.spinButtonController;
@@ -179,22 +208,28 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       this.enableSettingMenu();
       this.setupGameResumeEvent(this.enableSpinAction.bind(this));
     };
+    // 移除遊戲暫停事件
     q.prototype.removeGamePauseEvent = function () {
       C.removeGamePauseEventCallback(this.name);
     };
+    // 移除遊戲恢復事件
     q.prototype.removeGameResumeEvent = function () {
       C.removeGameResumeEventCallback(this.name);
     };
+    // 發送遊戲暫停通知
     q.prototype.emitGameNotifyPause = function () {
       this.disposeAutoSpin();
       C.emitGameNotifyPauseEvent();
     };
+    // 設定遊戲暫停事件
     q.prototype.setupGamePauseEvent = function () {
       C.setGamePauseEventCallback(this.name, this.emitGameNotifyPause.bind(this));
     };
+    // 設定遊戲恢復事件
     q.prototype.setupGameResumeEvent = function (S) {
       C.setGameResumeEventCallback(this.name, S);
     };
+    // 回到閒置狀態並啟用相關功能
     q.prototype.idle = function () {
       var S = this.spinButtonController;
       S.enableButton();
@@ -204,6 +239,7 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
       this.enableAvailableActions();
       this.setupGameResumeEvent(this.enableSpinAction.bind(this));
     };
+    // 驗證是否可以旋轉
     q.prototype.validateSpin = function (S) {
       var z = this;
       var A = this.spinButtonController;
@@ -235,10 +271,12 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
         });
       }
     };
+    // 啟用設定選單的互動
     q.prototype.enableSettingMenu = function () {
       Q.settingMenuHelper.autoSpinCallback = this.startAutoSpin.bind(this);
       Q.settingMenuHelper.setAllButtonsInteractable(true);
     };
+    // 開始自動旋轉流程
     q.prototype.startAutoSpin = function () {
       var S = this;
       var z = Q.settingMenuHelper.autoSpinCount;
@@ -258,6 +296,7 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
         S.setupGameResumeEvent(S.delayAndStartAutoSpin.bind(S, S.autoSpinDelay));
       });
     };
+    // 延遲後啟動自動旋轉
     q.prototype.delayAndStartAutoSpin = function (S) {
       var z = this;
       var A = this.dataSource.transactionModel.accumulatedWinAmount;
@@ -272,6 +311,7 @@ if (!cc._RF.push(module, "9928eUmiH5DjJzRecinmoRP", "IdleState")) {
         this.validateSpin(L.SpinTrigger.AUTOSPIN);
       }
     };
+    // 扣除旋轉所需的餘額
     q.prototype.decreaseBalance = function (S) {
       if (S === undefined) {
         throw Error("trigger cannot be undefined");
