@@ -10,6 +10,7 @@ if (!cc._RF.push(module, "e4a87/dIGtMT5oq5NQEGbT5", "SettingMenuHandlers")) {
   var j = {
     settingMenuLibPath: "lib/setting_menu/"
   };
+  // 初始化設定選單相關依賴
   exports.setupSettingMenu = function (q) {
     var S = Object.assign({}, j, q.settingMenuDependenciesPath);
     var z = q.settingMenuHelper;
@@ -29,6 +30,7 @@ if (!cc._RF.push(module, "e4a87/dIGtMT5oq5NQEGbT5", "SettingMenuHandlers")) {
       A();
     }
   };
+  // 建立設定選單並載入初始資料
   exports.initializeSettingMenu = function (q) {
     var S = q.settingMenuHelper;
     var z = q.dataSource;
@@ -57,6 +59,7 @@ if (!cc._RF.push(module, "e4a87/dIGtMT5oq5NQEGbT5", "SettingMenuHandlers")) {
   cc._RF.pop();
 }
 function G(q, S, z) {
+  // 更新下注數值並發送事件
   return function (f, A) {
     var M = q.systemModel.maxLineNumber;
     S.betSizeValue = f;
@@ -71,6 +74,7 @@ function G(q, S, z) {
   };
 }
 function V(q, S, z) {
+  // 建立觸發下注變更的回呼
   return function (f, A) {
     G(q, S)(f, A);
     S.updateBetValues();
@@ -80,6 +84,7 @@ function V(q, S, z) {
   };
 }
 function Q(q, S) {
+  // 將下注值寫回資料來源
   return function (z, f) {
     q.transactionModel.betSizeValue = z;
     q.transactionModel.betLevelValue = f;
@@ -89,9 +94,11 @@ function Q(q, S) {
   };
 }
 function N(q, S, z) {
+  // 計算額外的下注總額
   return C.toDecimalWithExp(q * S * z, 2);
 }
 function Y(q) {
+  // 處理設定選單切換時顯示或隱藏旋轉按鈕
   return function (S) {
     if (S) {
       q.hide();
@@ -101,6 +108,7 @@ function Y(q) {
   };
 }
 function W(q, S) {
+  // 切換音效與音樂的靜音狀態
   return function (z) {
     q(!z);
     S(!z);

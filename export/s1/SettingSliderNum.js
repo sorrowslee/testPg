@@ -14,19 +14,23 @@ if (!cc._RF.push(module, "89028I5vilAgJwUYY+0IKoT", "SettingSliderNum")) {
       offColor: cc.Color,
       isMin: false
     },
+    // 設定顯示數字的顏色
     setColor: function (T, x) {
       this.onColor = T;
       this.offColor = x;
     },
+    // 切換是否顯示數值與其內容
     setDisplayValue: function (T, x) {
       this.numberLabel.string = x;
       this.numberLabel.node.active = T;
     },
+    // 初始化時處理最小值樣式
     onLoad: function () {
       if (this.isMin) {
         this.shortLine.active = false;
       }
     },
+    // 切換數字高亮或暗色
     setLight: function (T) {
       if (T) {
         (0, K.setNodeColorWithOpacity)(this.numberLabel.node, this.onColor);

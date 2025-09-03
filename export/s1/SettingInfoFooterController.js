@@ -60,6 +60,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       return G;
     }
     __extends(j, p);
+    // 更新下注金額文字與動畫
     j.prototype.updateBetAmount = function (G, V) {
       var Q = this;
       if (V === undefined) {
@@ -87,17 +88,21 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       enumerable: false,
       configurable: true
     });
+    // 設定打開下注選單的回呼
     j.prototype.setOpenBetOptionsMenuCallback = function (G) {
       this._openBetOptionsMenu = G;
     };
+    // 觸發下注選單開啟
     j.prototype.openBetOptionsMenu = function () {
       if (this._openBetOptionsMenu) {
         this._openBetOptionsMenu();
       }
     };
+    // 控制下注按鈕的鎖定狀態
     j.prototype.setBetOptionsButtonLock = function (G = false) {
       this.lockBetOptionsButton = G;
     };
+    // 切換下注按鈕是否可互動
     j.prototype.interactableBetOptionsButton = function (G) {
       this.betOptionsButton.interactable = G;
       if (G) {
@@ -109,14 +114,17 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this.betAmountLabel.node.color = cc.Color.WHITE;
       }
     };
+    // 設定開啟得分選單的回呼
     j.prototype.setOpenWinMenuCallback = function (G) {
       this._openWinMenu = G;
     };
+    // 觸發得分選單開啟
     j.prototype.openWinMenu = function () {
       if (this._openWinMenu) {
         this._openWinMenu();
       }
     };
+    // 切換得分按鈕是否可互動
     j.prototype.interactableWinButton = function (G) {
       this.winButton.interactable = G;
       if (G) {
@@ -128,9 +136,11 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this.winValueNode.color = this.freeSpinValue.node.color = cc.Color.WHITE;
       }
     };
+    // 設定得分圖示
     j.prototype.setWinIcon = function (G) {
       this.winCashIconNode.spriteFrame = G;
     };
+    // 依照錢包類型切換導覽圖示
     j.prototype.setWalletNavigateIcon = function (G) {
       switch (G) {
         case T.CASH:
@@ -145,6 +155,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
           this.walletNavigateIcon.getComponent(cc.Sprite).spriteFrame = undefined;
       }
     };
+    // 初始化控制器與按鈕顏色
     j.prototype.boot = function () {
       this._balanceLabelController = this.balanceValueNode.getComponent("NumberLabelControllerLite");
       this._winLabelController = this.winValueNode.getComponent("NumberLabelControllerLite");
@@ -166,19 +177,24 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       this._winLabelController.skip(0);
       this._totalWinLabelController.skip(0);
     };
+    // 變更錢包圖示透明度
     j.prototype.changeWalletIconColor = function (G) {
       this.walletNavigateIcon.opacity = G ? L.uiAppearanceHelper.v("setting.color_button_transition_a.pressed").a : L.uiAppearanceHelper.v("setting.color_button_transition_a.normal").a;
     };
+    // 顯示或隱藏背景遮罩
     j.prototype.showBackground = function (G, V = 225) {
       this.background.active = G;
       this.background.opacity = V;
     };
+    // 設定開啟錢包選單的回呼
     j.prototype.setOpenWalletMenuCallback = function (G) {
       this._openWalletMenu = G;
     };
+    // 控制錢包按鈕的鎖定狀態
     j.prototype.setWalletButtonLock = function (G = false) {
       this.lockWalletButton = G;
     };
+    // 切換錢包按鈕是否可互動
     j.prototype.interactableWalletButton = function (G) {
       this.walletButton.interactable = G;
       if (G) {
@@ -190,18 +206,23 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this.balanceValueNode.color = cc.Color.WHITE;
       }
     };
+    // 變更錢包按鈕顏色
     j.prototype.changeWalletButtonColor = function (G) {
       this.walletNavigateIcon.opacity = G ? L.uiAppearanceHelper.v("setting.color_button_transition_a.pressed").a : L.uiAppearanceHelper.v("setting.color_button_transition_a.normal").a;
     };
+    // 顯示或隱藏餘額節點
     j.prototype.showBalanceNode = function (G) {
       this.balanceNode.active = G;
     };
+    // 顯示或隱藏總得分節點
     j.prototype.showTotalWinNode = function (G) {
       this.totalWinNode.active = G;
     };
+    // 顯示或隱藏免費遊戲資訊
     j.prototype.showFreeGamesNode = function (G) {
       this.freeGamesNode.active = G;
     };
+    // 啟用或停用錢包通知閃動
     j.prototype.activateWalletNotify = function (G) {
       this.walletNotify = G;
       if (G === true) {
@@ -213,16 +234,19 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this.walletNotificationIcon.active = G;
       }
     };
+    // 觸發錢包選單開啟
     j.prototype.openWalletMenu = function () {
       if (this._openWalletMenu) {
         this._openWalletMenu();
       }
     };
+    // 將資訊板節點移到新的父節點
     j.prototype.changeHolder = function (G) {
       this._primeHolder ||= G;
       this.node.removeFromParent(false);
       G.addChild(this.node);
     };
+    // 把資訊板節點移回原父節點
     j.prototype.returnHolder = function () {
       if (!this._primeHolder) {
         throw Error("SettingInfoFooter :: returnHolder : Do not have parent to return");
@@ -230,6 +254,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       this.node.removeFromParent(false);
       this._primeHolder.addChild(this.node);
     };
+    // 顯示自訂資訊底板
     j.prototype.showCustomInfoFooter = function () {
       this._isCustomInfoFooter = true;
       this.freeGamesNode.active = true;
@@ -237,6 +262,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this._activateFlipRightSlot(true);
       }
     };
+    // 隱藏自訂資訊底板並恢復狀態
     j.prototype.hideCustomInfoFooter = function () {
       this._isCustomInfoFooter = false;
       this.freeGamesNode.active = false;
@@ -257,6 +283,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
     j.prototype.isCustomInfoFooter = function () {
       return this._isCustomInfoFooter;
     };
+    // 更新餘額數字
     j.prototype.updateBalance = function (G, V, Q) {
       if (this._balanceLabelController === undefined) {
         throw Error("SettingInfoFooter :: updateBalance : Please call boot() to setup balance label controller first!");
@@ -284,6 +311,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       enumerable: false,
       configurable: true
     });
+    // 更新單局贏分
     j.prototype.updateWinAmount = function (G, V, Q = true) {
       if (this._winLabelController === undefined) {
         throw Error("SettingInfoFooter :: updateWinAmount : Please call boot() to setup win label controller first!");
@@ -307,6 +335,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       }
       this._currentWinAmount = this.winBalance;
     };
+    // 更新總贏分
     j.prototype.updateTotalWinAmount = function (G, V) {
       if (this._totalWinLabelController === undefined) {
         throw Error("SettingInfoFooter :: updateTotalWinAmount : Please call boot() to setup total win label controller first!");
@@ -322,6 +351,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this._totalWinLabelController.skip(G);
       }
     };
+    // 設定自訂中間資訊內容
     j.prototype.setCustomMiddleInfoFooter = function (G, V = true) {
       this.freeSpinValue.string = G;
       this._isSticky = !V;
@@ -329,11 +359,13 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this._activateFlipRightSlot(true, V);
       }
     };
+    // 依語系調整排版方向
     j.prototype.updateLayout = function (G) {
       this.languageSensitiveLayoutList.forEach(function (V) {
         return V.horizontalDirection = G ? cc.Layout.HorizontalDirection.RIGHT_TO_LEFT : cc.Layout.HorizontalDirection.LEFT_TO_RIGHT;
       });
     };
+    // 控制右側資訊翻轉顯示
     j.prototype._activateFlipRightSlot = function (G, V = true) {
       var Q = 0;
       if (G) {
@@ -349,6 +381,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
       }
       this._startFlipRightSlot(Q, V);
     };
+    // 開始執行右側翻轉動畫
     j.prototype._startFlipRightSlot = function (G, V = true) {
       var Q = this._abortDelay;
       this._abortDelay = undefined;
@@ -366,6 +399,7 @@ if (!cc._RF.push(module, "06e65rpYzVNHbDR0e2vljl/", "SettingInfoFooterController
         this._abortDelay = x.delayCallback(G)(this._runFlipRightSlot.bind(this));
       }
     };
+    // 持續執行右側翻轉循環
     j.prototype._runFlipRightSlot = function () {
       var G = this;
       this._abortDelay = undefined;

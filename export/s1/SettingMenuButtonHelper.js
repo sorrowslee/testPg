@@ -13,16 +13,20 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
       this._otherButtons = Object.create(null);
       this._buttonListCannotBeDisable = Object.create(null);
     }
+    // 設定按鈕預製體與是否可被禁用
     L.prototype.setButtonPrefab = function (D, k, C) {
       this._buttonPrefabStore[D] = k;
       this._buttonListCannotBeDisable[D] = C;
     };
+    // 取得已佔用的按鈕數量
     L.prototype.totalButtonsOccupied = function () {
       return this._buttonList.length;
     };
+    // 取得列表中的按鈕實例
     L.prototype.getButtonInList = function (D) {
       return cc.instantiate(this._buttonPrefabStore[D]).getComponent("GenericSettingButton");
     };
+    // 建立並設定按鈕，加入列表
     L.prototype.setupSettingMenuButtonInList = function (D, k, C) {
       var u = cc.instantiate(this._buttonPrefabStore[D]);
       var c = u.getComponent("GenericSettingButton");
@@ -35,6 +39,7 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
       }
       return c;
     };
+    // 建立獨立按鈕，不加入列表
     L.prototype.setupIndependentSettingMenuButton = function (D, k) {
       if (this._buttonPrefabStore[D]) {
         var C = cc.instantiate(this._buttonPrefabStore[D]).getComponent("GenericSettingButton");
@@ -44,6 +49,7 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
         return C;
       }
     };
+    // 設定不屬於 GenericSettingButton 的按鈕
     L.prototype.setupOtherButtonInList = function (D, k) {
       var C = {
         isInteractable: k
@@ -52,9 +58,11 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
       this._otherButtons[D] = C;
       this._buttonListCannotBeDisable[D] = false;
     };
+    // 設定按鈕可互動旗標
     L.prototype.setButtonInteractableFlag = function (D, k = false) {
       this._buttonInteractableStore[D] = k;
     };
+    // 根據旗標切換按鈕互動
     L.prototype.setButtonInteractable = function (D) {
       if (!this._buttonListCannotBeDisable[D] && this._buttonLockStore[D] === false) {
         if (this._otherButtons[D]) {
@@ -64,12 +72,15 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
         }
       }
     };
+    // 設定按鈕鎖定狀態
     L.prototype.setButtonLock = function (D, k = false) {
       this._buttonLockStore[D] = k;
     };
+    // 檢查按鈕是否被鎖定
     L.prototype.isButtonLocked = function (D) {
       return this._buttonLockStore[D];
     };
+    // 將所有按鈕設為可互動或不可互動
     L.prototype.setAllButtonsInteractable = function (D) {
       var k = Object.keys(this._buttons);
       for (var C = 0, u = k.length; C < u; C++) {
@@ -84,6 +95,7 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
         this.setButtonInteractable(parseInt(c[C]));
       }
     };
+    // 鎖定或解鎖所有按鈕
     L.prototype.setButtonsLock = function (D) {
       for (var k = 0, C = Object.keys(this._buttons).length; k < C; k++) {
         this.setButtonLock(k + 1, D);
@@ -94,6 +106,7 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
         this.setButtonLock(k + 1, D);
       }
     };
+    // 依鎖定狀態調整按鈕可互動
     L.prototype.setLockAccess = function (D, k) {
       this.setButtonLock(D, k);
       if (k) {
@@ -106,6 +119,7 @@ if (!cc._RF.push(module, "1ddf5VqGQ9OiqajxiLxeBVw", "SettingMenuButtonHelper")) 
         this.setButtonInteractable(D);
       }
     };
+    // 取得按鈕節點
     L.prototype.getButtonNode = function (D) {
       var k = this._buttons[D];
       if (k) {
