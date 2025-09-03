@@ -29,6 +29,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
     }
     __extends(W, Y);
     W.prototype.onInit = function (q) {
+      // 初始化 Big Win 所需的節點與資源
       this._initBigWinNodes({
         skipButtonNode: this.buttonNode
       });
@@ -54,6 +55,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       }
     };
     W.prototype.onPlay = function () {
+      // 播放進場動畫並淡出背景音樂
       var q = this.numberRollNode;
       q.parent.stopAllActions();
       q.parent.scale = 0;
@@ -64,6 +66,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       }
     };
     W.prototype.onPlayBigWinEffect = function (q) {
+      // 播放 Big Win 特效並啟用跳過按鈕
       this._skipButtonActive();
       this._coinParticle.resetSystem();
       this._vfxB.resetSystem();
@@ -72,14 +75,17 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       q();
     };
     W.prototype.onPlayMegaWinEffect = function () {
+      // 播放 Mega Win 特效
       this._playShine();
       this._playEffects();
     };
     W.prototype.onPlaySuperMegaWinEffect = function () {
+      // 播放 Super Mega Win 特效
       this._playShine();
       this._playEffects();
     };
     W.prototype.onWinRollComplete = function () {
+      // 贏分滾動結束後處理音樂與光效
       this._playShine();
       var q = this.numberRollNode;
       q.parent.stopAllActions();
@@ -92,10 +98,14 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       }
     };
     W.prototype.onStop = function () {
+      // Big Win 流程結束恢復背景音樂音量
       C.bgmHandler.fadeBgmTo(1, 1);
     };
-    W.prototype.onDismiss = function () {};
+    W.prototype.onDismiss = function () {
+      // Big Win 關閉時的回呼，目前無實作
+    };
     W.prototype.onReset = function () {
+      // 重置所有 Big Win 特效與節點狀態
       var q = this.numberRollNode;
       q.parent.stopAllActions();
       q.parent.scale = 0;
@@ -126,9 +136,14 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
         j.GeneralAudioPool.bgm_bigwin_end.stop();
       }
     };
-    W.prototype._initBigWinNodes = function () {};
-    W.prototype._skipButtonActive = function () {};
+    W.prototype._initBigWinNodes = function () {
+      // 初始化 Big Win 畫面節點（由自動化裝飾器處理）
+    };
+    W.prototype._skipButtonActive = function () {
+      // 顯示或隱藏跳過按鈕（由自動化裝飾器處理）
+    };
     W.prototype._playEffects = function () {
+      // 依贏分等級播放對應的特效與動畫
       var q = this;
       this.winTextSpriteList.forEach(function (f, A) {
         f.node.active = A === q.winRollState;
@@ -177,6 +192,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       }
     };
     W.prototype._playShine = function () {
+      // 播放中心閃光效果
       var q = this._vfxD;
       q.stopAllActions();
       q.opacity = 255;
@@ -184,6 +200,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       q.runAction(cc.spawn(cc.scaleTo(1, 10).easing(cc.easeOut(3)), cc.sequence(cc.delayTime(0.6), cc.fadeOut(0.4).easing(cc.easeIn(2)))));
     };
     W.prototype._playBulletEffect = function (q) {
+      // 播放或停止散彈特效
       var S = this;
       if (q === undefined) {
         q = true;
@@ -223,6 +240,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       }
     };
     W.prototype._resetBulletEffect = function () {
+      // 重置並關閉散彈特效
       var q = this._disposeBulletEffect;
       this._disposeBulletEffect = undefined;
       if (q) {
@@ -238,6 +256,7 @@ if (!cc._RF.push(module, "95993uxZSpGnLlF8wzkefdw", "WBSBigWinController")) {
       S.active = false;
     };
     W.prototype._playVfxC = function (q) {
+      // 控制額外 VFX 動畫的啟用與停用
       var S = this._vfxC[0];
       var z = this._vfxC[1];
       if (q) {

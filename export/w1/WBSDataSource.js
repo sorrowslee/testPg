@@ -10,6 +10,7 @@ if (!cc._RF.push(module, "ea57bfn2ppGbJ8oIv5a3F58", "WBSDataSource")) {
   var k = require("WBSSlotSystemModel");
   var C = function (p) {
     function j() {
+      // 設定玩家、系統與交易資料模型
       var G = p.call(this, {
         playerModel: new T.default(),
         systemModel: new k.default(L.cs_Config),

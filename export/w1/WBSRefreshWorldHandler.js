@@ -20,14 +20,17 @@ if (!cc._RF.push(module, "c8a43wFvPdBdqSw7KC9kFgc", "WBSRefreshWorldHandler")) {
     }
     __extends(N, Q);
     N.prototype.initialize = function (Y) {
+      // 初始化控制器與狀態機
       this._loadingController = Y.loadingController;
       this.setAppStateMachine(Y.appStateMachine);
       Q.prototype.initialize.call(this, Y);
     };
     N.prototype.setAppStateMachine = function (Y) {
+      // 設定應用狀態機
       this._appStateMachine = Y;
     };
     N.prototype.refreshWorldByChangeWalletIdle = function (Y, W) {
+      // 依錢包變更重新整理世界並處理重播
       this._refreshWorldCallback = W;
       var q = this.dataSource;
       var S = q.isGameReplaying;
@@ -44,6 +47,7 @@ if (!cc._RF.push(module, "c8a43wFvPdBdqSw7KC9kFgc", "WBSRefreshWorldHandler")) {
       }
     };
     N.prototype._startReplay = function () {
+      // 開始回放流程
       var Y = this.dataSource.transactionModel.stateTransitionTo;
       this.dataSource.isRefreshWorld = true;
       T.cacheTransitionCallback();
@@ -57,6 +61,7 @@ if (!cc._RF.push(module, "c8a43wFvPdBdqSw7KC9kFgc", "WBSRefreshWorldHandler")) {
       }
     };
     N.prototype._exitReplay = function () {
+      // 結束回放流程
       this.dataSource.isReplayDone = true;
       k.bgmHandler.playBgm(D.TransitionState.NORMAL);
       k.bgmHandler.setBgmVolume(1);
@@ -69,6 +74,7 @@ if (!cc._RF.push(module, "c8a43wFvPdBdqSw7KC9kFgc", "WBSRefreshWorldHandler")) {
       this._appStateMachine.exit();
     };
     N.prototype._onExit = function () {
+      // 一般刷新結束時的處理
       var Y = this._refreshWorldCallback;
       this._refreshWorldCallback = undefined;
       if (Y) {
@@ -77,6 +83,7 @@ if (!cc._RF.push(module, "c8a43wFvPdBdqSw7KC9kFgc", "WBSRefreshWorldHandler")) {
       L.spaceBarInterrupter.resume();
     };
     N.prototype.resetController = function (Y) {
+      // 重新設定各種控制器狀態
       var W = this.generalControllers;
       var q = W.slotController;
       var z = W.symbolPayoutController;
@@ -126,6 +133,7 @@ if (!cc._RF.push(module, "c8a43wFvPdBdqSw7KC9kFgc", "WBSRefreshWorldHandler")) {
       }
     };
     N.prototype.executeTransition = function (Y) {
+      // 根據下一狀態載入或釋放資源
       switch (this.dataSource.transactionModel.stateTransitionTo) {
         case D.TransitionState.FREE_SPIN_RESPIN:
         case D.TransitionState.FREE_SPIN:

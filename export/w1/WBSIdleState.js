@@ -22,6 +22,7 @@ if (!cc._RF.push(module, "67aa1MWLyVGqJ7DSmrzs2GE", "WBSIdleState")) {
     }
     __extends(V, G);
     V.prototype.run = function () {
+      // 進入待機狀態並處理重播邏輯
       var Q = this;
       if (this.dataSource.isReplayDone) {
         G.prototype.run.call(this);
@@ -32,6 +33,7 @@ if (!cc._RF.push(module, "67aa1MWLyVGqJ7DSmrzs2GE", "WBSIdleState")) {
       }
     };
     V.prototype.onStateFullyIdle = function () {
+      // 待機完成後顯示功能按鈕與派彩面板
       var Q = this.controllerPool.generalControllers;
       var N = Q.symbolPayoutController;
       var Y = Q.featureBuyController;
@@ -51,6 +53,7 @@ if (!cc._RF.push(module, "67aa1MWLyVGqJ7DSmrzs2GE", "WBSIdleState")) {
       N.enablePanel();
     };
     V.prototype.onExit = function (Q) {
+      // 離開待機狀態時清理相關 UI
       var N = this.controllerPool.generalControllers;
       var Y = N.symbolPayoutController;
       var W = N.featureBuyController;
@@ -64,6 +67,7 @@ if (!cc._RF.push(module, "67aa1MWLyVGqJ7DSmrzs2GE", "WBSIdleState")) {
       T.transitionCompleteCallback("action")(Q);
     };
     V.prototype.defineSystemEventConfigParam = function () {
+      // 定義系統事件回呼，處理自動旋轉與重播
       var Q = this;
       return {
         callback: function () {
@@ -79,9 +83,11 @@ if (!cc._RF.push(module, "67aa1MWLyVGqJ7DSmrzs2GE", "WBSIdleState")) {
       };
     };
     V.prototype.disableAvailableActions = function () {
+      // 停用可選的功能按鈕
       this.controllerPool.generalControllers.featureBuyController.disableFeatureBuy();
     };
     V.prototype.getCostPerSpin = function (Q) {
+      // 計算每次旋轉所需費用，包含 Feature Buy
       var N = this.dataSource.systemModel;
       var Y = N.maxLineNumber;
       var W = N.featureBuy;
@@ -98,6 +104,7 @@ if (!cc._RF.push(module, "67aa1MWLyVGqJ7DSmrzs2GE", "WBSIdleState")) {
       }
     };
     V.prototype.spinInvalidBet = function (Q) {
+      // 處理下注不合法的情況
       G.prototype.spinInvalidBet.call(this, Q);
       this.dataSource.isFeatureBuy = false;
     };

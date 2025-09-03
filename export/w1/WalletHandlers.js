@@ -4,6 +4,7 @@ if (!cc._RF.push(module, "16fa48YcbZClp+85Xk1WOH4", "WalletHandlers")) {
   });
   exports.setupWallets = undefined;
   exports.setupWallets = function (T) {
+    // 初始化錢包相關控制與回呼
     var x = T.dataSource;
     var L = T.settingMenuHelper;
     var D = T.walletHelper;

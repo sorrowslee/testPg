@@ -25,6 +25,7 @@ if (!cc._RF.push(module, "caad0pqW6xKH6zUM9ZK/HDT", "WBSPopOutItem")) {
     }
     __extends(Y, N);
     Y.prototype.showItem = function (W, q, S, z, A, M, E, F, b) {
+      // 顯示派彩金額並搬移對應符號
       if (this._slotItemOriginalParent) {
         this.hide();
       }
@@ -38,6 +39,7 @@ if (!cc._RF.push(module, "caad0pqW6xKH6zUM9ZK/HDT", "WBSPopOutItem")) {
       T.transferToParent(H.contentHolder, this.symbolHolder);
     };
     Y.prototype.hideItem = function () {
+      // 隱藏派彩項目並還原符號位置
       if (this._slotItemOriginalParent) {
         var W = this.symbolHolder.children[0];
         T.transferToParent(W, this._slotItemOriginalParent);
@@ -47,6 +49,7 @@ if (!cc._RF.push(module, "caad0pqW6xKH6zUM9ZK/HDT", "WBSPopOutItem")) {
       N.prototype.hideItem.call(this);
     };
     Y.prototype.setPayoutValue = function (W, q) {
+      // 設定派彩數值或描述文字
       var S = W % 100;
       var z = q[S];
       var f = Object.keys(z);
@@ -72,6 +75,7 @@ if (!cc._RF.push(module, "caad0pqW6xKH6zUM9ZK/HDT", "WBSPopOutItem")) {
       }
     };
     Y.prototype._setItemDirection = function (W) {
+      // 根據位置決定彈出方向與對齊
       var q = W % 100;
       this.backgroundSprite.node.x = 0;
       if (this._isLeftToRight) {
@@ -93,6 +97,7 @@ if (!cc._RF.push(module, "caad0pqW6xKH6zUM9ZK/HDT", "WBSPopOutItem")) {
       }
     };
     Y.prototype._setRTLLanguage = function () {
+      // 針對 RTL 語系調整佈局
       if (k.isRTL) {
         this.payoutLayouts.forEach(function (W) {
           W.horizontalDirection = cc.Layout.HorizontalDirection.RIGHT_TO_LEFT;

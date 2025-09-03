@@ -9,6 +9,7 @@ if (!cc._RF.push(module, "8caf2Z5GP1O36zsmaXn7b4T", "WBSGameUtils")) {
   var D = require("GameConstant");
   var k = x.getSharedScheduler();
   exports.scheduleIterator = function (C, u, c, p) {
+    // 依指定次數與間隔逐步執行回呼
     var j = 0;
     var G = 0;
     function V() {
@@ -32,11 +33,13 @@ if (!cc._RF.push(module, "8caf2Z5GP1O36zsmaXn7b4T", "WBSGameUtils")) {
     };
   };
   exports.uniqueArray = function (C) {
+    // 回傳陣列中不重複的元素
     return C.filter(function (u, c, p) {
       return p.indexOf(u) === c;
     });
   };
   exports.differentArray = function (C, u) {
+    // 取得存在於 C 但不在 u 的元素
     var c = [];
     for (var p = 0; p < C.length; p++) {
       if (!u.includes(C[p])) {
@@ -46,6 +49,7 @@ if (!cc._RF.push(module, "8caf2Z5GP1O36zsmaXn7b4T", "WBSGameUtils")) {
     return c;
   };
   exports.getProcessedReelSymbols = function (C, u) {
+    // 將金色符號標記合併至轉輪資料
     var c = [];
     var p = u ? Object.keys(u) : [];
     C.forEach(function (V) {
@@ -59,9 +63,11 @@ if (!cc._RF.push(module, "8caf2Z5GP1O36zsmaXn7b4T", "WBSGameUtils")) {
     return c;
   };
   exports.isPassUKGC = function (C) {
+    // 檢查是否符合 UKGC 規範
     return T.checkOperatorProfit(C, L.wbsDataSource);
   };
   exports.lerpTo = function (C, u, c, p = 0) {
+    // 在指定時間內對值進行線性插值
     var j = 0;
     var l = 0;
     function G(V) {
@@ -78,6 +84,7 @@ if (!cc._RF.push(module, "8caf2Z5GP1O36zsmaXn7b4T", "WBSGameUtils")) {
     };
   };
   exports.getPositionRemoveColumnList = function (C) {
+    // 取得含有資料的欄位索引列表
     var u = [];
     for (var c = 0; c < C.length; c++) {
       if (C[c].length > 0) {
