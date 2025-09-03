@@ -9,17 +9,20 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
   var D = require("InfoBoardController");
   var k = require("Utils");
   exports.settingMenuInteractable = function (N) {
+    // 設定設定選單所有按鈕是否可互動
     x.settingMenuHelper.setAllButtonsInteractable(N);
   };
   var C = function () {
     function N() {}
     N.prototype.setup = function (Y, W) {
+      // 初始化一般遊戲界面並依序顯示資訊
       this._generalControllers = Y.generalControllers;
       this._dataSource = Y.dataSource;
       G(this._dataSource);
       k.sequenceCallback(this._setupUI.bind(this), this._showWaysText.bind(this), this._showWinAmount.bind(this), this._showMultiplier.bind(this))(W);
     };
     N.prototype._setupUI = function (Y) {
+      // 切換至一般遊戲 UI 並重置控制器
       var W = this._generalControllers;
       var q = W.slotController;
       var S = W.slotTintController;
@@ -51,9 +54,11 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       }
     };
     N.prototype._showWinAmount = function (Y) {
+      // 顯示贏分資訊
       Q(this._generalControllers, this._dataSource, false, Y);
     };
     N.prototype._showMultiplier = function (Y) {
+      // 更新倍數顯示
       var W = this._generalControllers.multiplierController;
       var q = this._dataSource.transactionModel.gameMultiplier;
       W.reloadMultiplier(q, false);
@@ -62,12 +67,14 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       }
     };
     N.prototype._showWaysText = function (Y) {
+      // 隱藏方式提示文字
       this._generalControllers.waysController.node.active = false;
       if (Y) {
         Y();
       }
     };
     N.prototype._setupFeatureButton = function (Y) {
+      // 設定 Feature Buy 按鈕狀態
       var W = this._dataSource.systemModel;
       var q = W.operatorJurisdiction.buyFeature;
       var S = this._generalControllers.featureBuyController;
@@ -87,6 +94,7 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       }
     };
     N.prototype._resumeFeatureButton = function (Y) {
+      // 恢復 Feature Buy 按鈕可用狀態
       var W = this._dataSource.systemModel;
       var q = this._dataSource.transactionModel.stateTransitionTo;
       var S = W.featureBuy;
@@ -115,6 +123,7 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
   var j = function () {
     function _N() {}
     _N.prototype.setup = function (Y, W) {
+      // 初始化免費遊戲界面並顯示資訊
       this._generalControllers = Y.generalControllers;
       this._bonusControllers = Y.bonusControllers;
       this._dataSource = Y.dataSource;
@@ -122,6 +131,7 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       k.sequenceCallback(this._setupUI.bind(this), this._showWaysText.bind(this), this._showWinAmount.bind(this), this._showMultiplier.bind(this), this._setupSymbolPopout.bind(this))(W);
     };
     _N.prototype._setupUI = function (Y) {
+      // 切換至免費遊戲 UI 並重置控制器
       var W = this._generalControllers;
       var q = W.slotController;
       var S = W.slotTintController;
@@ -152,9 +162,11 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       }
     };
     _N.prototype._showWinAmount = function (Y) {
+      // 顯示贏分資訊
       Q(this._generalControllers, this._dataSource, true, Y);
     };
     _N.prototype._showMultiplier = function (Y) {
+      // 更新倍數顯示
       var W = this._generalControllers.multiplierController;
       var q = this._dataSource.transactionModel.gameMultiplier;
       W.reloadMultiplier(q, true);
@@ -163,6 +175,7 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       }
     };
     _N.prototype._setupSymbolPopout = function (Y) {
+      // 隱藏符號派彩彈出面板
       var W = this._generalControllers.symbolPayoutController;
       W.hidePopOutItem();
       W.clearOnClickCallback();
@@ -172,12 +185,14 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
       }
     };
     _N.prototype._showWaysText = function (Y) {
+      // 顯示方式提示文字
       this._generalControllers.waysController.node.active = true;
       if (Y) {
         Y();
       }
     };
     _N.prototype._setupFeatureButton = function (Y) {
+      // 設定免費遊戲中 Feature Buy 按鈕
       var W = this._dataSource.systemModel;
       var q = W.operatorJurisdiction.buyFeature;
       var S = this._generalControllers.featureBuyController;
@@ -201,6 +216,7 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
   }();
   exports.BonusGameUI = j;
   exports.renderUIBaseOnState = function (N, Y) {
+    // 根據遊戲狀態渲染對應 UI
     var W = N.dataSource.transactionModel;
     var q = W.stateTransitionFrom;
     var S = W.stateTransitionTo;
@@ -217,12 +233,14 @@ if (!cc._RF.push(module, "71e5eAt2xdH5J3VT6nognao", "UISetupHandler")) {
   cc._RF.pop();
 }
 function G(N) {
+  // 更新設定選單的餘額與贏分
   var Y = N.playerModel.balance;
   var W = N.transactionModel.accumulatedWinAmount;
   x.settingMenuHelper.setBalance(Y);
   x.settingMenuHelper.setWinAmount(W);
 }
 function V(N) {
+  // 取得所有獎金門檻
   var Y = N.systemModel;
   var W = Y.maxLineNumber;
   var q = Y.winThresholds;
@@ -232,6 +250,7 @@ function V(N) {
   return q.getAllThresholds(z, f, W);
 }
 function Q(N, Y, W, q) {
+  // 根據贏分顯示訊息板效果
   var S = Y.transactionModel;
   var z = S.accumulatedWinAmount;
   var A = S.totalWinAmount;

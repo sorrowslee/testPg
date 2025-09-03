@@ -7,6 +7,7 @@ if (!cc._RF.push(module, "f4549VlHlxOL4w7V7h4rhZg", "UIAppearanceHelper")) {
   var M = function () {
     function m() {}
     m.prototype.interpret = function (v) {
+      // 將陣列的第一個元素回傳
       return v[0];
     };
     return m;
@@ -14,6 +15,7 @@ if (!cc._RF.push(module, "f4549VlHlxOL4w7V7h4rhZg", "UIAppearanceHelper")) {
   var E = function () {
     function m() {}
     m.prototype.interpret = function (v) {
+      // 將陣列轉成 cc.Color 物件
       return new cc.Color(v[0], v[1], v[2], v[3]);
     };
     return m;
@@ -35,6 +37,7 @@ if (!cc._RF.push(module, "f4549VlHlxOL4w7V7h4rhZg", "UIAppearanceHelper")) {
     }
     __extends(v, m);
     v.prototype.v = function (J) {
+      // 取得 UI 外觀設定，若無則從備份資料尋找
       var Z0 = this._uiAppearance && this._uiAppearance.v(J);
       if (Z0 === null) {
         Z0 = y(J);
@@ -42,6 +45,7 @@ if (!cc._RF.push(module, "f4549VlHlxOL4w7V7h4rhZg", "UIAppearanceHelper")) {
       return Z0;
     };
     v.prototype.unregisterInterpreter = function (J) {
+      // 取消註冊指定的解析器
       return this._uiAppearance && this._uiAppearance.unregisterInterpreter(J);
     };
     return __decorate([F("UIAppearanceHelper")], v);
@@ -85,6 +89,7 @@ if (!cc._RF.push(module, "f4549VlHlxOL4w7V7h4rhZg", "UIAppearanceHelper")) {
   var U = shell.I18n.currentLocale;
   var B = shell.getBrowserBaseType().toLowerCase();
   var P = U === "zh" || U === "ko" || U === "ja" ? w : H;
+  // 依據作業系統與瀏覽器回傳文字垂直位移
   exports.getOffsetY = function () {
     switch (cc.sys.os) {
       case cc.sys.OS_WINDOWS:
@@ -120,6 +125,7 @@ if (!cc._RF.push(module, "f4549VlHlxOL4w7V7h4rhZg", "UIAppearanceHelper")) {
   cc._RF.pop();
 }
 function y(m) {
+  // 從備援資料依路徑取得值
   var v;
   var J = m.split(".");
   for (var Z0 = 0, Z1 = J.length; Z0 < Z1; Z0++) {

@@ -12,6 +12,7 @@ if (!cc._RF.push(module, "c32dchyVoJJ6YgRw+Shog7m", "UIStateMachine")) {
   })(T ||= {});
   var L = function () {
     function D(k) {
+      // 建立狀態機並設定取得下一狀態與退出回呼
       this._previousUIState = undefined;
       this._currentUIState = undefined;
       this._stateMachineStatus = T.Ready;
@@ -61,15 +62,18 @@ if (!cc._RF.push(module, "c32dchyVoJJ6YgRw+Shog7m", "UIStateMachine")) {
       configurable: true
     });
     D.prototype.setExitUIStateMachineCallback = function (k) {
+      // 設定狀態機結束時的回呼
       this._exitUIStateMachineCallback = k;
     };
     D.prototype.run = function () {
+      // 開始執行狀態機並評估狀態
       if (this.isStateReady) {
         this._stateMachineStatus = T.Running;
         this._evaluateState();
       }
     };
     D.prototype.exit = function (k) {
+      // 退出狀態機並強制當前狀態結束
       if (!this.isStateExiting && !this.isStateEnd) {
         this._stateMachineStatus = T.Exiting;
         var C = this.currentUIState;
@@ -80,6 +84,7 @@ if (!cc._RF.push(module, "c32dchyVoJJ6YgRw+Shog7m", "UIStateMachine")) {
       }
     };
     D.prototype.dispatchEvent = function (k, C) {
+      // 將事件傳給目前狀態
       if (this.isStateRunning) {
         var u = this.currentUIState;
         if (u && u.dispatchEvent) {
@@ -88,10 +93,12 @@ if (!cc._RF.push(module, "c32dchyVoJJ6YgRw+Shog7m", "UIStateMachine")) {
       }
     };
     D.prototype.destroy = function () {
+      // 清除狀態機回呼
       this._exitUIStateMachineCallback = undefined;
       this._getNextUIState = undefined;
     };
     D.prototype._evaluateState = function () {
+      // 取得下一個 UI 狀態並處理轉換
       var k = this;
       if (this.isStateRunning) {
         var C = this._getNextUIState();
@@ -137,6 +144,7 @@ if (!cc._RF.push(module, "c32dchyVoJJ6YgRw+Shog7m", "UIStateMachine")) {
       }
     };
     D.prototype._exit = function () {
+      // 完成狀態機離開流程
       if (!this.isStateEnd) {
         this._stateMachineStatus = T.End;
         var k = this._exitUIStateMachineCallback;
