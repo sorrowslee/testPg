@@ -9,6 +9,7 @@ if (!cc._RF.push(module, "7368flklilIqbTH/SUVuGX/", "WBSSlotScrollerController")
       return D !== null && D.apply(this, arguments) || this;
     }
     __extends(k, D);
+    // 組件被停用時確保所有滾動器停止
     k.prototype.onDisable = function () {
       var C;
       var u;

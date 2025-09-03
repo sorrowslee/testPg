@@ -9,6 +9,7 @@ if (!cc._RF.push(module, "ff7d0/y5MdPn5g0ygeMX3C8", "WBSSlotDataHandler")) {
       return D !== null && D.apply(this, arguments) || this;
     }
     __extends(k, D);
+    // 初始化輪帶資料與緩衝符號
     k.prototype.setReelData = function (C) {
       for (var j = this.numberOfColumn, G = this.topBufferRow, V = this.bottomBufferRow, Q = this.spinType, N = this.getRandomSymbol, Y = this.backupBufferedSymbol = [], W = 0; W < j; W++) {
         var q = Y[W] = [];
@@ -23,6 +24,7 @@ if (!cc._RF.push(module, "ff7d0/y5MdPn5g0ygeMX3C8", "WBSSlotDataHandler")) {
       }
       this.updateReelData(C);
     };
+    // 更新輪帶資料並轉成可用格式
     k.prototype.updateReelData = function (C) {
       for (var u = this.numberOfColumn, p = this.bottomBufferRow, j = this.backupBufferedSymbol, G = this.formattedReelData = [], V = 0; V < u; V++) {
         var Q = x.NUMBER_OF_ROW_LIST[V];
