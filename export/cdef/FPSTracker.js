@@ -1,3 +1,4 @@
+// 重新導出 FPSTracker，用於監控畫面更新率
 if (!cc._RF.push(module, "f7f37JW2SxLW5uWMYCvIjkK", "FPSTracker")) {
   var R = System.get("common").FPSTracker;
   module.exports.default = R;

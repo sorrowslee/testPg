@@ -15,6 +15,7 @@ if (!cc._RF.push(module, "c7066vCL8tMPLui05q7zWWt", "FastSpinController")) {
       return G;
     }
     __extends(j, p);
+    // 顯示快速旋轉特效
     j.prototype.play = function (G, V) {
       this.holder.opacity = 0;
       this.holder.active = true;
@@ -27,6 +28,7 @@ if (!cc._RF.push(module, "c7066vCL8tMPLui05q7zWWt", "FastSpinController")) {
       })));
       x.playAudio(T.GENERAL_AUDIO.fastspinStart.key);
     };
+    // 停止快速旋轉特效
     j.prototype.stop = function (G) {
       var V = this;
       this.holder.stopAllActions();
@@ -39,6 +41,7 @@ if (!cc._RF.push(module, "c7066vCL8tMPLui05q7zWWt", "FastSpinController")) {
       x.stopAudio(T.GENERAL_AUDIO.fastspinStart.key);
       x.playAudio(T.GENERAL_AUDIO.fastspinStop.key);
     };
+    // 重置特效狀態
     j.prototype.reset = function () {
       this.holder.stopAllActions();
       this.holder.opacity = 0;

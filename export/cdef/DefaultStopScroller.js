@@ -33,6 +33,7 @@ if (!cc._RF.push(module, "080a20w+h1E6aNSIb84n3TU", "DefaultStopScroller")) {
       return p;
     }
     __extends(u, C);
+    // 重置停止滾動器的狀態
     u.prototype.onReset = function () {
       this.endY = 0;
       this.previousY = 0;
@@ -40,6 +41,7 @@ if (!cc._RF.push(module, "080a20w+h1E6aNSIb84n3TU", "DefaultStopScroller")) {
       this.notified = false;
       this.update = this.bindedIdleUpdate;
     };
+    // 開始計算減速與回彈流程
     u.prototype.onRun = function () {
       this.emitEvent(L.SCROLLER_EVENT.RUN);
       var c = this.runtimeConfig;
@@ -52,6 +54,7 @@ if (!cc._RF.push(module, "080a20w+h1E6aNSIb84n3TU", "DefaultStopScroller")) {
       this.accumulatedTime = 0;
       this.update = this.bindedRunUpdate;
     };
+    // 結束滾動並補齊最後位移
     u.prototype.onEnd = function () {
       if (!this.notified) {
         this.notified = true;
@@ -68,6 +71,7 @@ if (!cc._RF.push(module, "080a20w+h1E6aNSIb84n3TU", "DefaultStopScroller")) {
       this.update = undefined;
       this.emitEvent(L.SCROLLER_EVENT.END);
     };
+    // 停止狀態下持續以最大速度滾動，可調整速度
     u.prototype.idleUpdate = function (c) {
       var p = this.changeSpeedDuration;
       if (p) {
@@ -82,6 +86,7 @@ if (!cc._RF.push(module, "080a20w+h1E6aNSIb84n3TU", "DefaultStopScroller")) {
       }
       this.runtimeConfig.scrollCallback(this, c * this.runtimeConfig.maxSpeed);
     };
+    // 執行減速與彈跳位移計算
     u.prototype.runUpdate = function (c) {
       var p = this.runtimeConfig;
       c = this.accumulatedTime += c;
@@ -108,9 +113,11 @@ if (!cc._RF.push(module, "080a20w+h1E6aNSIb84n3TU", "DefaultStopScroller")) {
       }
       this.end();
     };
+    // 取得減速所需的時間
     u.prototype.getDecelerateDuration = function () {
       return this.decelerateDuration;
     };
+    // 動態調整待機時的滾動速度
     u.prototype.changeIdleSpeed = function (c, p) {
       var j = this.runtimeConfig;
       this.previousMaxSpeed = j.maxSpeed;

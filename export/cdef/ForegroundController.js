@@ -20,10 +20,12 @@ if (!cc._RF.push(module, "7f6b45PVuNABKgWMXjQR2LN", "ForegroundController")) {
       return c;
     }
     __extends(u, C);
+    // 設定左右文字的圖框
     u.prototype.init = function (c) {
       this.textLeft.spriteFrame = c.leftWay;
       this.textRight.spriteFrame = c.rightWay;
     };
+    // 根據狀態切換前景 UI
     u.prototype.switchUI = function (c) {
       switch (c) {
         case T.TransitionState.FREE_SPIN:
@@ -40,9 +42,11 @@ if (!cc._RF.push(module, "7f6b45PVuNABKgWMXjQR2LN", "ForegroundController")) {
           this.bonusNode.active = false;
       }
     };
+    // 播放開場子彈動畫
     u.prototype.playGameIntroBullet = function () {
       this.bulletEffectAnim.play();
     };
+    // 播放前景發光效果
     u.prototype.playGlowEffect = function () {
       var c = cc.repeatForever(cc.sequence(cc.delayTime(1), cc.fadeTo(1, 255), cc.fadeTo(1, 0)));
       var p = cc.repeatForever(cc.sequence(cc.delayTime(1), cc.fadeTo(1, 255), cc.fadeTo(1, 0)));
@@ -51,6 +55,7 @@ if (!cc._RF.push(module, "7f6b45PVuNABKgWMXjQR2LN", "ForegroundController")) {
       this.topGlowRight.runAction(p);
       this.btmGlow.runAction(j);
     };
+    // 停止前景發光效果
     u.prototype.stopGlowEffect = function () {
       this.topGlowLeft.stopAllActions();
       this.topGlowRight.stopAllActions();
