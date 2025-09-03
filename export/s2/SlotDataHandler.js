@@ -3,6 +3,7 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
     value: true
   });
   var T = function () {
+    // 建構函式，初始化資料結構
     function x() {
       this.slotViews = undefined;
       this.spinType = undefined;
@@ -18,6 +19,7 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
       this.bufferedEmptyItemInfo = undefined;
       this.formattedDataPositions = undefined;
     }
+    // 初始化資料處理器
     x.prototype.init = function (L) {
       this.slotViews = L.slotViews;
       this.topBufferRow = L.topBufferRow ? L.topBufferRow : 0;
@@ -34,6 +36,7 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
       this.setSpinType(L.spinType);
       this.setReelData(L.reelData, L.largeSymbolDatas);
     };
+    // 重設資料狀態
     x.prototype.reset = function () {
       this.isStopping = false;
       this.bufferedEmptyItemInfo.length = 0;
@@ -41,16 +44,20 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
         this.formattedDataPositions[L] = -this.bottomBufferRow;
       }
     };
+    // 設定旋轉類型
     x.prototype.setSpinType = function (L) {
       this.spinType = L;
     };
+    // 設定指定轉軸資料位置
     x.prototype.setReelDataPosition = function (L, D) {
       this.isStopping = true;
       this.formattedDataPositions[L] = D - this.bottomBufferRow;
     };
+    // 取得指定轉軸資料位置
     x.prototype.getReelDataPosition = function (L) {
       return this.formattedDataPositions[L] + this.bottomBufferRow;
     };
+    // 取得指定位置的符號資訊
     x.prototype.getItemInfo = function (L, D) {
       var k = this.slotViews.indexOf(L);
       var C = this.bufferedEmptyItemInfo[k];
@@ -76,6 +83,7 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
       };
       return l;
     };
+    // 設定轉輪資料並填入緩衝符號
     x.prototype.setReelData = function (L, D) {
       for (var k = this.numberOfColumn, C = this.numberOfRow, j = this.topBufferRow, G = this.bottomBufferRow, V = this.spinType, Q = this.getRandomSymbol, N = G + C, Y = N + j, W = this.backupBufferedSymbol = [], q = 0; q < k; q++) {
         var S = W[q] = [];
@@ -88,6 +96,7 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
       }
       this.updateReelData(L, D);
     };
+    // 更新格式化後的轉輪資料
     x.prototype.updateReelData = function (L, D) {
       for (var k = this.numberOfColumn, C = this.numberOfRow, p = this.bottomBufferRow, j = this.backupBufferedSymbol, G = this.getSymbolSize, V = this.formattedReelData = [], Q = 0; Q < k; Q++) {
         var N = Q * C;
@@ -124,12 +133,15 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
         });
       }
     };
+    // 取得格式化後的資料
     x.prototype.getFormattedData = function (L) {
       return __spread(this.formattedReelData[L]);
     };
+    // 覆寫格式化資料內容
     x.prototype.overwriteFormattedData = function (L, D, n) {
       this.formattedReelData[L][D] = n;
     };
+    // 取得指定位置的符號編號
     x.prototype.getSymbol = function (L, D) {
       var k = this.formattedDataPositions[L];
       if (k !== undefined) {
@@ -154,6 +166,7 @@ if (!cc._RF.push(module, "c92e6Vflr1IcZlyJUaCowMg", "SlotDataHandler")) {
       }
       return j;
     };
+    // 建立空符號資訊
     x.prototype.createEmptyItemInfo = function (L, D) {
       var n = {
         positionIndex: D,
