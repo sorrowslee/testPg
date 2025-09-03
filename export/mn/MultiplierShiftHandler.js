@@ -10,11 +10,13 @@ if (!cc._RF.push(module, "b5c97V/nrtGXLgW0wUdIJa2", "MultiplierShiftHandler")) {
       this._getMultiplierItems = undefined;
       this._createMultiplier = undefined;
     }
+    // 初始化位移處理器，設置倍數容器與生成方法
     D.prototype.init = function (k) {
       this._multiplierContainer = k.multiplierItemContainer;
       this._getMultiplierItems = k.getMultiplierItems;
       this._createMultiplier = k.createMultiplier;
     };
+    // 播放倍數向右移動的動畫
     D.prototype.playShiftRight = function (k, C, j) {
       var G = this._getMultiplierItems();
       var V = 0;
@@ -80,6 +82,7 @@ if (!cc._RF.push(module, "b5c97V/nrtGXLgW0wUdIJa2", "MultiplierShiftHandler")) {
         S(q);
       }
     };
+    // 播放倍數向左移動的動畫
     D.prototype.playShiftLeft = function (k, C, j) {
       var G = this._getMultiplierItems();
       var V = 0;
@@ -139,11 +142,13 @@ if (!cc._RF.push(module, "b5c97V/nrtGXLgW0wUdIJa2", "MultiplierShiftHandler")) {
         S(q);
       }
     };
+    // 設定被選取倍數的縮放比例
     D.prototype._setSelectedMultiplierNodeScale = function (k) {
       var C = k.multiplierNumber;
       var u = T.SELECTED_MULTIPLIER_SIZE_MAP[C];
       k.node.setScale(u);
     };
+    // 設定未選取倍數的縮放比例
     D.prototype._setDeselectedMultiplierNodeScale = function (k) {
       var C = k.multiplierNumber;
       var u = T.DESELECTED_MULTIPLIER_SIZE_MAP[C];

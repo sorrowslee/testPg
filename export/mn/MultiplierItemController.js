@@ -31,11 +31,13 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
     };
     __extends(V, G);
     Object.defineProperty(V.prototype, "isSelected", Q);
+    // 初始化倍數項目並設定朝向點
     V.prototype.init = function (N) {
       this._numberFacingPoint = N;
       this.reset();
       this.enableListener();
     };
+    // 被選取時顯示亮光與放大
     V.prototype.selected = function () {
       this._isSelected = true;
       var N = this.multiplierNumber;
@@ -47,6 +49,7 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
         this.showShine();
       }
     };
+    // 取消選取時恢復原狀
     V.prototype.deselected = function () {
       this._isSelected = false;
       var N = this.multiplierNumber;
@@ -64,12 +67,14 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
         this.hideShine(true);
       }
     };
+    // 顯示閃光效果
     V.prototype.showShine = function () {
       this.hideShine(true);
       var N = cc.sequence(cc.scaleTo(0.2, 0.7), cc.scaleTo(1, 0.5));
       this.shine.active = true;
       this.shine.runAction(N.repeatForever());
     };
+    // 隱藏閃光效果
     V.prototype.hideShine = function (N) {
       var Y = this;
       if (N === undefined) {
@@ -85,6 +90,7 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
         })));
       }
     };
+    // 顯示指定的倍數數字
     V.prototype.show = function (N, Y) {
       var W = this;
       this.multiplierNumber = N;
@@ -114,6 +120,7 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
         Y();
       }
     };
+    // 播放破碎效果動畫
     V.prototype.playBreak = function (N, Y) {
       var W = this;
       var q = this.multiplierNumberDisplayController.node;
@@ -132,12 +139,15 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
     V.prototype.unuse = function () {
       this.reset();
     };
+    // 啟用位置變化監聽
     V.prototype.enableListener = function () {
       this.node.on(cc.Node.EventType.POSITION_CHANGED, this.resetFacingAngle, this);
     };
+    // 停用位置變化監聽
     V.prototype.disableListener = function () {
       this.node.off(cc.Node.EventType.POSITION_CHANGED, this.resetFacingAngle, this);
     };
+    // 重置倍數項目狀態
     V.prototype.reset = function () {
       this._isSelected = false;
       this.hideShine(true);
@@ -148,12 +158,14 @@ if (!cc._RF.push(module, "a071dzZWHNLxLKLeUJE1kCj", "MultiplierItemController"))
       this.vfxAnim.stop();
       this.vfxAnim.node.active = false;
     };
+    // 重新計算面向角度
     V.prototype.resetFacingAngle = function () {
       if (this._numberFacingPoint) {
         var N = j(this.node, this._numberFacingPoint);
         this.node.angle = N;
       }
     };
+    // 銷毀前移除監聽
     V.prototype.onDestroy = function () {
       this.disableListener();
     };

@@ -15,6 +15,7 @@ if (!cc._RF.push(module, "57d52E5rw9F7Iqp2UOZL/vK", "MaxBetButton")) {
       return G;
     }
     __extends(j, p);
+    // 切換按下狀態時的按鈕顏色
     j.prototype.changeButtonPressedColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");
@@ -29,6 +30,7 @@ if (!cc._RF.push(module, "57d52E5rw9F7Iqp2UOZL/vK", "MaxBetButton")) {
         }
       }
     };
+    // 切換可互動與禁用時的按鈕顏色
     j.prototype.interactableButtonColor = function (G) {
       if (this.buttonTheme) {
         var V = x.uiAppearanceHelper.v(this.buttonTheme.domainKey + "." + this.buttonTheme.colorKey + ".normal");

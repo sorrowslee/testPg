@@ -17,19 +17,24 @@ if (!cc._RF.push(module, "6e9deOwoQZHDb/Mv4FAbr3R", "NumberDisplayInterface")) {
       return l;
     }
     __extends(u, C);
+    // 將數字加入千分位逗號
     u.prototype.numberWithComma = function (l) {
       var G = T.getDefaultCurrencyFormat().groupSeparator;
       return l.toString().replace(/\B(?=(\d{3})+(?!\d))/g, G);
     };
+    // 設定縮放時的動畫函式
     u.prototype.setResizeAnimation = function (l) {
       this._resizeFunc = l;
     };
+    // 顯示數字，子類需覆寫
     u.prototype.displayNumber = function (l, G = true) {
       throw Error("NumberDisplayInterface: method must be overriden");
     };
+    // 清除顯示內容，子類需覆寫
     u.prototype.clear = function () {
       throw Error("NumberDisplayInterface: method must be overriden");
     };
+    // 需要時調整數字大小，子類需覆寫
     u.prototype.resizeNumberIfNeeded = function () {
       throw Error("NumberDisplayInterface: method must be overriden");
     };

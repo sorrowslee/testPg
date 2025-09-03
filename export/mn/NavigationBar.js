@@ -51,12 +51,14 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
       enumerable: false,
       configurable: true
     });
+    // 初始化導航列尺寸與陰影位置
     C.prototype.onLoad = function () {
       var u = this.node.width;
       var c = this.node.height;
       this.background.node.setContentSize(u, c);
       this.shadow.y = -c;
     };
+    // 根據裝置資訊計算並設定導航列高度
     C.prototype.getBarHeight = function (u, c) {
       var p = this.node.width;
       var j = u.height;
@@ -69,6 +71,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
       this._setItemsConfig(u.item_space_x);
       return G;
     };
+    // 推入新的導航項目並處理動畫
     C.prototype.pushItem = function (j, G) {
       if (j) {
         var V = this._items[this._items.length - 1];
@@ -131,6 +134,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
         }
       }
     };
+    // 彈出頂端導航項目並更新顯示
     C.prototype.popItem = function (j) {
       var G = this.topItem;
       if (G) {
@@ -204,6 +208,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
         }
       }
     };
+    // 允許左右按鈕可被點擊
     C.prototype.enableButtons = function () {
       var u = this.leftItemContainer.children[0];
       var c = this.rightItemContainer.children[0];
@@ -220,6 +225,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
         }
       }
     };
+    // 禁用左右按鈕
     C.prototype.disableButtons = function () {
       var u = this.leftItemContainer.children[0];
       var c = this.rightItemContainer.children[0];
@@ -236,12 +242,15 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
         }
       }
     };
+    // 設定標題文字顏色
     C.prototype.setTitleColor = function (u) {
       this.titleLabel.node.color = u;
     };
+    // 設定標題文字大小
     C.prototype.setTitleSize = function (u) {
       this.titleLabel.fontSize = u;
     };
+    // 移除指定索引之導航項目
     C.prototype.removeItemsAtIndex = function (u) {
       if (!(this._items.length <= u)) {
         this._items.splice(u, 1);
@@ -273,6 +282,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
       p.x = j;
       l.x = G;
     };
+    // 左側返回按鈕的點擊回呼
     C.prototype.onLeftItemPressed = function () {
       var u = this.navigator;
       this.navigator.topController;
@@ -281,6 +291,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
         this.navigator.popController(c);
       }
     };
+    // 執行推入動畫效果
     C.prototype._playPushAnimation = function (j, G) {
       var V = j.leftItem;
       var Q = j.middleItem;
@@ -297,6 +308,7 @@ if (!cc._RF.push(module, "0dc7dijGWtKO4QKzl8UL9Pz", "NavigationBar")) {
       this._playPushLeftItemAnimation(A, W, M, V, q);
       this._playRightContainerFadeAnim(N, z);
     };
+    // 執行彈出動畫效果
     C.prototype._playPopAnimation = function (j, G) {
       var V = j.leftItem;
       var Q = j.middleItem;

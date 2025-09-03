@@ -8,6 +8,7 @@ if (!cc._RF.push(module, "a3adfRiBcZJbqfI73O63apo", "NodePoolHandler")) {
       this._nodePools = Object.create(null);
       this._registeredPrefabs = Object.create(null);
     }
+    // 註冊可重複使用的節點並建立物件池
     D.prototype.registerReusableItem = function (k, C, u, c = 0) {
       var p = this._registeredPrefabs;
       var j = this._nodePools;
@@ -24,10 +25,12 @@ if (!cc._RF.push(module, "a3adfRiBcZJbqfI73O63apo", "NodePoolHandler")) {
         }
       }
     };
+    // 重新註冊指定鍵值的節點池
     D.prototype.replaceReusableItem = function (k, C, u, c = 0) {
       this.unregisterReusableItem(k);
       this.registerReusableItem(k, C, u, c);
     };
+    // 從節點池取出節點
     D.prototype.dequeueReusableItem = function (k) {
       var C = this._nodePools[k];
       if (C.size() > 0) {
@@ -38,6 +41,7 @@ if (!cc._RF.push(module, "a3adfRiBcZJbqfI73O63apo", "NodePoolHandler")) {
       c._nodePoolPrefabId = u._uuid;
       return c;
     };
+    // 將節點歸還到節點池
     D.prototype.enqueueReusableItem = function (k, C) {
       var u = this._nodePools[C];
       var c = this._registeredPrefabs[C];
@@ -48,11 +52,13 @@ if (!cc._RF.push(module, "a3adfRiBcZJbqfI73O63apo", "NodePoolHandler")) {
         k.destroy();
       }
     };
+    // 移除指定鍵值的節點池
     D.prototype.unregisterReusableItem = function (k) {
       this.clear(k);
       delete this._nodePools[k];
       delete this._registeredPrefabs[k];
     };
+    // 移除所有註冊的節點池
     D.prototype.unregisterAllReusableItem = function () {
       var k;
       var C;
@@ -80,12 +86,14 @@ if (!cc._RF.push(module, "a3adfRiBcZJbqfI73O63apo", "NodePoolHandler")) {
         }
       }
     };
+    // 清空指定節點池
     D.prototype.clear = function (k) {
       var C = this._nodePools[k];
       if (C) {
         C.clear();
       }
     };
+    // 清空所有節點池
     D.prototype.clearAll = function () {
       var k;
       var C;
@@ -113,6 +121,7 @@ if (!cc._RF.push(module, "a3adfRiBcZJbqfI73O63apo", "NodePoolHandler")) {
         }
       }
     };
+    // 銷毀並釋放所有節點池
     D.prototype.destroy = function () {
       this.unregisterAllReusableItem();
     };

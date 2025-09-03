@@ -21,6 +21,7 @@ if (!cc._RF.push(module, "88c0bvJUDVGt4Zbi3DnKpmf", "NumberLabelControllerLite")
       return p;
     }
     __extends(c, u);
+    // 播放數字滾動動畫
     c.prototype.play = function (p, j) {
       if (this._counting) {
         this.unschedule(this._calculateNumber);
@@ -33,6 +34,7 @@ if (!cc._RF.push(module, "88c0bvJUDVGt4Zbi3DnKpmf", "NumberLabelControllerLite")
       this._isIncrement = !(p > j);
       this.schedule(this._calculateNumber, 0);
     };
+    // 跳到指定數字並停止滾動
     c.prototype.skip = function (p) {
       if (this._counting) {
         this.unschedule(this._calculateNumber);
@@ -40,6 +42,7 @@ if (!cc._RF.push(module, "88c0bvJUDVGt4Zbi3DnKpmf", "NumberLabelControllerLite")
       }
       this.label.string = T.formatCurrency(p);
     };
+    // 根據時間更新當前數值
     c.prototype._calculateNumber = function (p) {
       this._time += p;
       var j = this._time / this.rollDuration;
