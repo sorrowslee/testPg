@@ -129,3 +129,14 @@
 | export/opq/PrizeState.js | 處理得獎顯示流程 |
 | export/opq/QuitGame.js | 重新導出 QuitGame |
 | export/opq/QuitGameWithEvent.js | 重新導出 QuitGameWithEvent |
+| export/r/RefreshWorldHandler.js | 處理錢包或下注變更後重新刷新遊戲狀態 |
+| export/r/RequestApiState.js | 管理旋轉期間 API 請求與快速停止邏輯的狀態 |
+| export/r/ResourceLoader.js | 資源載入器，支援重試與多 bundle 載入 |
+| export/r/RetryHandler.js | 重新導出 BVFramework 的 RetryHandler |
+| export/r/RegionUtils.js | 重新導出 BVFramework 的 RegionUtils |
+| export/r/RequestHandler.js | 重新導出 BVFramework 的 RequestHandler |
+| export/r/ResourceQualifierHelper.js | 重新導出 BVFramework 的 ResourceQualifierHelper |
+| export/r/RtConfig.js | 遊戲執行時設定，包含 ID 與版本資訊 |
+| export/r/RemainingFreeSpinController.js | 顯示剩餘免費旋轉次數並處理增加效果 |
+| export/r/ResRC.js | 轉換並導出共用的 ResRC 資源管理函式 |
+| export/r/ResultState.js | 控制轉輪結果呈現與快速停止的狀態 |

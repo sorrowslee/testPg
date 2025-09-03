@@ -28,6 +28,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
       return Y;
     }
     __extends(N, Q);
+    // 取得或快取數字顯示控制器
     Object.defineProperty(N.prototype, "numberDisplayController", {
       get: function () {
         this._numberDisplayController ||= this.numberDisplayNode.getComponent("NumberDisplayController");
@@ -36,6 +37,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
       enumerable: false,
       configurable: true
     });
+    // 初始化節點與資源
     N.prototype.init = function (Y) {
       this.node.active = false;
       this.remainingSprite.spriteFrame = Y.remainingFreeSpinSF;
@@ -46,6 +48,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         this.numberDisplayNode.x = this.numberDisplayNode.x - 20;
       }
     };
+    // 顯示剩餘免費旋轉次數
     N.prototype.show = function (Y) {
       if (this._displayState === D.DisplayState.HIDE) {
         this._displayState = D.DisplayState.SHOWED;
@@ -54,6 +57,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         this._setRemainingFreeSpinCount(this._freeSpinCount);
       }
     };
+    // 隱藏並重置顯示
     N.prototype.hide = function () {
       if (this._displayState === D.DisplayState.SHOWED) {
         this._displayState = D.DisplayState.HIDE;
@@ -61,6 +65,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         this.node.active = false;
       }
     };
+    // 減少一次免費旋轉並更新顯示
     N.prototype.decrementFreeSpinCount = function (Y) {
       this._freeSpinCount--;
       this._previousSpinCount = this._freeSpinCount;
@@ -69,6 +74,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         Y();
       }
     };
+    // 增加免費旋轉次數並播放動畫
     N.prototype.increaseFreeSpinCount = function (Y, W) {
       if (this._freeSpinCount !== Y) {
         this._previousSpinCount = this._freeSpinCount;
@@ -79,6 +85,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         W();
       }
     };
+    // 設定目前的剩餘免費旋轉顯示
     N.prototype._setRemainingFreeSpinCount = function (Y) {
       if (Y === 0) {
         this.lastFreeSpinSprite.node.active = true;
@@ -91,6 +98,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         this._updateNumberLayout(Y);
       }
     };
+    // 逐步遞增並播放升級效果
     N.prototype._addFreeSpinCount = function () {
       if (this._freeSpinCount === this._previousSpinCount) {
         var Y = this._increaseFreeSpinCallback;
@@ -111,6 +119,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
       this.numberDisplayNode.stopAllActions();
       this.numberDisplayNode.runAction(cc.sequence(cc.moveTo(0.05, q).easing(cc.easeIn(2)), cc.moveTo(0.1, W).easing(cc.easeBackOut()), cc.callFunc(this._addFreeSpinCount, this)));
     };
+    // 播放升級特效
     N.prototype._playUpgradeVfx = function () {
       var Y = this;
       var W = T.nodePoolHandler.dequeueReusableItem(D.NodePoolName.RamainingFreeSpinUpgradeItem);
@@ -123,6 +132,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
         T.nodePoolHandler.enqueueReusableItem(W, D.NodePoolName.RamainingFreeSpinUpgradeItem);
       });
     };
+    // 根據數字大小調整版面
     N.prototype._updateNumberLayout = function (Y) {
       if (Y < 100) {
         this.numberDisplayNode.setScale(1.43);
@@ -131,6 +141,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
       }
       this.numberDisplayLayout.updateLayout();
     };
+    // 重置控制器狀態
     N.prototype._reset = function () {
       this._previousSpinCount = 0;
       this._freeSpinCount = 0;
@@ -138,6 +149,7 @@ if (!cc._RF.push(module, "a2463gehDRMQaO5G/PwztxI", "RemainingFreeSpinController
       this.numberDisplayNode.stopAllActions();
       this.numberDisplayNode.setScale(1.43);
     };
+    // 銷毀控制器並清理資源
     N.prototype.destroy = function () {
       this._reset();
       this.node.destroy();
